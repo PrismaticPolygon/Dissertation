@@ -1,0 +1,20 @@
+PWD c:\Users\user\Documents\MEGA\University\Year 3\Dissertation\Literature Review
+INPUT C:\Users\user\AppData\Local\MiKTeX\2.9\miktex\data\le\pdftex\pdflatex.fmt
+INPUT c:\Users\user\Documents\MEGA\University\Year 3\Dissertation\Literature Review\Literature Review.tex
+OUTPUT c:\Users\user\Documents\MEGA\University\Year 3\Dissertation\Literature Review\Literature Review.log
+INPUT C:\Users\user\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\article.cls
+INPUT C:\Users\user\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\article.cls
+INPUT C:\Users\user\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\size10.clo
+INPUT C:\Users\user\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\size10.clo
+INPUT c:\Users\user\Documents\MEGA\University\Year 3\Dissertation\Literature Review\Literature Review.aux
+INPUT c:\Users\user\Documents\MEGA\University\Year 3\Dissertation\Literature Review\Literature Review.aux
+OUTPUT c:\Users\user\Documents\MEGA\University\Year 3\Dissertation\Literature Review\Literature Review.aux
+INPUT C:\Users\user\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public\cm\cmr12.tfm
+INPUT C:\Users\user\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public\cm\cmbx12.tfm
+OUTPUT c:\Users\user\Documents\MEGA\University\Year 3\Dissertation\Literature Review\Literature Review.pdf
+INPUT C:\Users\user\AppData\Local\MiKTeX\2.9\pdftex\config\pdftex.map
+INPUT c:\Users\user\Documents\MEGA\University\Year 3\Dissertation\Literature Review\Literature Review.aux
+INPUT C:\Users\user\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx12.pfb
+INPUT C:\Users\user\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx12.pfb
+INPUT C:\Users\user\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr10.pfb
+INPUT C:\Users\user\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr10.pfb
