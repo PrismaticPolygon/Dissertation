@@ -1,6 +1,10 @@
-\documentclass[a4paper]{article}
-\usepackage{cite}
-
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+ 
+\usepackage[backend=biber, style=numeric]{biblatex}
+\bibliography{review}
+ 
 \begin{document}
 
 \section*{\centering{A literature review of train delay prediction systems}} 
@@ -10,31 +14,14 @@
 
 \section*{Abstract}
 
-Context: Train delays impose a huge cost on passengers and operators. Systems which predict 
-delays can ameliorate this cost by informing the creation of timetables, improving real-time
-passenger information systems and improving delay management systems. 
+This is a test paper \cite{armstrong_preston_2017}.
 
-Objective: The goal of this work is to synthesise available research results to inform
-evidence-based selection of train delay prediction techniques (TDPT)
+This is another test paper \cite{briggs_beck_2007}.
 
-Method: Relevant studies about TDPTs were gathered via a systematic literature review
+This is my final test paper \cite{cerreto_nielsen_harrod_nielsen_2016}.
 
-Results: We selected 21 peer-reviewed studies of TDPTs. The techniques are evaluated.
+I swear \cite{magadagela_nel_marnewick_2017}
 
-All of the TDPTs are evaluated with a variety of evaluation metrics.
-
-What did you say to me?! ~\cite{armstrong_preston_2017}
-
-
-Conclusion: the selected 
-
-\section{Introduction}
-
-A delay is "" 
-
-
-
-
-\bibliography{bibliography}{}
-\bibliographystyle{plain}
+\printbibliography
+ 
 \end{document}

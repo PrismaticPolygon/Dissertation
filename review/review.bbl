@@ -1,0 +1,165 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{armstrong_preston_2017}{article}{}
+      \name{author}{2}{}{%
+        {{hash=bc0b31e72eaad0820a851291225fd4b1}{%
+           family={Armstrong},
+           familyi={A\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+        {{hash=fc6fafca124a7d0ad9de9f5f0e502244}{%
+           family={Preston},
+           familyi={P\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{a37b85839b17e16b4925e21df5f2badb}
+      \strng{fullhash}{a37b85839b17e16b4925e21df5f2badb}
+      \strng{bibnamehash}{a37b85839b17e16b4925e21df5f2badb}
+      \strng{authorbibnamehash}{a37b85839b17e16b4925e21df5f2badb}
+      \strng{authornamehash}{a37b85839b17e16b4925e21df5f2badb}
+      \strng{authorfullhash}{a37b85839b17e16b4925e21df5f2badb}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Rail Transport Planning \& Management}
+      \field{number}{3}
+      \field{title}{Capacity utilisation and performance at railway stations}
+      \field{volume}{7}
+      \field{year}{2017}
+      \field{pages}{187\bibrangedash 205}
+      \range{pages}{19}
+      \verb{doi}
+      \verb 10.1016/j.jrtpm.2017.08.003
+      \endverb
+    \endentry
+    \entry{briggs_beck_2007}{article}{}
+      \name{author}{2}{}{%
+        {{hash=d2c8f8d472c6356b866f1133bbcf75ed}{%
+           family={Briggs},
+           familyi={B\bibinitperiod},
+           given={Keith},
+           giveni={K\bibinitperiod}}}%
+        {{hash=53a777055b139b74439193de18ada60c}{%
+           family={Beck},
+           familyi={B\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{ff19a441486591af50968f0f8dcd04d2}
+      \strng{fullhash}{ff19a441486591af50968f0f8dcd04d2}
+      \strng{bibnamehash}{ff19a441486591af50968f0f8dcd04d2}
+      \strng{authorbibnamehash}{ff19a441486591af50968f0f8dcd04d2}
+      \strng{authornamehash}{ff19a441486591af50968f0f8dcd04d2}
+      \strng{authorfullhash}{ff19a441486591af50968f0f8dcd04d2}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Physica A: Statistical Mechanics and its Applications}
+      \field{number}{2}
+      \field{title}{Modelling train delays with q-exponential functions}
+      \field{volume}{378}
+      \field{year}{2007}
+      \field{pages}{498\bibrangedash 504}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1016/j.physa.2006.11.084
+      \endverb
+    \endentry
+    \entry{cerreto_nielsen_harrod_nielsen_2016}{inbook}{}
+      \name{author}{4}{}{%
+        {{hash=e3bfd8e3759e437f2330d0e29a1d5fc1}{%
+           family={Cerreto},
+           familyi={C\bibinitperiod},
+           given={Fabrizio},
+           giveni={F\bibinitperiod}}}%
+        {{hash=b86fe6b23b978ee7d81c05161acdaf83}{%
+           family={Nielsen},
+           familyi={N\bibinitperiod},
+           given={Otto\bibnamedelima Anker},
+           giveni={O\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=67005b8638b71883c56cf53e48953697}{%
+           family={Harrod},
+           familyi={H\bibinitperiod},
+           given={Steven},
+           giveni={S\bibinitperiod}}}%
+        {{hash=ee224edbc207ce654ce2bec518df5c51}{%
+           family={Friis},
+           familyi={F\bibinitperiod},
+           given={Nielsen\bibnamedelima Bo},
+           giveni={N\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \strng{namehash}{a5925834ba3881c26d5398ff049671f6}
+      \strng{fullhash}{ad28b8a80bee6391c937046a70f99bed}
+      \strng{bibnamehash}{a5925834ba3881c26d5398ff049671f6}
+      \strng{authorbibnamehash}{a5925834ba3881c26d5398ff049671f6}
+      \strng{authornamehash}{a5925834ba3881c26d5398ff049671f6}
+      \strng{authorfullhash}{ad28b8a80bee6391c937046a70f99bed}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{11th World Congress on Railway Research (WCRR 2016)}
+      \field{title}{Causal Analysis of Railway Running Delays}
+      \field{year}{2016}
+    \endentry
+    \entry{magadagela_nel_marnewick_2017}{article}{}
+      \name{author}{3}{}{%
+        {{hash=c51ec202f73c37b727fee928931016cc}{%
+           family={Magadagela},
+           familyi={M\bibinitperiod},
+           given={Khuthadzo},
+           giveni={K\bibinitperiod}}}%
+        {{hash=42b8b38e6f15a10a08e35b1b7d2635d4}{%
+           family={Nel},
+           familyi={N\bibinitperiod},
+           given={Hannelie},
+           giveni={H\bibinitperiod}}}%
+        {{hash=0548a718a0e55a2de1357b67d6322c3c}{%
+           family={Marnewick},
+           familyi={M\bibinitperiod},
+           given={Annlize},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{35e2912b71361699c24125784d5064c9}
+      \strng{fullhash}{35e2912b71361699c24125784d5064c9}
+      \strng{bibnamehash}{35e2912b71361699c24125784d5064c9}
+      \strng{authorbibnamehash}{35e2912b71361699c24125784d5064c9}
+      \strng{authornamehash}{35e2912b71361699c24125784d5064c9}
+      \strng{authorfullhash}{35e2912b71361699c24125784d5064c9}
+      \field{sortinit}{M}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{2017 IEEE Technology \& Engineering Management Conference (TEMSCON)}
+      \field{title}{Identification of delay factors that affect high dwell times of freight trains}
+      \field{year}{2017}
+      \verb{doi}
+      \verb 10.1109/temscon.2017.7998374
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
