@@ -7,7 +7,7 @@
 
 \bibliography{review}
 
-\title{A literature review of machine learning techniques for train delay prediction}
+\title{A literature review of machine learning models for train delay prediction}
 \author{D. White, N. Al-Moubayed}
 \date{\today}
 
@@ -23,11 +23,11 @@ Train delays impose a huge cost on both train operators and passengers. A prelim
 35 million minutes of delay were experienced by passengers in the 2018 - 2019 financial year. The prediction of train delays allows the rescheduling or re-routing of crews and rolling-stock,
 the reduction in the the amount of delay, and improvement of information available to passengers, and subsequent better decision-making. 
 
-\textit{Objective}: the goal of this work is to synthesise available research results to inform evidence-based selection of machine learning (ML) techniques for TPD.
+\textit{Objective}: the goal of this work is to synthesise available research results to inform evidence-based selection of machine learning (ML) models for TPD.
 
 \textit{Method}: relevant studies about ML techniques were gathered via a systematic literature review. Supporting contextual studies were also gathered.
 
-\textit{Results}: $x$ studies about data-driven TPDMs were selected. They use: Bayesian networks, support vector regression, random forests, neural networks, fuzzy Petri nets, and extreme learning machines. 
+\textit{Results}: 19 studies were selected. 13 distinct models are used: Bayesian networks, support vector regression, random forests, neural networks, fuzzy Petri nets, extreme learning machines, various forms of regression () 
 The data used, and results obtained, are compared. 
 
 \textit{Conclusion}: to do.
@@ -40,6 +40,18 @@ The data used, and results obtained, are compared.
 \clearpage
 
 \twocolumn
+
+
+\section{Research questions}
+
+We are interested in answering the following research questions:
+
+\begin{itemize}
+	\item RQ1: What ML models are commonly used for TDP?
+	\item RQ2: What exogenous data is used to improve the performance of those models? / big data analysis
+	\item RQ3: What are the research challenges in TDP?
+	\item RQ4: No idea
+\end{itemize}
 
 \section{Introduction}
 
@@ -61,7 +73,7 @@ A \textit{primary} or \textit{exogenous} delay is "caused by external stochastic
 	\item \textit{Weather}: severe heat, flooding, landslips, leaves, snow, and ice
 	\item \textit{Passenger}: prolonged alighting and boarding times, large flows
 	\item \textit{Maintenance}: construction work, repair work
-	\item \textit{Other}: accidents, vandalism, trespassing, fatalities, strikes
+	\item \textit{Other}: accidents, vandalism, trespassing, fatalities, strikes, holidays
 \end{itemize}
 
 A large component of this dissertation is the effect of the inclusion of exogenous data on the predictive capability of various machine learning techniques: this classification broadly follows the sets of data that will
@@ -82,65 +94,7 @@ Secondary delays cannot be exactly forecast \cite{berger_et_al_2011}, \cite{mili
 
 The goal of this work is to synthesise available research results to inform evidence-based selection of ML techniques.
 
-A systematic literature review (SLR) is "a means of evaluating and interpreting all available research relevant to a particular research question or topic area or phenomenon of interest" \cite{williams_hollingsworth_2005}. The specific objectives of this SLR are:
-
-\begin{itemize}
-	\item To identify categories of ML techniques
-	\item To summarise current research solutions for TDP
-	\item To synthesis the current results from ML techniques for TDP
-	\item To identify the research challenges and needs in the area of TDP
-\end{itemize}
-
-\section{Overview of systematic literature review}
-
-\subsection{Search strategy and terms}
-
-We identified key search terms from a preliminary exploration of relevant studies. Our main search term is "train delay prediction". Unfortunately, the verb "train" is a common word in scientific literature. Where possible, "train NOT training" was specified.
-Appropriate synonyms were also used for the other search terms: "delay" OR "delays"; "prediction" OR "predicting" OR "analysis" OR "analyzing" OR "analysing" OR "estimation" OR "estimating". The breadth of possible machine learning techniques eliminated the possibility of searching by technique. 
-
-\subsection{Databases}
-
-The following databases were searched:
-
-\begin{itemize}
-	\item ACM Digital Library
-	\item IEEE Xplore
-	\item ScienceDirect
-	\item SpringerLink
-\end{itemize}
-
-
-\subsection{Study selection}
-
-Okay. Now I'll get all of my papers. Let's just get it DONE. 
-
-ScienceDirect: 701 results
-Title, abstract, keywords = (train NOT training) AND (delay OR delays) AND (predicting OR prediction OR estimating OR estimating OR analysis OR analysing OR analyzing)
-
-Reduced to 156 by using -brain -neuroscience -neurobiology -behavioural -Lancet -Ultrasonics -Neurocomputing -medicine -Resuscitation as a filter.
-
-Of those 42 were suitable by title. But we want by abstract...
-
-SpringerLink: 125 results
-Search string = (delay OR delays OR prediction OR predicting OR estimating OR estimation OR analysis OR analysing)
-Discipline: Computer Science
-
-
-
-If I say it isn't systematic, then we're in the clear. And I save myself a lot of time. It's unlikely, I think, that I've missed anything.
-Yeah: let's scrap out the systematic requirement. 
-Search term: (delay OR delays OR prediction OR predicting OR estimating OR estimation OR analysis OR analysing)
-
-Selection of studies for inclusion in the SLR is a three stage process:
-
-\begin{enumerate}
-	\item Initial selection of studies based on title
-	\item Selection of studies based on abstract
-	\item Further selection of studies based on reading the paper
-
-\end{enumerate}
-
-\section{Timescales}
+\subsection{Timescales}
 
 There are several different timescales at which delays can be predicted, such as short-term (predicted using real-time operating data) and long-time (3 days to a week in advance), as in \cite{wang_zhang_2019};
 tactical (in which models are applied to both timetabling and resource planning), and operational (in which models are used for the real-time prediction of train delays), as in \cite{markovic_milinkovic_tikhonov_schonfeld_2015}. This dissertation is concerned with the short-term / operational level, henceforth referred to as the \textit{real-time} level. 
@@ -148,7 +102,9 @@ tactical (in which models are applied to both timetabling and resource planning)
 Models for real-time traffic have so far focused on overcoming the combinatorial complexity of train rescheduling, rolling stock and crew scheduling, and delay management \cite{kecman_corman_meng_2015}.
 Real-time train delay prediction (RTTDP) models are \textit{online}, i.e. updated as data on train movements becomes periodically available.  Many different models have been proposed; they will be discussed later.
 
-\section{Metrics}
+For scheduled train services, a trade-off exists between efficiently utilising the capacity of a railway network and improving the reliability and punctuality of train operations. 
+
+\subsection{Metrics}
 
 \textit{Punctuality} is "a feature consisting in that a predefined vehicle arrives, departs, or passes at a predefined point at a predefined time" \cite{rudnicki_1997}. This definition has the interesting effect that trains 
 that arrive \textit{early} cannot be considered punctual. However, the use of punctuality hides a lot of information \cite{skagestad_2004}; reliability and variability are better metrics \cite{olsson_haugland_2004}.
@@ -169,9 +125,206 @@ a train that arrives the same amount of minutes behind schedule every day has lo
 
 The Office of Road and Rail (ORR), the UK's railway regulator, uses Public Performance Measure (PPM) to assess punctuality, and Cancellations and Significant Lateness (CaSL) to assess reliability.
 
-\section{Existing models}
+A systematic literature review (SLR) is "a means of evaluating and interpreting all available research relevant to a particular research question or topic area or phenomenon of interest" \cite{williams_hollingsworth_2005}. The specific objectives of this SLR are:
 
-\subsection{Analytical}
+\begin{itemize}
+	\item To identify categories of ML techniques
+	\item To summarise current research solutions for TDP
+	\item To synthesis the current results from ML techniques for TDP
+	\item To identify the research challenges and needs in the area of TDP
+\end{itemize}
+
+% LTIERATURE REVIEW METHOD
+\clearpage
+\section{Overview of literature review\\method}
+
+A full systematic literature review is beyond the scope of this paper. 
+Instead, a recent literature review focusing on big data analytics (BDA) in railway transportation systems (RTS) \cite{ghofrani_et_al_2018} was used as a basis for the authors' own.
+The methodology of \cite{ghofrani_et_al_2018} is therefore thoroughly discussed. 
+The studies identified in \cite{ghofrani_et_al_2018} are used to select key search terms for further database queries. Additionally, the cited references of those studies were used to find other relevant papers.
+The studies found in \cite{ghofrani_et_al_2018}, by database search, and from cited references, are then selected for inclusion in this review by title, abstract, and finally by content.
+Although the search was by no means exhaustive, the authors are satisfied that the papers gathered represent a comprehensive review of the application of ML to TDP.
+
+\subsection{Recent applications of big data analytics in railway transportation systems: A survey \cite{ghofrani_et_al_2018}}
+
+Readers are invited to read the paper themselves; only an overview of content relevant to this literature review is presented here.
+The authors identified the following data-related keywords: "Data analytics, Big data, Data mining, Machine learning, Descriptive analytics, Predictive analytics" and the following RTS-related keywords: "Rail, Railway Engineering, Railway Systems, Railway Operations, Railway Safety, Railway Maintenance". Of particular significance is "Rail Operations", which covers the actual \textit{running} of trains on a RTS, and therefore delays.
+The authors limited the scope of their search to papers in scientific journals, conferences, and dissertations in English from the last 15 years (i.e. 2003 - 2017). 
+The authors specifically included only papers with quantitative results, disregarding those about qualitative challenges of BDA in RTS or purely mathematical modelling of RTS problems.
+The authors searched ScienceDirect, Emeralds, Scopus, EBSCO, and IEEE Xplore, and also used cited references of studied papers as a source. 
+115 papers were found and were classified by a four-layer structure:
+
+\begin{enumerate}
+	\item Area of RTS: Maintenance, Operations, Safety
+	\item Analytic category: descriptive, predictive, prescriptive
+	\item BDA model: clustering, numeric prediction, association, statistical analysis, image processing, simulation, classification, semantic analysis, text analysis, optimisation
+	\item Implementation technique: Bayesian network, SVM, SVR, Decision Tree, ANN, Regression
+\end{enumerate}
+
+We are interested in Operations; papers in the other areas are disregarded. Within Operations, the authors discuss the applications of BDA to RTS, data collection and sources in RTS, and finally the studies themselves.
+Only those that focus on TPD are considered. In total, 19 papers were selected by title for inclusion in this literature review; they provided the foundation for a subsequent database search.
+
+\subsection{Database search}
+
+The papers selected from \cite{ghofrani_et_al_2018} were used to identify the following key search terms: "train", "delay" and "prediction". Alas, "train" is a common word in scientific literature, and this confounded initial results somewhat. Appropriate synonyms were identified for each term. Where databases allowed Boolean operators, the following formulations were used:
+\begin{itemize}
+	\item (((trains OR train) NOT training) OR rail OR railway OR railways OR railroad OR railroads)
+	\item (delay OR delays OR "event times")
+	\item (prediction OR predicting OR analysis OR analyzing OR estimation OR estimating)
+\end{itemize}
+
+The following databases, based on those used by \cite{heckman_williams_2011}, were searched:
+
+\begin{itemize}
+	\item ACM Digital Library
+	\item IEEE Xplore
+	\item ScienceDirect
+	\item SpringerLink
+\end{itemize}
+
+Where possible, the discipline was restricted to Computer Science. Initially, approximately 3000 studies were identified. Some post-processing was necessary to reduce the number of studies retrieved from IEEE Xplore, in particular, resulting in 69 studies.
+
+%ScienceDirect yielded 73 articles, of which 44 were selected by title. 
+%SpringerLink yielded 119 articles, of which 11 were selected by title.
+%ACM yielded 9 articles, of which 5 were selected by title.
+%IEEE Explore yield 22 articles, of which 9 were selected by title.
+
+\subsection{Study selection}
+
+Study selection was a three-stage process:
+
+\begin{enumerate}
+	\item Initial selection by title
+	\item Selection by abstract
+	\item Exclusion by content
+\end{enumerate}
+
+Of the 88 total studies found, 5 were duplicates. Studies were further selected by abstract. If the authors were content from the abstract a paper was relevant, it was selected; otherwise, the paper was read to determine suitability. In total, 19 studies were identified for inclusion in this literature review. Of those, 4 were discovered through other means - either from a prior, less structured, search, or from cited references.
+
+% STUDIES
+\clearpage
+\section{Overview of studies}
+
+We identified 19 studies in the literature that focus on the application of ML to TPD. An preliminary analysis shows that all work occurred in the past decade (i.e. during, or after, 2010), with most studies (47\%) published in 2017 and 2019.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ll}
+\noalign{\smallskip}\hline \noalign{\smallskip}
+Year  & \# \\	\noalign{\smallskip}\hline \noalign{\smallskip}
+2010  & 1  \\
+2011  & 1  \\
+2012  & 1  \\
+2014 & 1	\\
+2015  & 2  \\
+2016  & 2  \\
+2017  & 4  \\
+2018  & 3  \\
+2019 & 5  \\ 	\noalign{\smallskip}
+Total & 19 \\  \noalign{\smallskip}\hline
+\end{tabular}
+\end{table}
+
+13 distinct ML techniques were identified. 29 were applied in total, as several papers compared and contrasted different techniques, or variations of the same technique (as in \cite{lessan_fu_wen_2019}\cite{oneto_fumeo_clerico_canepa_papa_dambra_mazzino_anguita_2016}\cite{milinkovic_markovic_veskovic_ivic_pavlovic_2013}\cite{markovic_milinkovic_tikhonov_schonfeld_2015}), or even combined multiple models (e.g. the random forests regression of \cite{wen_et_al_2017}, or emsemble model of \cite{nair_et_al_2019}; in these cases, each distinct 'usage' is counted separately. 
+
+The most popular techniques are random forests (20\%) and extreme learning machines (17\%)., although these figures are skewed by the inclusion of four papers CITE HERE which are closely related.
+
+Some studies use techniques that may be more accurately classified as 'statistics' rather than ML (i.e. simple variants of regression, as in \cite{pongnumkul_pechprasarn_kunaseth_chaipah_2014}\cite{wang_work_2015}) or which are closer to \textit{algorithmic} models than ML (\cite{hansen_goverde_van_der_meer_2010}); however, as these lines is blurred, and for completeness' sake, all were selected for inclusion in this review.
+
+\begin{table}[h]
+\begin{tabular}{lll}
+\noalign{\smallskip}\hline \noalign{\smallskip}
+ML model & Acronym & \# \\ 	\noalign{\smallskip}\hline \noalign{\smallskip}
+Bayesian network & BN & 4 \\
+Kernel method & KN & 1 \\
+Extreme learning machine & ELM & 5 \\
+Random forest & RF & 6 \\
+Fuzzy Petri net & FPN & 1 \\
+Adaptive neural fuzzy inference system & ANFIS & 1 \\
+Gradient-boosted regression trees & GBRT & 1 \\
+$k$-nearest neighbour & $k$-NN & 1 \\
+Artificial neural network & ANN & 2 \\
+Support vector regression & SVR & 2 \\
+Kernel regression & KR & 2 \\
+Markov &  & 2 \\
+Decision tree & DT & 1 \\ 	\noalign{\smallskip}
+Total                                    &         & 29	\\ \noalign{\smallskip} \hline
+\end{tabular}
+\end{table}
+
+\section{ML models}
+
+In this section, each of the distinct ML models identified previously is discussed.
+
+% Millie uses:
+% objectives
+% method limitations
+% evaluation methodology
+% evaluation subjects (dataset)
+% evaluation results
+
+% BAYESIAN NETWORKS
+\subsection{Bayesian networks}
+
+We shouldn't have specific sections for each. We're trying to group by model, remember. 
+A Bayesian network (BN) is a "probabilistic graphical model that uses Bayesian inference for probability computations" \cite{towards_data_science_BN_intro}. Each directed edge models a conditional independence, allowing "the incorporation of massive historical data" \cite{lessan_fu_wen_2019}.
+
+The study compared heuristic hill-climbing, primitive linear, and hybrid structure BNs.
+
+There is no common dataset for TDP, unlike other ML areas such as computer vision. That said, data trends can be observed in the papers gathered. Several use the TNV-Extract tool developed by Goverde ? and thus use data from the Netherlands. Several use HSR data from China. Four - those use Italian rail data. The fields of each dataset are explored later on. 
+
+\subsubsection{A hybrid Bayesian network model for predicting delays in train operations \cite{lessan_fu_wen_2019}}
+
+Objectives
+
+ introduced the first hybrid BN-based to the area of TDP. 
+
+The hybrid heuristic BN, built using naive and heuristic structures and refined by domain knowledge and expert judgements.
+Achieved 80\% accuracy over a 60-minute prediction horizon. 
+
+Advantages: it is simple, and so computational efficient.
+The authors note that results could be improved by including the 'spatiotemporal' properties of each section, which we have taken to mean the speed at which trains can run. 
+
+The MAE prediction error was around 30s; the RMSE for both predicted arrival and departure delays was less than 2 minutes
+
+However. Predictions from the hybrid model matched observations only 56\% of the time. The authors attribute this to primarily to the discrete prediction space, and so employed discretisation to convert continuous variables into bins.  
+
+explore three different Bayesian network schemes: heuristic hill-climbing, primitive linear, and hybrid. Hybrid, incorporating domain knowledge and judgements of local experts, was found to outperform other models, with an accuracy of over 80\% in predictions within a 60-minute horizon. The authors define a railway system as several interconnected subsystems: infrastructure, rolling stock, control and communication, and various operational rules and policies. 
+It was found that arrival and departure delays follow the same distribution, with a linear relationship (chain) with a high correlation between arrival and departure delays at the same station (at least 94%). 
+
+\subsubsection{Stochastic prediction of train delays in real-time using Bayesian networks \cite{corman_kecman_2018}}
+
+present a stochastic model for predicting the propagation of train delays based on Bayesian networks (BNs). BNs allow the updating of probability distributions and reduce the uncertainty of future train delays in real-time as more data continuously comes available from the monitoring system. This authors extend this approach by modelling the interdependence between trains that share the same infrastructure or have a scheduled passenger train. The model is tested on historical train realisation data from a bus corridor in Sweden
+
+That is interesting. \cite{nair_et_al_2019} trained models on three (apparently) identical measures of delay: travel time, delay, and additional delay (delay accrued since the previous stop). They found that kernels based on the former two substantially outperformed those based on the latter. For computing additional delay, the reference set itself needed to be recomputed each time there was an observation. This proved computationally prohibitive, and so the final model implemented was on delays.
+
+% SUPPORT VECTOR REGRESSION
+\subsection{Support vector regression}
+
+Support vector regression (SVR) uses support vector machines (SVMs) as
+
+A SVM maximises the margin between two or more classes to find the optimal \textit{hyperplane}, the seperator between two classes. In SVR, the hyperlaine is used to 
+
+A kernel 
+
+SVRs can be used for continuous values; SVMs are for classification.
+
+\cite{nair_et_al_2019} evaluated SVRs as a potential candidate for inclusion in their EM. However, they were found not to provide the best accuracy, quadratic in training data volume, and very sensitive to hyper-parameters.
+
+\subsection{Random forests}
+
+\cite{nair_et_al_2019} selected RFs for the accuracy of forecasts and the possibility of incremental (updating model parameters as fresh data becomes available) and parallel training. 
+
+
+\subsection{Ensemble methods}
+
+Ensemble methods use multiple methods to generate forecast. The rationale behind such a framework is simple: gathering forecasts from a diverse set of models reduces bias and error rates. \cite{nair_et_al_2019} uses a purely data-driven ensemble method; \cite{oneto_et_al_2018} combine a RF and a experience-based model.
+
+\clearpage
+\section{Analytical models}
+
+A brief overview of analytical models is provided for context, with emphasis on the shortcomings of such models, and how data-driven approaches can ameliorate these shortcomings. In short: analytical models
+perform worse, but are easy to explain, understand, and interpret. Analytical models cannot capture the complexity of such models. 
 
 An \textit{analytical model} is "primarily quantitative or computational in nature and represents the system in terms of a set of mathematical equations that specific parametric relationships and their associated
 parameter values as a function of time, space, and/or other system parameters" \cite{friedenthal_moore_steiner_2012}. Current state-of-the-art TDPS use analytical models \cite{oneto_fumeo_clerico_canepa_papa_dambra_mazzino_anguita_2016}.
@@ -182,62 +335,95 @@ and that the speed of each train is unique and constant.
 Subsequent work in this area has largely relaxed these assumptions, by including factors such as overtakes, different speeds, priority systems, and uncertainties associated with train departure time \cite{petersen_1974}, \cite{chen_harker_1990}. More complex models have also emerged, incorporating stochastic approximation \cite{carey_kwiecinski_1994} and the impact of dispatching strategies on train delays
 and passenger waiting time \cite{ozekici_sengor_1994}. Although the state-of-the-art advances constantly, a good example of an recent \textit{in-use} system is \cite{berger_et_al_2011}, which is currently used in the German rail network.
 
+ % Datasets
+\section{Datasets}
+
+There is no common dataset for TDP, unlike other ML areas such as computer vision. That said, data trends can be observed in the papers gathered. Several use the TNV-Extract tool developed by Goverde ? and thus use data from the Netherlands. Several use HSR data from China. Four - those use Italian rail data. The fields of each dataset are explored later on. 
+
+\section{Fields}
+
+\section{Exogenous data}
+
+It is widely accepted amongst ML practitioners that the greater the quantity of information available for the creation of a model, the greater the performance of that model will be. Features can either be \textit{engineered} or exogenous data can be incorporated. This is the realm of 'big data', which involves "multiple datasets and a complicated structure" \cite{Ghofrani_et_al_2018}. This section is broken down by the classification defined in the introduction.
+
+Data is exogenous if it is independent of other input data but the output data depends on it. The scope for inclusion is essentially limitless: any source of data which may affect railway operations is a viable candidate. 
+In the studies selected for this review, there are two main sources: infrastructure \cite{markovic_et_al_2015} \cite{milinkovic_et_al_2013} via \textit{expert opinion}, and weather \cite{oneto_et_al_2017} \cite{oneto_et_al_2018}, \cite{oneto_et_al_2019}. 
+
+Special mention must go to \cite{nair_et_al_2019}, which used network traffic states, such as likely stretch conflicts and current headways, weather, event information, work zone information, inferred occupation conflicts, train connections, and rolling stock rotations.
+
+% WEATHER
+\subsection{Weather}
+
+Weather is a common cause of primary delay. The classification defined earlier included severe heat, flooding, landslips, leaves, snow, and ice. It is expected that weather-induced delays are seasonal. Severe heat is likely to cause delays in summer; leaves in autumn; and snow and ice in winter. \cite{brazil_2017} found that most weather-caused delays occurred in the last third of the year, with a peak in November. 
+
+Weather was first included in a TDP model, to the best of the authors' knowledge, in \cite{oneto_et_al_2016}.
+
+Subsequent studies have established the impact of severe weather on train delays "BRAZIL201769, title = "Weather and rail delays: Analysis of metropolitan rail in Dublin".
+Papers largely agree that, dependent on climate, weather delays most trains during the last third of the year, with November a particular culprit, likely due to the sustained impact of leaf-fall.
+
+\cite{wang_et_al_2019} observed that in locations less prepared for specific severe weather - such as snowy weather in southern cities - delays were greater. They found that in severe weather trains delays are determined by mainly the type of bad weather, but in ordinary weather they are determined mainly by historical delay time and the delay frequency of trains. 
+
+Fields tend to be largely consistent: there are only so many weather variables of note. \cite{wang_et_al_2019} used lowest temperature, highest temperature, weather category (e.g. "overcast", "light rain"), Beaufort scale (wind speed) and air quality index (seemingly unique to China). Data was collected from 344 cities along the route in question. However, the timeframe used was between 1st January and 31st March. As weather-related delays are seasonal, this reduces the validity of conclusion relating to the importance of weather. 
+
+\cite{oneto_et_al_2016} note that weather conditions can additionally influence passenger flow and consequently dwell times, which have already been described as a key influence on delays. 
+
+
+ \cite{oneto_et_al_2016} CITE ALL HERE use temperature, relative humidity, wind direction, wind speed, rain level, pressure and solar radiation.
+\cite{nair_et_al_2019} use weather data from 92 weather observatories, including snow conditions, visibility, and temperature. They found that weather has only a small impact of delays; an analysis of delay-attribution showed that less than 3\% of delays were directly attributed to weather. 
+
+The proposed dataset for this dissertation uses similar fields. For interoperability with forecasts, the comprehensive data provided by the Met Office has been mapped to a more simplistic set of fields: wind gust, relative humidity, visiblity, wind direction, wind speed, temperature, weather type (category), and precipitation probability. 
+
+\cite{wang_et_al_2018} collected weather data from 344 cities along the route in question, Beijing to Guangzhou. It is worth nothing that the two are approximately 2200km, and so delays are of a magnitude not frequently found
+
+\cite{oneto_et_al_2016} found that the inclusion of weather data improved the accuracy of their RF model by approximately 10\%, with the caveat that the further ahead in the future the forecast is (and thus the less accurate, the smaller this increase was. 
+
+%INFRASTRUCTURE
+
+\subsection{Infrastructure}
+
+Infrastructure naturally matters to trains. Extant work in ML for TDP has been surprisingly lacking incorporating infrastructure characteristics (single or double track, station layouts, interlocking, cant, speed limit), and so on. It is a thoroughly modelled in the analytical models discussed earlier.
+
+\cite{milinkovic_et_al_2013} groups infrastructure opinions. Collected opinions from traffic dispatchers, operators, and experts famiilar with the functioning of the system. Was used more broadly to define input variables, and the primary causes of delay (not the causes of primary delay). Defined three input parameters: the train category, timetable influence, and the distance travelled by the train. Timetable influence was used as a catch-all of sorts; the study is vague on specifics. It included the influence of infrastructure parameters, timetable characteristics, operation time, the type of locomotive, local conditions, technological solutions, principles for safety and signalling, and weather conditions. This is for the FPN!
+
+For the ANFIS, which used real-life data (go into detail here), an 'infrastructure influence', which included the percentage of restricted speed sections, the number of junctions, and the number of stations). Included section length, section plans, restricted speed, and track routes. 
+
+The authors note that the average track occupancy of a section can indicate possible bottlenecks of a system. This is close to the \textit{tactical} level briefly discussed earlier: the use of data to make decisions on improving infrastructure. 
+
+The dataset for the proposed study includes infrastructure characteristics used by ? to actually plan train delays.
+
+Used the Delphi method. 
+
+It seems inherently obvious is should have a huge effect on the propagation of delays. 
+
+\cite{markovic_et_al_2015} explores an expert opinion in much better defined terms. The influence of multiple factors along a rail line (single-tracking, reduced speeds, characteristics of block and interlocking systems, number of stations, stops, loops, road-rail level crossings, and junctions) is aggregated into one variable with a value determined by the expert opinions of five dispatchers. Estimates obtained via the Delphi method: experts evaluate a route over multiple rounds until a consensus is reached. Strong correlation found between expert opinions and train delays. 
+
+The condition of the Serbian railways is considerably worse than that of many other countries explored. Characterised by: recently renewed lines (enabling maximum speed), lines with sections with TSRs, single and double-track lines, many junctions and railroad crossing, lines split int sections with different signalling and safety equipment. 
+
+Evaluated each route on a scale of 1 - 10. 1 denotes a route with the highest number of infrastructural factors that could cause unplanned delays.
+
+The study only considered a limited number of routes: those passing through Rakovica station. Models for larger areas cannot rely on human assessment of infrastructure conditions. 39 lines were evaluated. 
+Specifically: number of stations/stops/junctions/loops/crossings, percentage of single track, percentage with restricted speed, length with restricted speed, block section, track clear section (station distance, braking distance, automatic block system, centralised traffic control, axle counters).
+
+\cite{nair_et_al_2019} take exactly this approach. The authors reconstruct the network and estimate capacity directly from passing messages. Furthermore, the method used generated train-class specific networks. The inferred method is employed for various downstream tasks: inferring train paths, conflict status estimation, typical travel time estimation. "Passing" messages are sorted by date, time, and train. If there are sufficient observations, the control point and track stretch is recorded as an edge. The frequency of transitions from each outgoing edge, the mean and standard deviation of travel times are also recorded for each edge. A feasibility matrix for each outgoing edge is recorded at each vertex, which records pairwise edge feasible flows at each section by identifying movements by two trains in a short time window; this is used to identify potential conflicts between trains when there are deviations from the schedule. Reconstructed networks around several major hubs were inspected by hand and found to be accurate. 
+
+Station attributes used included the designated platform, station attributes, historical mean delay at tracks, platforms, actual platform, track allocation, and track / platform change status.
+
+% Maintenance
+
+\subsection{Maintenance}
+
+Only one paper was found that incorporated the "maintenance" class: \cite{nair_et_al_2019}. The authors used work zone information, indicating location, duration, and the likely impact of different train categories.
+The proposed dataset uses the RDG Knowledgebase API, which includes data on "incidents": service disruptions and engineering works.
+
+% Other
+
+\subsection{Other}
+
+No papers were found to incorporate accidents, vandalism, trespassing, or fatalities, or strikes. Holidays are, however, included in \cite{nair_et_al_2019}, and will be included in the proposed dataset. NR categorises the day by weekday, Saturday, Sunday, Christmas, and Bank holiday, reflecting the different timetables used for each.
 
 
 
-\clearpage
-\section{Overview of studies}
 
-Finalise studies. I think that I have them all. 
-
-We identified 13 studies in the literature that focus on ML techniques for TPD. An preliminary analysis shows that all work occurred in the past decade (i.e. during, or after, 2010), with most studies (46\%) published
-in 2015 and 2019.
-
-\begin{table}[h]
-\centering
-\begin{tabular}{ll}
-\noalign{\smallskip}\hline \noalign{\smallskip}
-Year  & \# \\	\noalign{\smallskip}\hline \noalign{\smallskip}
-2010  & 1  \\
-2013  & 2  \\
-2014  & 1  \\
-2015  & 3  \\
-2016  & 2  \\
-2018  & 1  \\
-2019  & 4  \\ 	\noalign{\smallskip}
-Total & 13 \\  \noalign{\smallskip}\hline
-\end{tabular}
-\end{table}
-
-11 distinct ML techniques were identified. Several papers compared and contrasted different techniques, or variations of the same technique (as in \cite{lessan_fu_wen_2019}\cite{oneto_fumeo_clerico_canepa_papa_dambra_mazzino_anguita_2016}\cite{milinkovic_markovic_veskovic_ivic_pavlovic_2013}\cite{markovic_milinkovic_tikhonov_schonfeld_2015}); in this case, each distinct variation is counted separately. The most popular techniques are Bayesian networks (24\%) and artificial neural networks (18\%). Some studies use techniques that may be more accurately classified as 'statistics' rather than ML (i.e. simple variants of regression, as in \cite{pongnumkul_pechprasarn_kunaseth_chaipah_2014}\cite{wang_work_2015}); however, as the line is blurred, and for completeness' sake, all are included here.
-
-\begin{table}[h]
-\begin{tabular}{lll}
-\noalign{\smallskip}\hline \noalign{\smallskip}
-ML technique                             & Acronym & \# \\ 	\noalign{\smallskip}\hline \noalign{\smallskip}
-Artificial neural fuzzy inference system & ANFIS   & 1  \\
-Artificial neural network               & ANN     & 3  \\
-Bayesian network                       & BN      & 4  \\
-Extreme learning machine                & ELM     & 1  \\
-Fuzzi Petri net                          & FPN     & 1  \\
-Genetic algorithm                        & GA      & 1  \\
-Gradient-boosted regression trees        & GBRT    & 1  \\
-Kernel method                           & KM      & 1  \\
-$k$-nearest neighbour                    & $k$-NN  & 1  \\
-Random forests                           & RF      & 2  \\
-Support vector regression                & SVG     & 1  \\ 	\noalign{\smallskip}
-Total                                    &         & 17	\\ \noalign{\smallskip} \hline
-\end{tabular}
-\end{table}
-
-I don't think that we should give a damn about where the papers come from.
-And I certainly don't want to have to calculate it.
-I'm not going to assess the quality of each paper. 
-I want to expand more on data model inputs, however. 
-Should I include results also?
-I don't think that we can generalise that easily
-
-Objectives, method limitations, evaluation methodology, evaluation subjects (dataset), evaluation results. 
 
 
 

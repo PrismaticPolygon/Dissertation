@@ -338,6 +338,83 @@
       \field{title}{A Practical Guide to SysML}
       \field{year}{2012}
     \endentry
+    \entry{ghofrani_et_al_2018}{article}{}
+      \name{author}{4}{}{%
+        {{hash=aa5c7b9a1511815dc21f9fbf4cacfc9f}{%
+           family={Ghofrani},
+           familyi={G\bibinitperiod},
+           given={Faeze},
+           giveni={F\bibinitperiod}}}%
+        {{hash=7c27f1b2b48feefb0593a05e9c6a8b12}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Qing},
+           giveni={Q\bibinitperiod}}}%
+        {{hash=fef610ed7ef5914535a248278ba6d238}{%
+           family={Goverde},
+           familyi={G\bibinitperiod},
+           given={Rob\bibnamedelima M.P.},
+           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=4622823528906a7f86a323f6f41fd33e}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Xiang},
+           giveni={X\bibinitperiod}}}%
+      }
+      \strng{namehash}{c3ce59639344689587f85fbbb921f61f}
+      \strng{fullhash}{b10eb08a103e15af6fc0b13888bfad87}
+      \strng{bibnamehash}{c3ce59639344689587f85fbbb921f61f}
+      \strng{authorbibnamehash}{c3ce59639344689587f85fbbb921f61f}
+      \strng{authornamehash}{c3ce59639344689587f85fbbb921f61f}
+      \strng{authorfullhash}{b10eb08a103e15af6fc0b13888bfad87}
+      \field{sortinit}{G}
+      \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transportation Research Part C: Emerging Technologies}
+      \field{title}{Recent applications of big data analytics in railway transportation systems: A survey}
+      \field{volume}{90}
+      \field{year}{2018}
+      \field{pages}{226\bibrangedash 246}
+      \range{pages}{21}
+      \verb{doi}
+      \verb 10.1016/j.trc.2018.03.010
+      \endverb
+    \endentry
+    \entry{heckman_williams_2011}{article}{}
+      \name{author}{2}{}{%
+        {{hash=af005138dbee950329b10bc12574433c}{%
+           family={Heckman},
+           familyi={H\bibinitperiod},
+           given={Sarah},
+           giveni={S\bibinitperiod}}}%
+        {{hash=cd83754669234897543ccba78955850c}{%
+           family={Williams},
+           familyi={W\bibinitperiod},
+           given={Laurie},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{a9d6153890f9e6b4b94c7a97428cc372}
+      \strng{fullhash}{a9d6153890f9e6b4b94c7a97428cc372}
+      \strng{bibnamehash}{a9d6153890f9e6b4b94c7a97428cc372}
+      \strng{authorbibnamehash}{a9d6153890f9e6b4b94c7a97428cc372}
+      \strng{authornamehash}{a9d6153890f9e6b4b94c7a97428cc372}
+      \strng{authorfullhash}{a9d6153890f9e6b4b94c7a97428cc372}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Information and Software Technology}
+      \field{number}{4}
+      \field{title}{A systematic literature review of actionable alert identification techniques for automated static code analysis}
+      \field{volume}{53}
+      \field{year}{2011}
+      \field{pages}{363\bibrangedash 387}
+      \range{pages}{25}
+      \verb{doi}
+      \verb 10.1016/j.infsof.2010.12.007
+      \endverb
+    \endentry
     \entry{kecman_corman_meng_2015}{inbook}{}
       \name{author}{3}{}{%
         {{hash=ef812342bc2f4dc65409b056106a6acc}{%
