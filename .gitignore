@@ -2,3 +2,4 @@
 trains/archive
 trains/extracted
 trains/data
+__pycache__
