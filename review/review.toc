@@ -1,15 +1,15 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {english}{}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1}Research questions}{2}%
+\contentsline {section}{\numberline {1}Introduction}{2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2}Introduction}{2}%
+\contentsline {subsection}{\numberline {1.1}Delays}{2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1}Delays}{2}%
+\contentsline {subsection}{\numberline {1.2}Timescales}{2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2}Timescales}{2}%
+\contentsline {subsection}{\numberline {1.3}Metrics}{3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3}Metrics}{2}%
+\contentsline {section}{\numberline {2}Research questions}{3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3}Overview of literature review\\method}{4}%
 \defcounter {refsection}{0}\relax 
@@ -21,30 +21,50 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4}Overview of studies}{5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}ML models}{5}%
+\contentsline {section}{\numberline {5}ML models}{6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1}Bayesian networks}{5}%
+\contentsline {subsection}{\numberline {5.1}Bayesian networks}{6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.1.1}A hybrid Bayesian network model for predicting delays in train operations \cite {lessan_fu_wen_2019}}{5}%
+\contentsline {subsubsection}{\numberline {5.1.1}A hybrid Bayesian network model for predicting delays in train operations \cite {lessan_fu_wen_2019}}{6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.1.2}Stochastic prediction of train delays in real-time using Bayesian networks \cite {corman_kecman_2018}}{5}%
+\contentsline {subsubsection}{\numberline {5.1.2}Stochastic prediction of train delays in real-time using Bayesian networks \cite {corman_kecman_2018}}{7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2}Support vector regression}{6}%
+\contentsline {subsection}{\numberline {5.2}Neural networks}{7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6}Ensemble methods}{6}%
+\contentsline {subsection}{\numberline {5.3}Support vector regression}{8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Analytical models}{7}%
+\contentsline {subsection}{\numberline {5.4}Decision trees and random forests}{9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Datasets}{7}%
+\contentsline {subsection}{\numberline {5.5}Regression}{10}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9}Fields}{7}%
+\contentsline {subsection}{\numberline {5.6}Ensemble methods}{12}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {10}Exogenous data}{7}%
+\contentsline {subsection}{\numberline {5.7}Extreme learning machines}{12}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {10.1}Weather}{7}%
+\contentsline {subsection}{\numberline {5.8}Markov models}{12}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {10.2}Infrastructure}{8}%
+\contentsline {section}{\numberline {6}Analytical models}{13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {10.3}Maintenance}{8}%
+\contentsline {section}{\numberline {7}Datasets}{13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {10.4}Other}{8}%
+\contentsline {section}{\numberline {8}Fields}{13}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9}Exogenous data}{13}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.1}Weather}{13}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.2}Infrastructure}{14}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.3}Maintenance}{14}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.4}Other}{14}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10}Evaluation}{15}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.1}RQ1: What ML models are commonly used for TDP?}{15}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.2}RQ2: What exogenous data is used to improve the performance of those models? / big data analysis}{15}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.3}RQ3: How has ML been used in date in the area of TDP?}{15}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {11}Conclusion}{15}%
