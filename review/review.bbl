@@ -19,6 +19,49 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{barbour_et_al_2018}{article}{}
+      \name{author}{4}{}{%
+        {{hash=34cbf41c40a8e8e7da9c06286d331dbd}{%
+           family={Barbour},
+           familyi={B\bibinitperiod},
+           given={William},
+           giveni={W\bibinitperiod}}}%
+        {{hash=3174566cf57d5916afa7ab9ce31ae203}{%
+           family={Martinez\bibnamedelima Mori},
+           familyi={M\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={Juan\bibnamedelima Carlos},
+           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=5d3ee4d67ebec6db6c4803aa50ab86b1}{%
+           family={Kuppa},
+           familyi={K\bibinitperiod},
+           given={Shankara},
+           giveni={S\bibinitperiod}}}%
+        {{hash=6f2e7b1216098a84a23b6462d346c8c8}{%
+           family={Work},
+           familyi={W\bibinitperiod},
+           given={Daniel\bibnamedelima B.},
+           giveni={D\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \strng{namehash}{f834083daf2cda42de1604d4f2416577}
+      \strng{fullhash}{d343d77a8d48a80c6afe4d91a4d4725d}
+      \strng{bibnamehash}{f834083daf2cda42de1604d4f2416577}
+      \strng{authorbibnamehash}{f834083daf2cda42de1604d4f2416577}
+      \strng{authornamehash}{f834083daf2cda42de1604d4f2416577}
+      \strng{authorfullhash}{d343d77a8d48a80c6afe4d91a4d4725d}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transportation Research Part C: Emerging Technologies}
+      \field{title}{Prediction of arrival times of freight traffic on US railroads using support vector regression}
+      \field{volume}{93}
+      \field{year}{2018}
+      \field{pages}{211\bibrangedash 227}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.1016/j.trc.2018.05.019
+      \endverb
+    \endentry
     \entry{berger_et_al_2011}{inproceedings}{}
       \name{author}{4}{}{%
         {{hash=6fba8b8ae5687377eb6f0956c8fd4a00}{%
@@ -93,38 +136,93 @@
       \verb http://drops.dagstuhl.de/opus/volltexte/2011/3270
       \endverb
     \endentry
-    \entry{carey_kwiecinski_1994}{article}{}
-      \name{author}{2}{}{%
-        {{hash=cbdc29e2744cec690f2c9c267f7345d8}{%
-           family={Carey},
-           familyi={C\bibinitperiod},
-           given={Malachy},
-           giveni={M\bibinitperiod}}}%
-        {{hash=ffd38e9751321f8321775552b798fed4}{%
-           family={Kwieciński},
-           familyi={K\bibinitperiod},
-           given={Andrzej},
+    \entry{brazil_2017}{article}{}
+      \name{author}{6}{}{%
+        {{hash=b88258a118b8f11db91f28df19b8103c}{%
+           family={Brazil},
+           familyi={B\bibinitperiod},
+           given={William},
+           giveni={W\bibinitperiod}}}%
+        {{hash=4d94da0a2baecb02bd6d1dcf0d06e4ae}{%
+           family={White},
+           familyi={W\bibinitperiod},
+           given={Arthur},
            giveni={A\bibinitperiod}}}%
+        {{hash=424616a38238ec9ed8507a370c819c0c}{%
+           family={Nogal},
+           familyi={N\bibinitperiod},
+           given={Maria},
+           giveni={M\bibinitperiod}}}%
+        {{hash=3ef7036fc2f019bf0ee0055c03d8856b}{%
+           family={Caulfield},
+           familyi={C\bibinitperiod},
+           given={Brian},
+           giveni={B\bibinitperiod}}}%
+        {{hash=440acaed66b540f5e63066713873304c}{%
+           family={O'Connor},
+           familyi={O\bibinitperiod},
+           given={Alan},
+           giveni={A\bibinitperiod}}}%
+        {{hash=6596e6bdc02c6476df153c105f9a9cc6}{%
+           family={Morton},
+           familyi={M\bibinitperiod},
+           given={Craig},
+           giveni={C\bibinitperiod}}}%
       }
-      \strng{namehash}{377487041f5633ca1a8c8f6b8102f2da}
-      \strng{fullhash}{377487041f5633ca1a8c8f6b8102f2da}
-      \strng{bibnamehash}{377487041f5633ca1a8c8f6b8102f2da}
-      \strng{authorbibnamehash}{377487041f5633ca1a8c8f6b8102f2da}
-      \strng{authornamehash}{377487041f5633ca1a8c8f6b8102f2da}
-      \strng{authorfullhash}{377487041f5633ca1a8c8f6b8102f2da}
-      \field{sortinit}{C}
-      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \strng{namehash}{7822e53a8b6873b76f1af29188a050f9}
+      \strng{fullhash}{1bd03c0b761df2b34d032ac385546fdf}
+      \strng{bibnamehash}{7822e53a8b6873b76f1af29188a050f9}
+      \strng{authorbibnamehash}{7822e53a8b6873b76f1af29188a050f9}
+      \strng{authornamehash}{7822e53a8b6873b76f1af29188a050f9}
+      \strng{authorfullhash}{1bd03c0b761df2b34d032ac385546fdf}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Transportation Research Part B: Methodological}
-      \field{number}{4}
-      \field{title}{Stochastic approximation to the effects of headways on knock-on delays of trains}
-      \field{volume}{28}
-      \field{year}{1994}
-      \field{pages}{251\bibrangedash 267}
-      \range{pages}{17}
+      \field{issn}{0966-6923}
+      \field{journaltitle}{Journal of Transport Geography}
+      \field{title}{Weather and rail delays: Analysis of metropolitan rail in Dublin}
+      \field{volume}{59}
+      \field{year}{2017}
+      \field{pages}{69\bibrangedash 76}
+      \range{pages}{8}
       \verb{doi}
-      \verb 10.1016/0191-2615(94)90001-9
+      \verb https://doi.org/10.1016/j.jtrangeo.2017.01.008
+      \endverb
+      \verb{urlraw}
+      \verb http://www.sciencedirect.com/science/article/pii/S0966692316304409
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/S0966692316304409
+      \endverb
+    \endentry
+    \entry{breiman_2001}{article}{}
+      \name{author}{1}{}{%
+        {{hash=132b7100417675d55d5d4d8b244f7a34}{%
+           family={Breiman},
+           familyi={B\bibinitperiod},
+           given={Leo},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{132b7100417675d55d5d4d8b244f7a34}
+      \strng{fullhash}{132b7100417675d55d5d4d8b244f7a34}
+      \strng{bibnamehash}{132b7100417675d55d5d4d8b244f7a34}
+      \strng{authorbibnamehash}{132b7100417675d55d5d4d8b244f7a34}
+      \strng{authornamehash}{132b7100417675d55d5d4d8b244f7a34}
+      \strng{authorfullhash}{132b7100417675d55d5d4d8b244f7a34}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Machine Learning}
+      \field{number}{1}
+      \field{title}{Random forests}
+      \field{volume}{45}
+      \field{year}{2001}
+      \field{pages}{5\bibrangedash 32}
+      \range{pages}{28}
+      \verb{doi}
+      \verb 10.1023/a:1010933404324
       \endverb
     \endentry
     \entry{cerreto_nielsen_harrod_nielsen_2016}{inbook}{}
@@ -164,179 +262,68 @@
       \field{title}{Causal Analysis of Railway Running Delays}
       \field{year}{2016}
     \endentry
-    \entry{chen_harker_1990}{article}{}
+    \entry{corman_kecman_2018}{article}{}
       \name{author}{2}{}{%
-        {{hash=309b11dc6f1b01e594810cfa6e0e2c60}{%
-           family={Chen},
+        {{hash=48d3bb8c85018a276003a28e3ea68b4c}{%
+           family={Corman},
            familyi={C\bibinitperiod},
-           given={Bintong},
-           giveni={B\bibinitperiod}}}%
-        {{hash=663b95e8a9188c6280ab3e2bc25bbc22}{%
-           family={Harker},
-           familyi={H\bibinitperiod},
-           given={Patrick\bibnamedelima T.},
-           giveni={P\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+           given={Francesco},
+           giveni={F\bibinitperiod}}}%
+        {{hash=ef812342bc2f4dc65409b056106a6acc}{%
+           family={Kecman},
+           familyi={K\bibinitperiod},
+           given={Pavle},
+           giveni={P\bibinitperiod}}}%
       }
-      \strng{namehash}{57279e63f470e43cdcf60b4ebd45d2cd}
-      \strng{fullhash}{57279e63f470e43cdcf60b4ebd45d2cd}
-      \strng{bibnamehash}{57279e63f470e43cdcf60b4ebd45d2cd}
-      \strng{authorbibnamehash}{57279e63f470e43cdcf60b4ebd45d2cd}
-      \strng{authornamehash}{57279e63f470e43cdcf60b4ebd45d2cd}
-      \strng{authorfullhash}{57279e63f470e43cdcf60b4ebd45d2cd}
+      \strng{namehash}{63dce808766d9f52b9ce52ebd2aed016}
+      \strng{fullhash}{63dce808766d9f52b9ce52ebd2aed016}
+      \strng{bibnamehash}{63dce808766d9f52b9ce52ebd2aed016}
+      \strng{authorbibnamehash}{63dce808766d9f52b9ce52ebd2aed016}
+      \strng{authornamehash}{63dce808766d9f52b9ce52ebd2aed016}
+      \strng{authorfullhash}{63dce808766d9f52b9ce52ebd2aed016}
       \field{sortinit}{C}
       \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Transportation Science}
-      \field{number}{4}
-      \field{title}{Two Moments Estimation of the Delay on Single-Track Rail Lines with Scheduled Traffic}
-      \field{volume}{24}
-      \field{year}{1990}
-      \field{pages}{261\bibrangedash 275}
-      \range{pages}{15}
+      \field{journaltitle}{Transportation Research Part C: Emerging Technologies}
+      \field{title}{Stochastic prediction of train delays in real-time using Bayesian networks}
+      \field{volume}{95}
+      \field{year}{2018}
+      \field{pages}{599\bibrangedash 615}
+      \range{pages}{17}
       \verb{doi}
-      \verb 10.1287/trsc.24.4.261
+      \verb 10.1016/j.trc.2018.08.003
       \endverb
     \endentry
-    \entry{daamen_goverde_hansen_2008}{article}{}
-      \name{author}{3}{}{%
-        {{hash=21ae3d570cab42e95fd7b168f642c2f8}{%
-           family={Daamen},
-           familyi={D\bibinitperiod},
-           given={Winnie},
-           giveni={W\bibinitperiod}}}%
-        {{hash=fef610ed7ef5914535a248278ba6d238}{%
-           family={Goverde},
+    \entry{gaurav_et_al_2018}{article}{}
+      \name{author}{2}{}{%
+        {{hash=f041b4c7f5a907bb0189a54a70aa070c}{%
+           family={Gaurav},
            familyi={G\bibinitperiod},
-           given={Rob\bibnamedelimb M.\bibnamedelimi P.},
-           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
-        {{hash=5824aeee045ca24618c46952640344d1}{%
-           family={Hansen},
-           familyi={H\bibinitperiod},
-           given={Ingo\bibnamedelima A.},
-           giveni={I\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-      }
-      \strng{namehash}{cdee9474246ad1eaf3038e2537ccf3d1}
-      \strng{fullhash}{cdee9474246ad1eaf3038e2537ccf3d1}
-      \strng{bibnamehash}{cdee9474246ad1eaf3038e2537ccf3d1}
-      \strng{authorbibnamehash}{cdee9474246ad1eaf3038e2537ccf3d1}
-      \strng{authornamehash}{cdee9474246ad1eaf3038e2537ccf3d1}
-      \strng{authorfullhash}{cdee9474246ad1eaf3038e2537ccf3d1}
-      \field{sortinit}{D}
-      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Networks and Spatial Economics}
-      \field{number}{1}
-      \field{title}{Non-Discriminatory Automatic Registration of Knock-On Train Delays}
-      \field{volume}{9}
-      \field{year}{2008}
-      \field{pages}{47\bibrangedash 61}
-      \range{pages}{15}
-      \verb{doi}
-      \verb 10.1007/s11067-008-9087-2
-      \endverb
-    \endentry
-    \entry{dingler_koening_sam_christopher_2010}{inproceedings}{}
-      \name{author}{4}{}{%
-        {{hash=eb8fc21e3527d03df88c23e9c3bc144a}{%
-           family={Dingler},
-           familyi={D\bibinitperiod},
-           given={Mark},
-           giveni={M\bibinitperiod}}}%
-        {{hash=3e3346be725063d9a61b6c441cc6aed7}{%
-           family={Koenig},
-           familyi={K\bibinitperiod},
-           given={Amanda},
-           giveni={A\bibinitperiod}}}%
-        {{hash=2dbcdea600ce912435c75f535ded66a0}{%
-           family={Sogin},
-           familyi={S\bibinitperiod},
-           given={Sam},
-           giveni={S\bibinitperiod}}}%
-        {{hash=a3d91560eb1b12e068baf0531c2077b1}{%
-           family={Barkan},
-           familyi={B\bibinitperiod},
-           given={Christopher},
-           giveni={C\bibinitperiod}}}%
-      }
-      \strng{namehash}{7dafa666710c567da18f53c4afa74d21}
-      \strng{fullhash}{fe1eacde7e65d92cbb489981b7ec87d6}
-      \strng{bibnamehash}{7dafa666710c567da18f53c4afa74d21}
-      \strng{authorbibnamehash}{7dafa666710c567da18f53c4afa74d21}
-      \strng{authornamehash}{7dafa666710c567da18f53c4afa74d21}
-      \strng{authorfullhash}{fe1eacde7e65d92cbb489981b7ec87d6}
-      \field{sortinit}{D}
-      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{AREMA Annual Conference Proceedings}
-      \field{title}{Determining the causes of train delay}
-      \field{year}{2010}
-    \endentry
-    \entry{frank_1966}{article}{}
-      \name{author}{1}{}{%
-        {{hash=c338913a510d0db0bcd3757573ded011}{%
-           family={Frank},
-           familyi={F\bibinitperiod},
-           given={Ove},
-           giveni={O\bibinitperiod}}}%
-      }
-      \strng{namehash}{c338913a510d0db0bcd3757573ded011}
-      \strng{fullhash}{c338913a510d0db0bcd3757573ded011}
-      \strng{bibnamehash}{c338913a510d0db0bcd3757573ded011}
-      \strng{authorbibnamehash}{c338913a510d0db0bcd3757573ded011}
-      \strng{authornamehash}{c338913a510d0db0bcd3757573ded011}
-      \strng{authorfullhash}{c338913a510d0db0bcd3757573ded011}
-      \field{sortinit}{F}
-      \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Operations Research}
-      \field{number}{5}
-      \field{title}{Two-Way Traffic on a Single Line of Railway}
-      \field{volume}{14}
-      \field{year}{1966}
-      \field{pages}{801\bibrangedash 811}
-      \range{pages}{11}
-      \verb{doi}
-      \verb 10.1287/opre.14.5.801
-      \endverb
-    \endentry
-    \entry{friedenthal_moore_steiner_2012}{book}{}
-      \name{author}{3}{}{%
-        {{hash=66902173901a0f318d2cea7e2df2a6ad}{%
-           family={Friedenthal},
-           familyi={F\bibinitperiod},
-           given={Sanford},
-           giveni={S\bibinitperiod}}}%
-        {{hash=6d91653d389238383883b1c7c679b519}{%
-           family={Moore},
-           familyi={M\bibinitperiod},
-           given={Alan},
-           giveni={A\bibinitperiod}}}%
-        {{hash=76849052edff6348bb3e855905541ea1}{%
-           family={Steiner},
-           familyi={S\bibinitperiod},
-           given={Rick},
+           given={Ramashish},
            giveni={R\bibinitperiod}}}%
+        {{hash=875140db7fb95f3a8bfc98683a2eeb4e}{%
+           family={Srivastava},
+           familyi={S\bibinitperiod},
+           given={Biplav},
+           giveni={B\bibinitperiod}}}%
       }
-      \list{publisher}{1}{%
-        {Morgan Kaufmann Publishers}%
-      }
-      \strng{namehash}{84fb5c7d132adf133340ca0cff83801b}
-      \strng{fullhash}{84fb5c7d132adf133340ca0cff83801b}
-      \strng{bibnamehash}{84fb5c7d132adf133340ca0cff83801b}
-      \strng{authorbibnamehash}{84fb5c7d132adf133340ca0cff83801b}
-      \strng{authornamehash}{84fb5c7d132adf133340ca0cff83801b}
-      \strng{authorfullhash}{84fb5c7d132adf133340ca0cff83801b}
-      \field{sortinit}{F}
-      \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
+      \strng{namehash}{0dd88c0711a59a390a7323f286027e1d}
+      \strng{fullhash}{0dd88c0711a59a390a7323f286027e1d}
+      \strng{bibnamehash}{0dd88c0711a59a390a7323f286027e1d}
+      \strng{authorbibnamehash}{0dd88c0711a59a390a7323f286027e1d}
+      \strng{authornamehash}{0dd88c0711a59a390a7323f286027e1d}
+      \strng{authorfullhash}{0dd88c0711a59a390a7323f286027e1d}
+      \field{sortinit}{G}
+      \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{edition}{2}
-      \field{title}{A Practical Guide to SysML}
-      \field{year}{2012}
+      \field{journaltitle}{2018 21st International Conference on Intelligent Transportation Systems (ITSC)}
+      \field{title}{Estimating Train Delays in a Large Rail Network Using a Zero Shot Markov Model}
+      \field{year}{2018}
+      \verb{doi}
+      \verb 10.1109/itsc.2018.8570014
+      \endverb
     \endentry
     \entry{ghofrani_et_al_2018}{article}{}
       \name{author}{4}{}{%
@@ -381,6 +368,43 @@
       \verb 10.1016/j.trc.2018.03.010
       \endverb
     \endentry
+    \entry{hansen_goverde_van_der_meer_2010}{article}{}
+      \name{author}{3}{}{%
+        {{hash=5824aeee045ca24618c46952640344d1}{%
+           family={Hansen},
+           familyi={H\bibinitperiod},
+           given={Ingo\bibnamedelima A.},
+           giveni={I\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=fef610ed7ef5914535a248278ba6d238}{%
+           family={Goverde},
+           familyi={G\bibinitperiod},
+           given={Rob\bibnamedelima M.P.},
+           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=2329ff2acacb3c256db134dad0768e64}{%
+           family={Meer},
+           familyi={M\bibinitperiod},
+           given={Dirk\bibnamedelima J.},
+           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod},
+           prefix={van\bibnamedelima der},
+           prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+      }
+      \strng{namehash}{42c01996d917828f1efc78054bfa3086}
+      \strng{fullhash}{42c01996d917828f1efc78054bfa3086}
+      \strng{bibnamehash}{42c01996d917828f1efc78054bfa3086}
+      \strng{authorbibnamehash}{42c01996d917828f1efc78054bfa3086}
+      \strng{authornamehash}{42c01996d917828f1efc78054bfa3086}
+      \strng{authorfullhash}{42c01996d917828f1efc78054bfa3086}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{13th International IEEE Conference on Intelligent Transportation Systems}
+      \field{title}{Online train delay recognition and running time prediction}
+      \field{year}{2010}
+      \verb{doi}
+      \verb 10.1109/itsc.2010.5625081
+      \endverb
+    \endentry
     \entry{heckman_williams_2011}{article}{}
       \name{author}{2}{}{%
         {{hash=af005138dbee950329b10bc12574433c}{%
@@ -415,43 +439,30 @@
       \verb 10.1016/j.infsof.2010.12.007
       \endverb
     \endentry
-    \entry{kecman_corman_meng_2015}{inbook}{}
-      \name{author}{3}{}{%
-        {{hash=ef812342bc2f4dc65409b056106a6acc}{%
-           family={Kecman},
-           familyi={K\bibinitperiod},
-           given={Pavle},
-           giveni={P\bibinitperiod}}}%
-        {{hash=48d3bb8c85018a276003a28e3ea68b4c}{%
-           family={Corman},
-           familyi={C\bibinitperiod},
-           given={Francesco},
-           giveni={F\bibinitperiod}}}%
-        {{hash=eb464d86c2f44526f51c196623711c6f}{%
-           family={Meng},
-           familyi={M\bibinitperiod},
-           given={Lingyun},
-           giveni={L\bibinitperiod}}}%
+    \entry{ho_1995}{inbook}{}
+      \name{author}{1}{}{%
+        {{hash=bd8f33685f26fc02be5f9e5ffb9fe0ed}{%
+           family={Ho},
+           familyi={H\bibinitperiod},
+           given={Tin\bibnamedelima Kam},
+           giveni={T\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
       }
-      \strng{namehash}{a9836b5016412270872e1f1d86455b9c}
-      \strng{fullhash}{a9836b5016412270872e1f1d86455b9c}
-      \strng{bibnamehash}{a9836b5016412270872e1f1d86455b9c}
-      \strng{authorbibnamehash}{a9836b5016412270872e1f1d86455b9c}
-      \strng{authornamehash}{a9836b5016412270872e1f1d86455b9c}
-      \strng{authorfullhash}{a9836b5016412270872e1f1d86455b9c}
-      \field{sortinit}{K}
-      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{bd8f33685f26fc02be5f9e5ffb9fe0ed}
+      \strng{fullhash}{bd8f33685f26fc02be5f9e5ffb9fe0ed}
+      \strng{bibnamehash}{bd8f33685f26fc02be5f9e5ffb9fe0ed}
+      \strng{authorbibnamehash}{bd8f33685f26fc02be5f9e5ffb9fe0ed}
+      \strng{authornamehash}{bd8f33685f26fc02be5f9e5ffb9fe0ed}
+      \strng{authorfullhash}{bd8f33685f26fc02be5f9e5ffb9fe0ed}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{booktitle}{Proceedings of the 6th International Conference on Railway Operations Modelling and Analysis: RailTokyo2015}
-      \field{title}{Train delay evolution as a stochastic process}
-      \field{year}{2015}
-      \verb{urlraw}
-      \verb http://urn.kb.se/resolve?urn=urn:nbn:se:liu:diva-119746
-      \endverb
-      \verb{url}
-      \verb http://urn.kb.se/resolve?urn=urn:nbn:se:liu:diva-119746
-      \endverb
+      \field{booktitle}{Proceedings of 3rd International Conference on Document Analysis and Recognition}
+      \field{title}{Random decision forests}
+      \field{year}{1995}
     \endentry
     \entry{lessan_fu_wen_2019}{article}{}
       \name{author}{3}{}{%
@@ -491,7 +502,50 @@
       \verb 10.1016/j.cie.2018.03.017
       \endverb
     \endentry
-    \entry{markovic_milinkovic_tikhonov_schonfeld_2015}{article}{}
+    \entry{liu_et_al_2017}{article}{}
+      \name{author}{4}{}{%
+        {{hash=588c689de1912ffe9da2b243730cc861}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Hu-Chen},
+           giveni={H\bibinithyphendelim C\bibinitperiod}}}%
+        {{hash=275ea16cabd010efe97df62f828e7900}{%
+           family={You},
+           familyi={Y\bibinitperiod},
+           given={Jian-Xin},
+           giveni={J\bibinithyphendelim X\bibinitperiod}}}%
+        {{hash=bc10da681d9cbcdcac94fb21d3595244}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={ZhiWu},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=7b947946467ac11649def7bc9fc694c5}{%
+           family={Tian},
+           familyi={T\bibinitperiod},
+           given={Guangdong},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{bbf45421c91b4691e2426dee0625c44a}
+      \strng{fullhash}{c057e53d7ac3bfebb5ee0507bec331aa}
+      \strng{bibnamehash}{bbf45421c91b4691e2426dee0625c44a}
+      \strng{authorbibnamehash}{bbf45421c91b4691e2426dee0625c44a}
+      \strng{authornamehash}{bbf45421c91b4691e2426dee0625c44a}
+      \strng{authorfullhash}{c057e53d7ac3bfebb5ee0507bec331aa}
+      \field{sortinit}{L}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Engineering Applications of Artificial Intelligence}
+      \field{title}{Fuzzy Petri nets for knowledge representation and reasoning: A literature review}
+      \field{volume}{60}
+      \field{year}{2017}
+      \field{pages}{45\bibrangedash 56}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1016/j.engappai.2017.01.012
+      \endverb
+    \endentry
+    \entry{markovic_et_al_2015}{article}{}
       \name{author}{4}{}{%
         {{hash=98f5f5918eeed6437337643d0c62cd3d}{%
            family={Marković},
@@ -534,7 +588,7 @@
       \verb 10.1016/j.trc.2015.04.004
       \endverb
     \endentry
-    \entry{milinkovic_markovic_veskovic_ivic_pavlovic_2013}{article}{}
+    \entry{milinkovic_et_al_2013}{article}{}
       \name{author}{5}{}{%
         {{hash=dade4813511eb0aa52fd60ad5f52ecad}{%
            family={Milinković},
@@ -582,38 +636,107 @@
       \verb 10.1016/j.simpat.2012.12.005
       \endverb
     \endentry
-    \entry{noland_polak_2002}{article}{}
-      \name{author}{2}{}{%
-        {{hash=e643c3d3c8970d6df0d5d1324b964e71}{%
-           family={Noland},
+    \entry{nabian_et_al_2019}{article}{}
+      \name{author}{3}{}{%
+        {{hash=1038076f3609649e1e103d35513be92c}{%
+           family={Nabian},
            familyi={N\bibinitperiod},
-           given={Robert\bibnamedelima B.},
-           giveni={R\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
-        {{hash=ef84cd640f783b87e1dafe8b9ab2c499}{%
-           family={Polak},
-           familyi={P\bibinitperiod},
-           given={John\bibnamedelima W.},
-           giveni={J\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+           given={Mohammad\bibnamedelima Amin},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=25cb0f697d58b9fa60566ba0a3047bee}{%
+           family={Alemazkoor},
+           familyi={A\bibinitperiod},
+           given={Negin},
+           giveni={N\bibinitperiod}}}%
+        {{hash=ae5471bc977c2d34fd49a1304cb9b6af}{%
+           family={Meidani},
+           familyi={M\bibinitperiod},
+           given={Hadi},
+           giveni={H\bibinitperiod}}}%
       }
-      \strng{namehash}{26f2194aebe3f4c7d24e9c89d7664528}
-      \strng{fullhash}{26f2194aebe3f4c7d24e9c89d7664528}
-      \strng{bibnamehash}{26f2194aebe3f4c7d24e9c89d7664528}
-      \strng{authorbibnamehash}{26f2194aebe3f4c7d24e9c89d7664528}
-      \strng{authornamehash}{26f2194aebe3f4c7d24e9c89d7664528}
-      \strng{authorfullhash}{26f2194aebe3f4c7d24e9c89d7664528}
+      \strng{namehash}{1ea8dd2f9b1c02944e48e30753578af2}
+      \strng{fullhash}{1ea8dd2f9b1c02944e48e30753578af2}
+      \strng{bibnamehash}{1ea8dd2f9b1c02944e48e30753578af2}
+      \strng{authorbibnamehash}{1ea8dd2f9b1c02944e48e30753578af2}
+      \strng{authornamehash}{1ea8dd2f9b1c02944e48e30753578af2}
+      \strng{authorfullhash}{1ea8dd2f9b1c02944e48e30753578af2}
       \field{sortinit}{N}
       \field{sortinithash}{98cf339a479c0454fe09153a08675a15}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Transport Reviews}
-      \field{number}{1}
-      \field{title}{Travel time variability: A review of theoretical and empirical issues}
-      \field{volume}{22}
-      \field{year}{2002}
-      \field{pages}{39\bibrangedash 54}
-      \range{pages}{16}
+      \field{journaltitle}{Transportation Research Record: Journal of the Transportation Research Board}
+      \field{number}{5}
+      \field{title}{Predicting Near-Term Train Schedule Performance and Delay Using Bi-Level Random Forests}
+      \field{volume}{2673}
+      \field{year}{2019}
+      \field{pages}{564\bibrangedash 573}
+      \range{pages}{10}
       \verb{doi}
-      \verb 10.1080/01441640010022456
+      \verb 10.1177/0361198119840339
+      \endverb
+      \verb{urlraw}
+      \verb https://journals.sagepub.com/doi/full/10.1177/0361198119840339?casa_token=DFAg4bqXSC0AAAAA%3AE_fjvjujqVan3ZdY5rmfeVAUl-q5Qsr7ExDIW3fhcEKTQqGg_qae5mredq8XJyeR5plFdL8WcwAXuw
+      \endverb
+      \verb{url}
+      \verb https://journals.sagepub.com/doi/full/10.1177/0361198119840339?casa_token=DFAg4bqXSC0AAAAA%3AE_fjvjujqVan3ZdY5rmfeVAUl-q5Qsr7ExDIW3fhcEKTQqGg_qae5mredq8XJyeR5plFdL8WcwAXuw
+      \endverb
+    \endentry
+    \entry{nair_et_al_2019}{article}{}
+      \name{author}{7}{}{%
+        {{hash=d043c2a72aced3e8e20efa5270c881d7}{%
+           family={Nair},
+           familyi={N\bibinitperiod},
+           given={Rahul},
+           giveni={R\bibinitperiod}}}%
+        {{hash=12075f5a2ee6e9629526e67008002b61}{%
+           family={Hoang},
+           familyi={H\bibinitperiod},
+           given={Thanh\bibnamedelima Lam},
+           giveni={T\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=7b366e77b845023904aeac46562f429c}{%
+           family={Laumanns},
+           familyi={L\bibinitperiod},
+           given={Marco},
+           giveni={M\bibinitperiod}}}%
+        {{hash=8fc734e460157b6f4d8a60f763a7c625}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Bei},
+           giveni={B\bibinitperiod}}}%
+        {{hash=d268a0e03b96858dd0d0c6ec1bc597a9}{%
+           family={Cogill},
+           familyi={C\bibinitperiod},
+           given={Randall},
+           giveni={R\bibinitperiod}}}%
+        {{hash=3b5243a4b40f6a39c1389a10dad5d947}{%
+           family={Szabó},
+           familyi={S\bibinitperiod},
+           given={Jácint},
+           giveni={J\bibinitperiod}}}%
+        {{hash=dae486a3ab4cba484951e03ef0b99429}{%
+           family={Walter},
+           familyi={W\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{c1fd80077e14484696015248af1c2232}
+      \strng{fullhash}{d6e95ec82b9b0f5e14bffab65e7960f9}
+      \strng{bibnamehash}{c1fd80077e14484696015248af1c2232}
+      \strng{authorbibnamehash}{c1fd80077e14484696015248af1c2232}
+      \strng{authornamehash}{c1fd80077e14484696015248af1c2232}
+      \strng{authorfullhash}{d6e95ec82b9b0f5e14bffab65e7960f9}
+      \field{sortinit}{N}
+      \field{sortinithash}{98cf339a479c0454fe09153a08675a15}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transportation Research Part C: Emerging Technologies}
+      \field{title}{An ensemble prediction model for train delays}
+      \field{volume}{104}
+      \field{year}{2019}
+      \field{pages}{196\bibrangedash 209}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1016/j.trc.2019.04.026
       \endverb
     \endentry
     \entry{olsson_haugland_2004}{article}{}
@@ -650,7 +773,58 @@
       \verb 10.1016/j.tranpol.2004.07.001
       \endverb
     \endentry
-    \entry{oneto_fumeo_clerico_canepa_papa_dambra_mazzino_anguita_2016}{article}{}
+    \entry{oneto_et_al_2019}{article}{}
+      \name{author}{6}{}{%
+        {{hash=5ac1aad6cfc103482fc43476932564a3}{%
+           family={Oneto},
+           familyi={O\bibinitperiod},
+           given={Luca},
+           giveni={L\bibinitperiod}}}%
+        {{hash=ecba58a3ff24a7b541f9456bcccb99e6}{%
+           family={Buselli},
+           familyi={B\bibinitperiod},
+           given={Irene},
+           giveni={I\bibinitperiod}}}%
+        {{hash=c0f2f97cd26b5228e2c04d9ab4697d8a}{%
+           family={Lulli},
+           familyi={L\bibinitperiod},
+           given={Alessandro},
+           giveni={A\bibinitperiod}}}%
+        {{hash=9ce9c840b83d1f81e307d72b32f109db}{%
+           family={Canepa},
+           familyi={C\bibinitperiod},
+           given={Renzo},
+           giveni={R\bibinitperiod}}}%
+        {{hash=3ad2f184acba5b4ce7de311754a3fa4b}{%
+           family={Petralli},
+           familyi={P\bibinitperiod},
+           given={Simone},
+           giveni={S\bibinitperiod}}}%
+        {{hash=cea2b2811dfa709a1c5c3fcd1bedb210}{%
+           family={Anguita},
+           familyi={A\bibinitperiod},
+           given={Davide},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{ec9964079c213f7ef96adde4ad90ffd9}
+      \strng{fullhash}{c105bb91e25cd7ec8bc44a07e677ea17}
+      \strng{bibnamehash}{ec9964079c213f7ef96adde4ad90ffd9}
+      \strng{authorbibnamehash}{ec9964079c213f7ef96adde4ad90ffd9}
+      \strng{authornamehash}{ec9964079c213f7ef96adde4ad90ffd9}
+      \strng{authorfullhash}{c105bb91e25cd7ec8bc44a07e677ea17}
+      \field{extraname}{1}
+      \field{sortinit}{O}
+      \field{sortinithash}{ff8d4eeb5101e3cf3809959b3592d942}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Data Science and Analytics}
+      \field{title}{A dynamic, interpretable, and robust hybrid data analytics system for train movements in large-scale railway networks}
+      \field{year}{2019}
+      \verb{doi}
+      \verb 10.1007/s41060-018-00171-z
+      \endverb
+    \endentry
+    \entry{oneto_et_al_2016}{article}{}
       \name{author}{8}{}{%
         {{hash=5ac1aad6cfc103482fc43476932564a3}{%
            family={Oneto},
@@ -699,6 +873,7 @@
       \strng{authorbibnamehash}{ec9964079c213f7ef96adde4ad90ffd9}
       \strng{authornamehash}{ec9964079c213f7ef96adde4ad90ffd9}
       \strng{authorfullhash}{73d8e2b64ea3a69eda36cb74f1b8d615}
+      \field{extraname}{2}
       \field{sortinit}{O}
       \field{sortinithash}{ff8d4eeb5101e3cf3809959b3592d942}
       \field{labelnamesource}{author}
@@ -710,67 +885,173 @@
       \verb 10.1109/dsaa.2016.57
       \endverb
     \endentry
-    \entry{ozekici_sengor_1994}{article}{}
-      \name{author}{2}{}{%
-        {{hash=50271b6b7f5794bb6f9a865587577905}{%
-           family={Özekici},
-           familyi={Ö\bibinitperiod},
-           given={Süleyman},
-           giveni={S\bibinitperiod}}}%
-        {{hash=8e34cc27135000997f8648543301e2d8}{%
-           family={Şengör},
-           familyi={Ş\bibinitperiod},
-           given={Selim},
-           giveni={S\bibinitperiod}}}%
+    \entry{oneto_et_al_2017b}{article}{}
+      \name{author}{8}{}{%
+        {{hash=5ac1aad6cfc103482fc43476932564a3}{%
+           family={Oneto},
+           familyi={O\bibinitperiod},
+           given={Luca},
+           giveni={L\bibinitperiod}}}%
+        {{hash=f096e19faea4dc6523398f7d84fbabc6}{%
+           family={Fumeo},
+           familyi={F\bibinitperiod},
+           given={Emanuele},
+           giveni={E\bibinitperiod}}}%
+        {{hash=4b4dd982805740d4c0337488a04b4196}{%
+           family={Clerico},
+           familyi={C\bibinitperiod},
+           given={Giorgio},
+           giveni={G\bibinitperiod}}}%
+        {{hash=9ce9c840b83d1f81e307d72b32f109db}{%
+           family={Canepa},
+           familyi={C\bibinitperiod},
+           given={Renzo},
+           giveni={R\bibinitperiod}}}%
+        {{hash=81c02d7cf22f5ba1d4d9bc4896a43fe3}{%
+           family={Papa},
+           familyi={P\bibinitperiod},
+           given={Federico},
+           giveni={F\bibinitperiod}}}%
+        {{hash=53e94e7d3abf6544a8a00f500b8aa510}{%
+           family={Dambra},
+           familyi={D\bibinitperiod},
+           given={Carlo},
+           giveni={C\bibinitperiod}}}%
+        {{hash=92e874eea5cb78a3ac145aefa7828be6}{%
+           family={Mazzino},
+           familyi={M\bibinitperiod},
+           given={Nadia},
+           giveni={N\bibinitperiod}}}%
+        {{hash=cea2b2811dfa709a1c5c3fcd1bedb210}{%
+           family={Anguita},
+           familyi={A\bibinitperiod},
+           given={Davide},
+           giveni={D\bibinitperiod}}}%
       }
-      \strng{namehash}{a6169cbdf34db3e3a7d12c84657fabbb}
-      \strng{fullhash}{a6169cbdf34db3e3a7d12c84657fabbb}
-      \strng{bibnamehash}{a6169cbdf34db3e3a7d12c84657fabbb}
-      \strng{authorbibnamehash}{a6169cbdf34db3e3a7d12c84657fabbb}
-      \strng{authornamehash}{a6169cbdf34db3e3a7d12c84657fabbb}
-      \strng{authorfullhash}{a6169cbdf34db3e3a7d12c84657fabbb}
-      \field{sortinit}{Ö}
+      \strng{namehash}{ec9964079c213f7ef96adde4ad90ffd9}
+      \strng{fullhash}{73d8e2b64ea3a69eda36cb74f1b8d615}
+      \strng{bibnamehash}{ec9964079c213f7ef96adde4ad90ffd9}
+      \strng{authorbibnamehash}{ec9964079c213f7ef96adde4ad90ffd9}
+      \strng{authornamehash}{ec9964079c213f7ef96adde4ad90ffd9}
+      \strng{authorfullhash}{73d8e2b64ea3a69eda36cb74f1b8d615}
+      \field{extraname}{3}
+      \field{sortinit}{O}
       \field{sortinithash}{ff8d4eeb5101e3cf3809959b3592d942}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Transportation Science}
-      \field{number}{3}
-      \field{title}{On a Rail Transportation Model with Scheduled Services}
-      \field{volume}{28}
-      \field{year}{1994}
-      \field{pages}{246\bibrangedash 255}
-      \range{pages}{10}
+      \field{journaltitle}{IEEE Transactions on Systems, Man, and Cybernetics: Systems}
+      \field{number}{10}
+      \field{title}{Dynamic Delay Predictions for Large-Scale Railway Networks: Deep and Shallow Extreme Learning Machines Tuned via Thresholdout}
+      \field{volume}{47}
+      \field{year}{2017}
+      \field{pages}{2754\bibrangedash 2767}
+      \range{pages}{14}
       \verb{doi}
-      \verb 10.1287/trsc.28.3.246
+      \verb 10.1109/tsmc.2017.2693209
       \endverb
     \endentry
-    \entry{petersen_1974}{article}{}
-      \name{author}{1}{}{%
-        {{hash=3c9e68a41fcd56ed7fdcfb7b2485715f}{%
-           family={Petersen},
+    \entry{oneto_et_al_2017a}{article}{}
+      \name{author}{8}{}{%
+        {{hash=5ac1aad6cfc103482fc43476932564a3}{%
+           family={Oneto},
+           familyi={O\bibinitperiod},
+           given={Luca},
+           giveni={L\bibinitperiod}}}%
+        {{hash=f096e19faea4dc6523398f7d84fbabc6}{%
+           family={Fumeo},
+           familyi={F\bibinitperiod},
+           given={Emanuele},
+           giveni={E\bibinitperiod}}}%
+        {{hash=4b4dd982805740d4c0337488a04b4196}{%
+           family={Clerico},
+           familyi={C\bibinitperiod},
+           given={Giorgio},
+           giveni={G\bibinitperiod}}}%
+        {{hash=9ce9c840b83d1f81e307d72b32f109db}{%
+           family={Canepa},
+           familyi={C\bibinitperiod},
+           given={Renzo},
+           giveni={R\bibinitperiod}}}%
+        {{hash=81c02d7cf22f5ba1d4d9bc4896a43fe3}{%
+           family={Papa},
            familyi={P\bibinitperiod},
-           given={E.\bibnamedelimi R.},
-           giveni={E\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+           given={Federico},
+           giveni={F\bibinitperiod}}}%
+        {{hash=53e94e7d3abf6544a8a00f500b8aa510}{%
+           family={Dambra},
+           familyi={D\bibinitperiod},
+           given={Carlo},
+           giveni={C\bibinitperiod}}}%
+        {{hash=92e874eea5cb78a3ac145aefa7828be6}{%
+           family={Mazzino},
+           familyi={M\bibinitperiod},
+           given={Nadia},
+           giveni={N\bibinitperiod}}}%
+        {{hash=cea2b2811dfa709a1c5c3fcd1bedb210}{%
+           family={Anguita},
+           familyi={A\bibinitperiod},
+           given={Davide},
+           giveni={D\bibinitperiod}}}%
       }
-      \strng{namehash}{3c9e68a41fcd56ed7fdcfb7b2485715f}
-      \strng{fullhash}{3c9e68a41fcd56ed7fdcfb7b2485715f}
-      \strng{bibnamehash}{3c9e68a41fcd56ed7fdcfb7b2485715f}
-      \strng{authorbibnamehash}{3c9e68a41fcd56ed7fdcfb7b2485715f}
-      \strng{authornamehash}{3c9e68a41fcd56ed7fdcfb7b2485715f}
-      \strng{authorfullhash}{3c9e68a41fcd56ed7fdcfb7b2485715f}
+      \strng{namehash}{ec9964079c213f7ef96adde4ad90ffd9}
+      \strng{fullhash}{73d8e2b64ea3a69eda36cb74f1b8d615}
+      \strng{bibnamehash}{ec9964079c213f7ef96adde4ad90ffd9}
+      \strng{authorbibnamehash}{ec9964079c213f7ef96adde4ad90ffd9}
+      \strng{authornamehash}{ec9964079c213f7ef96adde4ad90ffd9}
+      \strng{authorfullhash}{73d8e2b64ea3a69eda36cb74f1b8d615}
+      \field{extraname}{4}
+      \field{sortinit}{O}
+      \field{sortinithash}{ff8d4eeb5101e3cf3809959b3592d942}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Big Data Research}
+      \field{title}{Train Delay Prediction Systems: A Big Data Analytics Perspective}
+      \field{volume}{11}
+      \field{year}{2018}
+      \field{pages}{54\bibrangedash 64}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1016/j.bdr.2017.05.002
+      \endverb
+    \endentry
+    \entry{peters_et_al_2005}{article}{}
+      \name{author}{4}{}{%
+        {{hash=7d6fd635c07c909c9be27ad633ff1260}{%
+           family={Peters},
+           familyi={P\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=9268e42f737007ab058d4e4a96104276}{%
+           family={Emig},
+           familyi={E\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+        {{hash=399f0bd1f3cb8d0c2dc2b0aaf3dce52e}{%
+           family={Jung},
+           familyi={J\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=c9aa9e73ccab7eb48d955624cc4187b3}{%
+           family={Schmidt},
+           familyi={S\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{77190d3be545ae5ee1e4159168b99a34}
+      \strng{fullhash}{a650602e620abb040dac1f319a0047f3}
+      \strng{bibnamehash}{77190d3be545ae5ee1e4159168b99a34}
+      \strng{authorbibnamehash}{77190d3be545ae5ee1e4159168b99a34}
+      \strng{authornamehash}{77190d3be545ae5ee1e4159168b99a34}
+      \strng{authorfullhash}{a650602e620abb040dac1f319a0047f3}
       \field{sortinit}{P}
       \field{sortinithash}{bb5b15f2db90f7aef79bb9e83defefcb}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Transportation Science}
-      \field{number}{1}
-      \field{title}{Over-the-Road Transit Time for a Single Track Railway}
-      \field{volume}{8}
-      \field{year}{1974}
-      \field{pages}{65\bibrangedash 74}
-      \range{pages}{10}
+      \field{journaltitle}{International Conference on Computational Intelligence for Modelling, Control and Automation and International Conference on Intelligent Agents, Web Technologies and Internet Commerce (CIMCA-IAWTIC'06)}
+      \field{title}{Prediction of Delays in Public Transportation using Neural Networks}
+      \field{year}{2005}
       \verb{doi}
-      \verb 10.1287/trsc.8.1.65
+      \verb 10.1109/cimca.2005.1631451
       \endverb
     \endentry
     \entry{pongnumkul_pechprasarn_kunaseth_chaipah_2014}{article}{}
@@ -812,28 +1093,6 @@
       \verb{doi}
       \verb 10.1109/jcsse.2014.6841886
       \endverb
-    \endentry
-    \entry{puong_2000}{article}{}
-      \name{author}{1}{}{%
-        {{hash=65d4d7bd455758eadae68516ed19c0e5}{%
-           family={Puong},
-           familyi={P\bibinitperiod},
-           given={Andre},
-           giveni={A\bibinitperiod}}}%
-      }
-      \strng{namehash}{65d4d7bd455758eadae68516ed19c0e5}
-      \strng{fullhash}{65d4d7bd455758eadae68516ed19c0e5}
-      \strng{bibnamehash}{65d4d7bd455758eadae68516ed19c0e5}
-      \strng{authorbibnamehash}{65d4d7bd455758eadae68516ed19c0e5}
-      \strng{authornamehash}{65d4d7bd455758eadae68516ed19c0e5}
-      \strng{authorfullhash}{65d4d7bd455758eadae68516ed19c0e5}
-      \field{sortinit}{P}
-      \field{sortinithash}{bb5b15f2db90f7aef79bb9e83defefcb}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{month}{03}
-      \field{title}{Dwell Time Model and Analysis for the MBTA Red Line}
-      \field{year}{2000}
     \endentry
     \entry{nr_delay_causes}{online}{}
       \name{author}{1}{}{%
@@ -969,37 +1228,35 @@
       \verb 10.1016/s1474-6670(17)43896-1
       \endverb
     \endentry
-    \entry{san_mohd_masirin_2016}{article}{}
-      \name{author}{2}{}{%
-        {{hash=74a1d14ce542ea4f1a89f02190e4b5af}{%
-           family={San},
+    \entry{towards_data_science_BN_intro}{online}{}
+      \name{author}{1}{}{%
+        {{hash=de91db5ad19e835805c1bf3bd0a8c2cf}{%
+           family={Sciencel},
            familyi={S\bibinitperiod},
-           given={Hor\bibnamedelima Peay},
-           giveni={H\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
-        {{hash=70bce17a2045e65bb7f27b2bfcdd709b}{%
-           family={Mohd\bibnamedelima Masirin},
-           familyi={M\bibinitperiod\bibinitdelim M\bibinitperiod},
-           given={Mohd\bibnamedelima Idrus},
-           giveni={M\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+           given={Towards\bibnamedelima Data},
+           giveni={T\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
       }
-      \strng{namehash}{83dc9750b068415e9ee9b5c45b8cfedf}
-      \strng{fullhash}{83dc9750b068415e9ee9b5c45b8cfedf}
-      \strng{bibnamehash}{83dc9750b068415e9ee9b5c45b8cfedf}
-      \strng{authorbibnamehash}{83dc9750b068415e9ee9b5c45b8cfedf}
-      \strng{authornamehash}{83dc9750b068415e9ee9b5c45b8cfedf}
-      \strng{authorfullhash}{83dc9750b068415e9ee9b5c45b8cfedf}
+      \strng{namehash}{de91db5ad19e835805c1bf3bd0a8c2cf}
+      \strng{fullhash}{de91db5ad19e835805c1bf3bd0a8c2cf}
+      \strng{bibnamehash}{de91db5ad19e835805c1bf3bd0a8c2cf}
+      \strng{authorbibnamehash}{de91db5ad19e835805c1bf3bd0a8c2cf}
+      \strng{authornamehash}{de91db5ad19e835805c1bf3bd0a8c2cf}
+      \strng{authorfullhash}{de91db5ad19e835805c1bf3bd0a8c2cf}
       \field{sortinit}{S}
       \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{MATEC Web of Conferences}
-      \field{title}{Train Dwell Time Models for Rail Passenger Service}
-      \field{volume}{47}
-      \field{year}{2016}
-      \field{pages}{03005}
-      \range{pages}{1}
-      \verb{doi}
-      \verb 10.1051/matecconf/20164703005
+      \field{title}{Introduction to Bayesian networks}
+      \field{urlday}{19}
+      \field{urlmonth}{11}
+      \field{urlyear}{2019}
+      \field{year}{2019}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://towardsdatascience.com/introduction-to-bayesian-networks-81031eeed94e
+      \endverb
+      \verb{url}
+      \verb https://towardsdatascience.com/introduction-to-bayesian-networks-81031eeed94e
       \endverb
     \endentry
     \entry{skagestad_2004}{thesis}{}
@@ -1028,7 +1285,45 @@
       \field{type}{phdthesis}
       \field{year}{2004}
     \endentry
-    \entry{wang_zhang_2019}{article}{}
+    \entry{szabo_et_al_2017}{inbook}{}
+      \name{author}{3}{}{%
+        {{hash=3b5243a4b40f6a39c1389a10dad5d947}{%
+           family={Szabó},
+           familyi={S\bibinitperiod},
+           given={Jácint},
+           giveni={J\bibinitperiod}}}%
+        {{hash=2d7751c6a9c2e16a288ecb833b44988f}{%
+           family={Blandin},
+           familyi={B\bibinitperiod},
+           given={Sebastien},
+           giveni={S\bibinitperiod}}}%
+        {{hash=4f268ad1ae265b24bf8efca97c477401}{%
+           family={Brett},
+           familyi={B\bibinitperiod},
+           given={Charles},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {International Foundation for Autonomous Agents}%
+        {Multiagent Systems}%
+      }
+      \strng{namehash}{8dd66a007b9b38e4a91eb65b5c90f6a4}
+      \strng{fullhash}{8dd66a007b9b38e4a91eb65b5c90f6a4}
+      \strng{bibnamehash}{8dd66a007b9b38e4a91eb65b5c90f6a4}
+      \strng{authorbibnamehash}{8dd66a007b9b38e4a91eb65b5c90f6a4}
+      \strng{authornamehash}{8dd66a007b9b38e4a91eb65b5c90f6a4}
+      \strng{authorfullhash}{8dd66a007b9b38e4a91eb65b5c90f6a4}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{AAMAS '17 Proceedings of the 16th Conference on Autonomous Agents and MultiAgent Systems}
+      \field{title}{Data-Driven Simulation and Optimization for Incident Response in Urban Railway Networks}
+      \field{year}{2017}
+      \field{pages}{819\bibrangedash 827}
+      \range{pages}{9}
+    \endentry
+    \entry{wang_et_al_2019}{article}{}
       \name{author}{2}{}{%
         {{hash=331faa6bb25090991b7f7eef24891a20}{%
            family={Wang},
@@ -1124,6 +1419,45 @@
       \range{pages}{15}
       \verb{doi}
       \verb 10.1109/tse.2005.63
+      \endverb
+    \endentry
+    \entry{yaghini_et_al_2013}{article}{}
+      \name{author}{3}{}{%
+        {{hash=4508607090ac7643c873389091905700}{%
+           family={Yaghini},
+           familyi={Y\bibinitperiod},
+           given={Masoud},
+           giveni={M\bibinitperiod}}}%
+        {{hash=2da389c5903ff4d8953b97e9856651a1}{%
+           family={Khoshraftar},
+           familyi={K\bibinitperiod},
+           given={Mohammad\bibnamedelima M.},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=58779971396f74f3f48f94ccef2cb9c5}{%
+           family={Seyedabadi},
+           familyi={S\bibinitperiod},
+           given={Masoud},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{f5623dbc5bc8559083477447f2072dab}
+      \strng{fullhash}{f5623dbc5bc8559083477447f2072dab}
+      \strng{bibnamehash}{f5623dbc5bc8559083477447f2072dab}
+      \strng{authorbibnamehash}{f5623dbc5bc8559083477447f2072dab}
+      \strng{authornamehash}{f5623dbc5bc8559083477447f2072dab}
+      \strng{authorfullhash}{f5623dbc5bc8559083477447f2072dab}
+      \field{sortinit}{Y}
+      \field{sortinithash}{6ae2ff5458ff901249c2745238c951b7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Advanced Transportation}
+      \field{number}{3}
+      \field{title}{Railway passenger train delay prediction via neural network model}
+      \field{volume}{47}
+      \field{year}{2013}
+      \field{pages}{355\bibrangedash 368}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1002/atr.193
       \endverb
     \endentry
   \enddatalist

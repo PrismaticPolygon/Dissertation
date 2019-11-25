@@ -5,66 +5,94 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.1}Delays}{2}%
 \defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {1.1.1}Primary delays}{2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {1.1.2}Secondary delays}{2}%
+\defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.2}Timescales}{2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.3}Metrics}{3}%
+\contentsline {subsection}{\numberline {1.3}Metrics}{2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2}Research questions}{3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Punctuality}{2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3}Overview of literature review\\method}{4}%
+\contentsline {subsubsection}{\numberline {1.3.2}Reliability}{2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1}Recent applications of big data analytics in railway transportation systems: A survey \cite {ghofrani_et_al_2018}}{4}%
+\contentsline {section}{\numberline {2}Overview of systematic literature review method}{3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2}Database search}{4}%
+\contentsline {subsection}{\numberline {2.1}Recent applications of big data analytics in railway transportation systems: A survey \cite {ghofrani_et_al_2018}}{3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3}Study selection}{4}%
+\contentsline {subsection}{\numberline {2.2}Database search}{3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4}Overview of studies}{5}%
+\contentsline {subsection}{\numberline {2.3}Study selection}{3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}ML models}{6}%
+\contentsline {section}{\numberline {3}Overview of studies}{4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1}Bayesian networks}{6}%
+\contentsline {section}{\numberline {4}ML models}{4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.1.1}A hybrid Bayesian network model for predicting delays in train operations \cite {lessan_fu_wen_2019}}{6}%
+\contentsline {subsection}{\numberline {4.1}Bayesian networks}{4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.1.2}Stochastic prediction of train delays in real-time using Bayesian networks \cite {corman_kecman_2018}}{7}%
+\contentsline {subsubsection}{\numberline {4.1.1}A hybrid Bayesian network model for predicting delays in train operations \cite {lessan_fu_wen_2019}}{5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2}Neural networks}{7}%
+\contentsline {subsubsection}{\numberline {4.1.2}Stochastic prediction of train delays in real-time using Bayesian networks \cite {corman_kecman_2018}}{5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.3}Support vector regression}{8}%
+\contentsline {subsection}{\numberline {4.2}Neural networks}{5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.4}Decision trees and random forests}{9}%
+\contentsline {subsubsection}{\numberline {4.2.1}Railway passenger train delay prediction via neural network model \cite {yaghini_et_al_2013}}{5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.5}Regression}{10}%
+\contentsline {subsection}{\numberline {4.3}Random forests}{6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.6}Ensemble methods}{12}%
+\contentsline {subsubsection}{\numberline {4.3.1}Advanced Analytics for Train Delay Prediction Systems by Including Exogenous Weather Data \cite {oneto_et_al_2016}}{6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.7}Extreme learning machines}{12}%
+\contentsline {subsubsection}{\numberline {4.3.2}Predicting near-Term Train Schedule Performance and Delay Using Bi-Level Random Forests \cite {nabian_et_al_2019}}{6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.8}Markov models}{12}%
+\contentsline {subsubsection}{\numberline {4.3.3}Train delay analysis and prediction based on big data fusion \cite {wang_et_al_2019}}{6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6}Analytical models}{13}%
+\contentsline {subsection}{\numberline {4.4}Regression}{7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Datasets}{13}%
+\contentsline {subsubsection}{\numberline {4.4.1}Data driven approaches for passenger train delay estimation \cite {wang_work_2015}}{7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Fields}{13}%
+\contentsline {subsection}{\numberline {4.5}Support vector regression}{7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9}Exogenous data}{13}%
+\contentsline {subsubsection}{\numberline {4.5.1}Prediction of arrival times of freight traffic on US railroads using support vector regression \cite {barbour_et_al_2018}}{7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.1}Weather}{13}%
+\contentsline {subsubsection}{\numberline {4.5.2}Analyzing passenger train arrival delays with support vector regression \cite {markovic_et_al_2015}}{7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.2}Infrastructure}{14}%
+\contentsline {subsection}{\numberline {4.6}Fuzzy Petri nets}{8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.3}Maintenance}{14}%
+\contentsline {subsubsection}{\numberline {4.6.1}A fuzzy Petri net model to estimate train delays \cite {milinkovic_et_al_2013}}{8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.4}Other}{14}%
+\contentsline {subsection}{\numberline {4.7}Ensemble methods}{8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {10}Evaluation}{15}%
+\contentsline {subsubsection}{\numberline {4.7.1}An ensemble prediction model for train delays \cite {nair_et_al_2019}}{8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {10.1}RQ1: What ML models are commonly used for TDP?}{15}%
+\contentsline {subsubsection}{\numberline {4.7.2}A dynamic, interpretable, and robust hybrid data analytics system for train movements in large-scale railway networks \cite {oneto_et_al_2019}}{8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {10.2}RQ2: What exogenous data is used to improve the performance of those models? / big data analysis}{15}%
+\contentsline {subsection}{\numberline {4.8}Extreme learning machines}{9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {10.3}RQ3: How has ML been used in date in the area of TDP?}{15}%
+\contentsline {subsubsection}{\numberline {4.8.1}Train Delay Prediction Systems: A Big Data Analytics Perspective \cite {oneto_et_al_2017a}}{9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {11}Conclusion}{15}%
+\contentsline {subsubsection}{\numberline {4.8.2}Dynamic Delay Predictions for Large-Scale Railway Networks: Deep and Shallow Extreme Learning Machines Tuned via Thresholdout \cite {oneto_et_al_2017b}}{9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.9}Markov models}{9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.9.1}Estimating Train Delays in a Large Rail Network using a Zero Shot Markov Model \cite {gaurav_et_al_2018}}{9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}Exogenous data}{10}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.1}Weather}{10}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2}Infrastructure}{10}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.3}Maintenance}{11}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.4}Other}{11}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6}Evaluation}{12}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.1}RQ1: What ML models are commonly used for TDP?}{12}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.2}RQ2: What exogenous data is used to improve the performance of those models?}{12}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.3}RQ3: What are the current research areas of TDP?}{12}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7}Conclusion}{12}%

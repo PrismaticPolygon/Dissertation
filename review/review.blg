@@ -1,17 +1,17 @@
 [0] Config.pm:304> INFO - This is Biber 2.13
-[0] Config.pm:307> INFO - Logfile is 'review.blg'
-[37] biber-MSWIN64:315> INFO - === 
-[62] Biber.pm:375> INFO - Reading 'review.bcf'
-[184] Biber.pm:905> INFO - Found 30 citekeys in bib section 0
-[203] Biber.pm:4196> INFO - Processing section 0
-[206] Utils.pm:75> INFO - Globbing data source 'review.bib'
-[217] Utils.pm:91> INFO - Globbed data source 'review.bib' to review.bib
-[232] Biber.pm:4373> INFO - Looking for bibtex format file 'review.bib' for section 0
-[245] bibtex.pm:1462> INFO - LaTeX decoding ...
-[320] bibtex.pm:1281> INFO - Found BibTeX data source 'review.bib'
-[561] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[562] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[566] Biber.pm:4024> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[566] Biber.pm:4030> INFO - No sort tailoring available for locale 'en-US'
-[610] bbl.pm:648> INFO - Writing 'review.bbl' with encoding 'UTF-8'
-[632] bbl.pm:751> INFO - Output to review.bbl
+[1] Config.pm:307> INFO - Logfile is 'review.blg'
+[49] biber-MSWIN64:315> INFO - === 
+[88] Biber.pm:375> INFO - Reading 'review.bcf'
+[320] Biber.pm:905> INFO - Found 35 citekeys in bib section 0
+[351] Biber.pm:4196> INFO - Processing section 0
+[356] Utils.pm:75> INFO - Globbing data source 'review.bib'
+[380] Utils.pm:91> INFO - Globbed data source 'review.bib' to review.bib
+[412] Biber.pm:4373> INFO - Looking for bibtex format file 'review.bib' for section 0
+[437] bibtex.pm:1462> INFO - LaTeX decoding ...
+[645] bibtex.pm:1281> INFO - Found BibTeX data source 'review.bib'
+[1125] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1126] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1127] Biber.pm:4024> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[1127] Biber.pm:4030> INFO - No sort tailoring available for locale 'en-US'
+[1203] bbl.pm:648> INFO - Writing 'review.bbl' with encoding 'UTF-8'
+[1263] bbl.pm:751> INFO - Output to review.bbl
