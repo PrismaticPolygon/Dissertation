@@ -368,43 +368,6 @@
       \verb 10.1016/j.trc.2018.03.010
       \endverb
     \endentry
-    \entry{hansen_goverde_van_der_meer_2010}{article}{}
-      \name{author}{3}{}{%
-        {{hash=5824aeee045ca24618c46952640344d1}{%
-           family={Hansen},
-           familyi={H\bibinitperiod},
-           given={Ingo\bibnamedelima A.},
-           giveni={I\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-        {{hash=fef610ed7ef5914535a248278ba6d238}{%
-           family={Goverde},
-           familyi={G\bibinitperiod},
-           given={Rob\bibnamedelima M.P.},
-           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-        {{hash=2329ff2acacb3c256db134dad0768e64}{%
-           family={Meer},
-           familyi={M\bibinitperiod},
-           given={Dirk\bibnamedelima J.},
-           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod},
-           prefix={van\bibnamedelima der},
-           prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
-      }
-      \strng{namehash}{42c01996d917828f1efc78054bfa3086}
-      \strng{fullhash}{42c01996d917828f1efc78054bfa3086}
-      \strng{bibnamehash}{42c01996d917828f1efc78054bfa3086}
-      \strng{authorbibnamehash}{42c01996d917828f1efc78054bfa3086}
-      \strng{authornamehash}{42c01996d917828f1efc78054bfa3086}
-      \strng{authorfullhash}{42c01996d917828f1efc78054bfa3086}
-      \field{sortinit}{H}
-      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{13th International IEEE Conference on Intelligent Transportation Systems}
-      \field{title}{Online train delay recognition and running time prediction}
-      \field{year}{2010}
-      \verb{doi}
-      \verb 10.1109/itsc.2010.5625081
-      \endverb
-    \endentry
     \entry{heckman_williams_2011}{article}{}
       \name{author}{2}{}{%
         {{hash=af005138dbee950329b10bc12574433c}{%
@@ -463,6 +426,44 @@
       \field{booktitle}{Proceedings of 3rd International Conference on Document Analysis and Recognition}
       \field{title}{Random decision forests}
       \field{year}{1995}
+    \endentry
+    \entry{lee_et_al_2016}{article}{}
+      \name{author}{3}{}{%
+        {{hash=ba67515363147d2480b1fb018851ad87}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Wei-Hsun},
+           giveni={W\bibinithyphendelim H\bibinitperiod}}}%
+        {{hash=026c45a674f54a1699c38b591f2de4fe}{%
+           family={Yen},
+           familyi={Y\bibinitperiod},
+           given={Li-Hsien},
+           giveni={L\bibinithyphendelim H\bibinitperiod}}}%
+        {{hash=b015f190aa85e3709cdd1abcaa97988b}{%
+           family={Chou},
+           familyi={C\bibinitperiod},
+           given={Chien-Ming},
+           giveni={C\bibinithyphendelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{3df8f4ce5da15dd02a6206c28c1decd8}
+      \strng{fullhash}{3df8f4ce5da15dd02a6206c28c1decd8}
+      \strng{bibnamehash}{3df8f4ce5da15dd02a6206c28c1decd8}
+      \strng{authorbibnamehash}{3df8f4ce5da15dd02a6206c28c1decd8}
+      \strng{authornamehash}{3df8f4ce5da15dd02a6206c28c1decd8}
+      \strng{authorfullhash}{3df8f4ce5da15dd02a6206c28c1decd8}
+      \field{sortinit}{L}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transportation Research Part C: Emerging Technologies}
+      \field{title}{A delay root cause discovery and timetable adjustment model for enhancing the punctuality of railway services}
+      \field{volume}{73}
+      \field{year}{2016}
+      \field{pages}{49\bibrangedash 64}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1016/j.trc.2016.10.009
+      \endverb
     \endentry
     \entry{lessan_fu_wen_2019}{article}{}
       \name{author}{3}{}{%
@@ -1052,46 +1053,6 @@
       \field{year}{2005}
       \verb{doi}
       \verb 10.1109/cimca.2005.1631451
-      \endverb
-    \endentry
-    \entry{pongnumkul_pechprasarn_kunaseth_chaipah_2014}{article}{}
-      \name{author}{4}{}{%
-        {{hash=0f75ae8fad5e83dca8ae15eb3da6deb0}{%
-           family={Pongnumkul},
-           familyi={P\bibinitperiod},
-           given={Suporn},
-           giveni={S\bibinitperiod}}}%
-        {{hash=5b3c31e2f413ff9cbab9965847f9312e}{%
-           family={Pechprasarn},
-           familyi={P\bibinitperiod},
-           given={Thanakij},
-           giveni={T\bibinitperiod}}}%
-        {{hash=648000489cacf58105370a10847646bb}{%
-           family={Kunaseth},
-           familyi={K\bibinitperiod},
-           given={Narin},
-           giveni={N\bibinitperiod}}}%
-        {{hash=1f10cac0faa53197f6680a3c5faf8b69}{%
-           family={Chaipah},
-           familyi={C\bibinitperiod},
-           given={Kornchawal},
-           giveni={K\bibinitperiod}}}%
-      }
-      \strng{namehash}{e3b989ffb5bc74f4ac996098f5dfa3e8}
-      \strng{fullhash}{3cfe4aeafebb13139e6e775cb616cfd7}
-      \strng{bibnamehash}{e3b989ffb5bc74f4ac996098f5dfa3e8}
-      \strng{authorbibnamehash}{e3b989ffb5bc74f4ac996098f5dfa3e8}
-      \strng{authornamehash}{e3b989ffb5bc74f4ac996098f5dfa3e8}
-      \strng{authorfullhash}{3cfe4aeafebb13139e6e775cb616cfd7}
-      \field{sortinit}{P}
-      \field{sortinithash}{bb5b15f2db90f7aef79bb9e83defefcb}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{2014 11th International Joint Conference on Computer Science and Software Engineering (JCSSE)}
-      \field{title}{Improving arrival time prediction of Thailand's passenger trains using historical travel times}
-      \field{year}{2014}
-      \verb{doi}
-      \verb 10.1109/jcsse.2014.6841886
       \endverb
     \endentry
     \entry{nr_delay_causes}{online}{}
