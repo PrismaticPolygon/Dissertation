@@ -1,66 +1,73 @@
 import pandas as pd
+import numpy as np
 
 dtype = {
-    "event_type": "category",    # Do we want to split it into arrival and departure delays?,
-    "train_id": "object",
-    "planned_timestamp": "object",  # Needs to be parsed first,
-    "actual_timestamp": "object",
-    "gbtt_timestamp": "object",
-    "original_loc_timestamp": "object"
+    "origin_tiploc": "category",
+    "destination_tiploc": "category",
+    "timetable_code": "category",
+    "stp_indicator": "category",
+    "status": "category",
+    "category": "category",
+    "power_type": "category",
+    "timing_load": "category",
+    "sleepers": "category",
+    "reservations": "category",
+    "catering": "category",
+    "seating": "category",
 }
 
-df = pd.read_csv("data/0003.csv", dtype=dtype)
+# Ah. I have to encode both.
 
-def origin_stanox_area(trust_id):
+df = pd.read_csv("records.csv", index_col="id", parse_dates=["origin_time", "destination_time"], dtype=dtype)
 
-    return int(trust_id[:2])
+df["origin_year"] = df["origin_time"].dt.year
+df["origin_month"] = df["origin_time"].dt.month
+df["origin_day"] = df["origin_time"].dt.day
+df["origin_day_of_week"] = df["origin_time"].dt.dayofweek
 
-def tspeed(trust_id):
+df["origin_minutes"] = df["origin_time"].dt.hour * 60 + df["origin_time"].dt.minute
 
-    tspeed = trust_id[6]
+df["destination_year"] = df["destination_time"].dt.year
+df["destination_month"] = df["destination_time"].dt.month
+df["destination_day"] = df["destination_time"].dt.day
+df["destination_day_of_week"] = df["destination_time"].dt.dayofweek
 
-    # P = Passenger and Parcels in WTT
-    # F = Freight trains in WTT
-    # T = Trips and agreed pathways
-    # S = Special Trains (Freight or Passenger)
+df["destination_minutes"] = df["destination_time"].dt.hour * 60 + df["destination_time"].dt.minute
 
-    tspeed_map = {
-        "M": "P", "N": "P", "O": "P", "C": "F", "D": "F", "E": "F", "F": "F", "G": "F", "A": "T", "B": "T", "H": "T",
-        "I": "T", "J": "T", "K": "T", "L": "T", "P": "T", "Q": "T", "R": "T", "S": "T", "T": "T", "U": "T", "V": "T",
-        "W": "T", "X": "T", "Y": "T", "Z": "T", "0": "S", "1": "S", "2": "S", "3": "S", "4": "S", "5": "S", "6": "S",
-        "7": "S", "8": "S", "9": "S"
-    }
+df = df.drop(["date", "origin_time", "destination_time"], axis=1)
 
-    return tspeed_map[tspeed]
+tiploc_map = {
+    "destination_tiploc": pd.Series(df["origin_tiploc"].values, index=df["origin_tiploc"].cat.codes).to_dict()
+}
 
-def origin_departure_time_minutes(trust_id):
+df["origin_tiploc"] = df["origin_tiploc"].cat.codes
+df["destination_tiploc"] = df.replace(tiploc_map)  # Takes way too long to work with.
 
-    call_codes = {"0": 59, "1": 119, "2": 179, "3": 239, "4": 299, "5": 359, "6": 419, "A": 449, "B": 479, "C": 509,
-                  "D": 539, "E": 569, "F": 599, "G": 629, "H": 659, "I": 689, "J": 719, "K": 749, "L": 779, "M": 809,
-                  "N": 839, "O": 869, "P": 899, "Q": 929, "R": 959, "S": 989, "T": 1019, "U": 1049, "V": 1079,
-                  "W": 1109, "X": 1139, "Y": 1199, "Z": 1259, "7": 1319, "8": 1379, "9": 1439}
+df = df.drop(["service_code", "headcode", "identity", "ATOC_code"], axis=1)
 
-    call_code = trust_id[7]
+df.columns = df.columns.str.lower()
 
-    return call_codes[call_code]
+df["timetable_code"] = df["timetable_code"].cat.codes
 
-def delayed(variation_status):
+df["bank_holiday"] = df["bank_holiday"].fillna(False)
+df["bank_holiday"] = df["bank_holiday"].replace("X", True)
+df["bank_holiday"] = df["bank_holiday"].astype(bool)
 
-    if variation_status == "LATE":
+df = df.drop(["runs_to", "runs_from"], axis=1)
 
-        return True
+df["stp_indicator"] = df["stp_indicator"].cat.codes
+df["status"] = df["status"].cat.codes
+df["category"] = df["category"].cat.codes
+df["power_type"] = df["power_type"].cat.codes
+df["timing_load"] = df["timing_load"].cat.codes
+df["sleepers"] = df["sleepers"].cat.codes
+df["reservations"] = df["reservations"].cat.codes
+df["catering"] = df["catering"].cat.codes
+df["seating"] = df["seating"].cat.codes
 
-    return False
+# characteristics = ["B", "C", "D", "E", "G", "M", "P", "Q", "R", "S", "Y", "Z"]
 
-df["tspeed"] = df["train_id"].map(tspeed).astype("category")
-df["origin_stanox_area"] = df["train_id"].map(origin_stanox_area)
+df = df.drop(["characteristics"], axis=1)
 
-# planned and actual have 3 extra zeros by default; gbtt and original_loc have 6
-for timestamp in ["planned_timestamp", "actual_timestamp", "gbtt_timestamp", "original_loc_timestamp"]:
+df.to_csv("out.csv")
 
-    df[timestamp] = pd.to_datetime(df[timestamp].map(str).map(lambda x: x[:10]), unit="s")
-
-df["run_time"] = df["train_id"].map(origin_departure_time_minutes) - (df["actual_timestamp"].dt.hour * 60 + df["actual_timestamp"].dt.minute)
-
-print(df.head())
-print(df.info())

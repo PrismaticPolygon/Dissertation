@@ -9,6 +9,8 @@ This period was chosen for two main reasons:
 It imposes only a slight overhead on the weather data-set, which is released in calendar years. The primary data-set is
 released in days and so is unaffected
 
+https://pbpython.com/categorical-encoding.html
+
 # Data
 
 There are eight message types:

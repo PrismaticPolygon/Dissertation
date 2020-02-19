@@ -2,4 +2,6 @@
 trains/archive
 trains/extracted
 trains/data
+records.csv
+out.csv
 __pycache__
