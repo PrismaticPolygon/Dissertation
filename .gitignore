@@ -2,3 +2,4 @@
 archive/*/*
 *.csv
 __pycache__
+~$*.docx

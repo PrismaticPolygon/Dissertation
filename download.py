@@ -1,13 +1,15 @@
 import requests
-from io import BytesIO
-from datetime import datetime, timedelta
-from pathlib import Path
 import time
 import gzip
 import tarfile
 import os
+
+from io import BytesIO
+from datetime import datetime, timedelta
+from pathlib import Path
 from ftplib import FTP
 from zipfile import ZipFile
+
 
 def dates(start, end):
     """
@@ -174,11 +176,6 @@ def location():
     else:
 
         print("Skipping {}".format(url))
-
-    # Ah. I need to have an active account for that one.
-    # Not worth the effort right now.
-
-    # And we also need CORPUS.
 
 
 def download(source, start, end):

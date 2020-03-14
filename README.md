@@ -11,6 +11,11 @@ released in days and so is unaffected
 
 https://pbpython.com/categorical-encoding.html
 
+## TODO:
+
+* Convert cyclical variables into unit circle equivalents ([here](http://blog.davidkaleko.com/feature-engineering-cyclical-features.html)). That said,
+one-hot encoding time features often works better than
+
 # Data
 
 There are eight message types:
