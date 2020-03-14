@@ -11,13 +11,14 @@ from ftplib import FTP
 from zipfile import ZipFile
 
 
-def dates(start, end):
+def dates(start, end, pad=False):
     """
     Returns a generator yielding two strings: a date url (YYYY/M/D), for downloading files, and a date path (YYYY-MM-DD)
     for writing files.
 
     :param start: A date in YYYY-MM-DD format.
     :param end:  A date in YYYY-MM-DD format.
+    :param pad: whether or not to zero-pad url dates
     :return:
     """
 
@@ -26,7 +27,13 @@ def dates(start, end):
 
     while start < end:
 
-        yield "{d.year}/{d.month}/{d.day}".format(d=start), start.strftime("%Y-%m-%d")  # don't want zero-pad for url
+        if pad is True:
+
+            yield start.strftime("%Y/%m/%d"), start.strftime("%Y-%m-%d")  # need to pad for dates
+
+        else:
+
+            yield "{d.year}/{d.month}/{d.day}".format(d=start), start.strftime("%Y-%m-%d")  # don't want zero-pad for url
 
         start += timedelta(days=1)  # increase day one by one
 
@@ -46,25 +53,8 @@ def weather(year):
     file = "midas_wxhrly_{}01-{}12.txt".format(year, year)
     path = os.path.join("archive", "weather", year + ".csv")
 
-    headers = ['ob_time', 'id', 'id_type', 'met_domain_name', 'version_num', 'src_id', 'rec_st_ind',
-               'wind_speed_unit_id', 'src_opr_type', 'wind_direction', 'wind_speed', 'prst_wx_id', 'past_wx_id_1',
-               'past_wx_id_2', 'cld_ttl_amt_id', 'low_cld_type_id', 'med_cld_type_id', 'hi_cld_type_id',
-               'cld_base_amt_id', 'cld_base_ht', 'visibility', 'msl_pressure', 'cld_amt_id_1', 'cloud_type_id_1',
-               'cld_base_ht_id_1', 'cld_amt_id_2', 'cloud_type_id_2', 'cld_base_ht_id_2', 'cld_amt_id_3',
-               'cloud_type_id_3', 'cld_base_ht_id_3', 'cld_amt_id_4', 'cloud_type_id_4', 'cld_base_ht_id_4',
-               'vert_vsby', 'air_temperature', 'dewpoint', 'wetb_temp', 'stn_pres', 'alt_pres', 'ground_state_id',
-               'q10mnt_mxgst_spd', 'cavok_flag', 'cs_hr_sun_dur', 'wmo_hr_sun_dur', 'wind_direction_q', 'wind_speed_q',
-               'prst_wx_id_q', 'past_wx_id_1_q', 'past_wx_id_2_q', 'cld_ttl_amt_id_q', 'low_cld_type_id_q',
-               'med_cld_type_id_q', 'hi_cld_type_id_q', 'cld_base_amt_id_q', 'cld_base_ht_q', 'visibility_q',
-               'msl_pressure_q', 'air_temperature_q', 'dewpoint_q', 'wetb_temp_q', 'ground_state_id_q',
-               'cld_amt_id_1_q', 'cloud_type_id_1_q', 'cld_base_ht_id_1_q', 'cld_amt_id_2_q', 'cloud_type_id_2_q',
-               'cld_base_ht_id_2_q', 'cld_amt_id_3_q', 'cloud_type_id_3_q', 'cld_base_ht_id_3_q', 'cld_amt_id_4_q',
-               'cloud_type_id_4_q', 'cld_base_ht_id_4_q', 'vert_vsby_q', 'stn_pres_q', 'alt_pres_q',
-               'q10mnt_mxgst_spd_q', 'cs_hr_sun_dur_q', 'wmo_hr_sun_dur_q', 'meto_stmp_time', 'midas_stmp_etime',
-               'wind_direction_j', 'wind_speed_j', 'prst_wx_id_j', 'past_wx_id_1_j', 'past_wx_id_2_j', 'cld_amt_id_j',
-               'cld_ht_j', 'visibility_j', 'msl_pressure_j', 'air_temperature_j', 'dewpoint_j', 'wetb_temp_j',
-               'vert_vsby_j', 'stn_pres_j', 'alt_pres_j', 'q10mnt_mxgst_spd_j', 'rltv_hum', 'rltv_hum_j', 'snow_depth',
-               'snow_depth_q', 'drv_hr_sun_dur', 'drv_hr_sun_dur_q']
+    r = requests.get("https://artefacts.ceda.ac.uk/badc_datadocs/ukmo-midas/Headers/WH_Column_Headers.txt")
+    headers = [x.strip().lower() for x in r.text.split(",")]
 
     if not os.path.exists(path):
 
@@ -87,6 +77,13 @@ def weather(year):
 
 def schedule(date, filename):
 
+    """
+    Download SCHEDULE extracts from https://cdn.area51.onl/archive/rail/timetable/index.html
+    :param date:
+    :param filename:
+    :return:
+    """
+
     for schedule_type in ["full", "update"]:
 
         url = "https://cdn.area51.onl/archive/rail/timetable/{}-{}.cif.gz".format(date, schedule_type)
@@ -107,11 +104,17 @@ def schedule(date, filename):
             response = requests.get(url)
             fileobj = BytesIO(response.content)
 
-            with gzip.GzipFile(fileobj=fileobj) as file, open(path, mode="wb") as out:
+            try:
 
-                out.write(file.read())
+                with gzip.GzipFile(fileobj=fileobj) as file, open(path, mode="wb") as out:
 
-            print("DONE ({:.2f}s)".format(time.time() - start))
+                    out.write(file.read())
+
+                print("DONE ({:.2f}s)".format(time.time() - start))
+
+            except EOFError as e:
+
+                print(e)
 
         else:
 
@@ -178,17 +181,19 @@ def location():
         print("Skipping {}".format(url))
 
 
-def download(source, start, end):
+def download(type, start, end):
 
-    root = os.path.join("archive", source)
+    root = os.path.join("archive", "schedule")
 
     Path(root).mkdir(parents=True, exist_ok=True)
 
-    for date, filename in dates(start, end):
+    for date, filename in dates(start, end, pad=True):
 
-        movement(source, date, filename)
+        if type == "schedule":
 
-# weather("2018")
+            schedule(date, filename)
 
 
-location()
+if __name__ == "__main__":
+
+    download("schedule", "2017-01-01", "2020-01-01")
