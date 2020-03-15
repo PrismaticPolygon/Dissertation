@@ -5,16 +5,13 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.experimental import enable_hist_gradient_boosting  # noqa
+
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, HistGradientBoostingClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression, BayesianRidge, SGDClassifier
 from joblib import dump, load   # More efficient than pickle for objects with large internal NumPy arrays
 
-# Let's do the rest of our stuff for parameters, based on best guesses....
-
-# Standardisation of datasets is a common requirement for many machine learning estimators implemented in scikit-learn.
-# Individual features should be Gaussian with zero mean and unit variance.
-# Given that they do work...
 
 def train():
 
@@ -36,7 +33,8 @@ def train():
             learning_rate=1.0,      # Controls over-fitting via shrinkage
             max_depth=1,            # Tree depth
             random_state=0
-        )
+        ),
+        HistGradientBoostingClassifier()
     ]
 
     # https://stackoverflow.com/questions/4008546/how-to-pad-with-n-characters-in-python
@@ -93,6 +91,10 @@ def graph(model, c, std=None, print_ranking=False):
     plt.xlim([-1, num_features])
     plt.show()
 
+# Seems that there's much more to this.
+# https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance.html#sphx-glr-auto-examples-inspection-plot-permutation-importance-py
+# https://github.com/scikit-learn/scikit-learn/issues/15132
+
 
 def test():
 
@@ -117,6 +119,14 @@ def test():
                 graph(model, model.feature_importances_, std=std)
 
             elif isinstance(model, GradientBoostingClassifier):
+
+                graph(model, model.feature_importances_)
+
+            elif isinstance(model, HistGradientBoostingClassifier):
+
+                print(model)
+
+                print(dir(model))
 
                 graph(model, model.feature_importances_)
 
