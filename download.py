@@ -10,6 +10,8 @@ from datetime import datetime, timedelta
 from ftplib import FTP
 from zipfile import ZipFile
 from gzip import GzipFile
+from pykml import parser
+from bs4 import BeautifulSoup
 
 from config import *
 
@@ -56,18 +58,18 @@ def years(start, end):
     start = datetime.strptime(start, "%Y-%m-%d").year
     end = datetime.strptime(end, "%Y-%m-%d").year
 
-    while start < end:
+    while start <= end:
 
-        yield start
+        yield str(start)
 
         start += 1
 
 
 def weather(year):
     """
-    Download MIDAS weather data via FTP for a given year.
+    Download MIDAS weather data via FTP for a given year. Also get the CSV headers and write them to file.
 
-    :param year:
+    :param year: the year to download data for.
     :return: None
     """
 
@@ -109,10 +111,11 @@ def weather(year):
 
 def schedule(date, filename):
     """
-    Download SCHEDULE extracts from https://cdn.area51.onl/archive/rail/timetable/index.html
+    Download SCHEDULE extracts from https://cdn.area51.onl/archive/rail/timetable/index.html. For each day, try to
+    download both a full and schedule extract. 404s fail silently. Otherwise, write with the appropriate suffix.
 
-    :param date:
-    :param filename:
+    :param date: the date to use in the url
+    :param filename: the date to use in the filename
     :return: None
     """
 
@@ -155,12 +158,12 @@ def schedule(date, filename):
 
 def movement(source, date, filename):
     """
-    Download DARWIN or TRUSTS extracts from https://cdn.area51.onl/archive/rail/darwin/index.html or
-    https://cdn.area51.onl/archive/rail/trust/index.html
+    Download DARWIN or TRUST extracts from https://cdn.area51.onl/archive/rail/darwin/index.html or
+    https://cdn.area51.onl/archive/rail/trust/index.html. Extract every minute message into one file.
 
-    :param source:
-    :param date:
-    :param filename:
+    :param source: "darwin" or "trust"
+    :param date: the date to use in the url
+    :param filename: the date to use in the filename
     :return: None
     """
 
@@ -193,10 +196,70 @@ def movement(source, date, filename):
         print("Skipping {}".format(url))
 
 
-def midas():
+def ceda():
+    """
+    Download MIDAS station data from CEDA and parse the KMZ file into a CSV. Use the pykml parser for the KML file
+    itself, and use BeautifulSoup for the 'description' field containing desirable metadata. "html5lib" must be used as
+    the field has no closing tags.
 
-    filename = "midas.csv"
+    :return: None
+    """
+
+    path = os.path.join(ROOT, "midas.csv")
     url = "http://artefacts.ceda.ac.uk/midas/midas_stations_by_area.kmz"
+
+    if not os.path.exists(path):
+
+        start = time.time()
+
+        print("Downloading {} to {}...".format(url, path), end="")
+
+        response = requests.get(url)
+        fileobj = BytesIO(response.content)
+
+        with ZipFile(fileobj) as zipfile, open(path, "w", newline="") as out:
+
+            writer = csv.DictWriter(out, fieldnames=None)
+
+            string = zipfile.read(name="midas_stations_by_area.kml")
+            root = parser.fromstring(string)
+
+            for pm in root.findall(".//{http://earth.google.com/kml/2.1}Placemark"):
+
+                station = {
+                    "name": pm.Snippet
+                }
+
+                longitude, latitude, _ = pm.Point.coordinates.text.split(",")
+
+                station["longitude"] = float(longitude)
+                station["latitude"] = float(latitude)
+
+                s = BeautifulSoup(pm.description.text, "html5lib")
+
+                for row in s.find_all("tr"):
+
+                    text = row.text.strip().split(":")
+
+                    key = text[0].lower().replace(" ", "_")
+                    value = ":".join(text[1:])
+
+                    station[key] = value
+
+                station["src_id"] = int(station["src_id"])
+
+                if writer.fieldnames is None:
+
+                    writer.fieldnames = station.keys()
+                    writer.writeheader()
+
+                writer.writerow(station)
+
+        print("DONE ({:.2f}s)".format(time.time() - start))
+
+    else:
+
+        print("Skipping {}".format(url))
 
 
 def naptan():
@@ -291,8 +354,9 @@ def download(start, end):
 
         weather(year)
 
-    # Download MIDAS data
-    # This is the final one! And that was a bitch, remember.
+    # Download station data
+    print("\nCEDA\n")
+    ceda()
 
     # Download CORPUS data
     print("\nCORPUS\n")
@@ -305,8 +369,6 @@ def download(start, end):
     naptan()
 
 
-
-
 if __name__ == "__main__":
 
-    download("2018-03-30", "2020-03-30")
+    download("2018-03-30", "2019-03-30")
