@@ -1,0 +1,5 @@
+CEDA_USERNAME = "diplodocus"
+CEDA_PASSWORD = "55d^FNYPofyA"
+NR_USERNAME = "e3s6etUp"
+NR_PASSWORD = "USt%4f2lUa!L"
+NR_EMAIL = "dom.m.white@protonmail.com"

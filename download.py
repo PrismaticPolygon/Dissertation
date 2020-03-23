@@ -1,20 +1,30 @@
 import requests
 import time
-import gzip
 import tarfile
 import os
+import json
+import csv
 
 from io import BytesIO
 from datetime import datetime, timedelta
-from pathlib import Path
 from ftplib import FTP
 from zipfile import ZipFile
+from gzip import GzipFile
+
+from config import *
+
+ROOT = "archive"
 
 
 def dates(start, end, pad=False):
     """
     Returns a generator yielding two strings: a date url (YYYY/xM/xD), for downloading files, and a date path
     (YYYY-MM-DD) for writing files.
+
+    1 is subtracted from the start date; can't remember why.
+
+    2 is added to the end date. This is to capture trains that started running on the end date but terminated (at most)
+    2 days later.
 
     :param start: A date in YYYY-MM-DD format.
     :param end:  A date in YYYY-MM-DD format.
@@ -27,31 +37,53 @@ def dates(start, end, pad=False):
 
     while start < end:
 
-        if pad is True:
+        path = start.strftime("%Y-%m-%d")
+        url = start.strftime("%Y/%m/%d") if pad else "{d.year}/{d.month}/{d.day}".format(d=start)
 
-            yield start.strftime("%Y/%m/%d"), start.strftime("%Y-%m-%d")  # need to pad dates
-
-        else:
-
-            yield "{d.year}/{d.month}/{d.day}".format(d=start), start.strftime("%Y-%m-%d")  # don't want zero-pad for url
+        yield url, path
 
         start += timedelta(days=1)  # increase day one by one
 
 
+def years(start, end):
+    """
+    Return a generator yielding the years between two dates
+    :param start: A date in YYYY-MM-DD format.
+    :param end:  A date in YYYY-MM-DD format.
+    :return:
+    """
+
+    start = datetime.strptime(start, "%Y-%m-%d").year
+    end = datetime.strptime(end, "%Y-%m-%d").year
+
+    while start < end:
+
+        yield start
+
+        start += 1
+
+
 def weather(year):
+    """
+    Download MIDAS weather data via FTP for a given year.
+
+    :param year:
+    :return: None
+    """
 
     ftp = FTP("ftp.ceda.ac.uk")
-    ftp.login("diplodocus", "55d^FNYPofyA")
+    ftp.login(CEDA_USERNAME, CEDA_PASSWORD)
     ftp.set_pasv(False)
-
     ftp.cwd("badc/ukmo-midas/data/WH/yearly_files")
 
-    if not os.path.exists("archive/weather"):
+    folder = os.path.join(ROOT, "weather")
 
-        os.mkdir("archive/weather")
+    if not os.path.exists(folder):
+
+        os.mkdir(folder)
 
     file = "midas_wxhrly_{}01-{}12.txt".format(year, year)
-    path = os.path.join("archive", "weather", year + ".csv")
+    path = os.path.join(folder, year + ".csv")
 
     r = requests.get("https://artefacts.ceda.ac.uk/badc_datadocs/ukmo-midas/Headers/WH_Column_Headers.txt")
     headers = [x.strip().lower() for x in r.text.split(",")]
@@ -76,18 +108,18 @@ def weather(year):
 
 
 def schedule(date, filename):
-
     """
     Download SCHEDULE extracts from https://cdn.area51.onl/archive/rail/timetable/index.html
+
     :param date:
     :param filename:
-    :return:
+    :return: None
     """
 
     for schedule_type in ["full", "update"]:
 
         url = "https://cdn.area51.onl/archive/rail/timetable/{}-{}.cif.gz".format(date, schedule_type)
-        path = os.path.join("archive", "schedule", "{}-{}.schedule".format(filename, schedule_type))
+        path = os.path.join(ROOT, "schedule", "{}-{}.schedule".format(filename, schedule_type))
 
         if not os.path.exists(path):
 
@@ -106,7 +138,7 @@ def schedule(date, filename):
 
             try:
 
-                with gzip.GzipFile(fileobj=fileobj) as file, open(path, mode="wb") as out:
+                with GzipFile(fileobj=fileobj) as file, open(path, mode="wb") as out:
 
                     out.write(file.read())
 
@@ -122,9 +154,18 @@ def schedule(date, filename):
 
 
 def movement(source, date, filename):
+    """
+    Download DARWIN or TRUSTS extracts from https://cdn.area51.onl/archive/rail/darwin/index.html or
+    https://cdn.area51.onl/archive/rail/trust/index.html
+
+    :param source:
+    :param date:
+    :param filename:
+    :return: None
+    """
 
     url = "https://cdn.area51.onl/archive/rail/{}/{}.tbz2".format(source, date)
-    path = os.path.join("archive", source, filename + "." + source)
+    path = os.path.join(ROOT, source, filename + "." + source)
 
     if not os.path.exists(path):
 
@@ -152,11 +193,22 @@ def movement(source, date, filename):
         print("Skipping {}".format(url))
 
 
-def location():
+def midas():
+
+    filename = "midas.csv"
+    url = "http://artefacts.ceda.ac.uk/midas/midas_stations_by_area.kmz"
+
+
+def naptan():
+    """
+    Download the National Public Transport Access Node (NAPTAN) database. Only extract and save the railway nodes.
+
+    :return: None
+    """
 
     filename = "naptan.csv"
     url = "http://naptan.app.dft.gov.uk/DataRequest/Naptan.ashx?format=csv"
-    path = os.path.join("archive", filename)
+    path = os.path.join(ROOT, filename)
 
     if not os.path.exists(path):
 
@@ -172,7 +224,7 @@ def location():
             info = zipfile.getinfo("RailReferences.csv")
             info.filename = filename
 
-            zipfile.extract(info, "archive")
+            zipfile.extract(info, ROOT)
 
         print("DONE ({:.2f}s)".format(time.time() - start))
 
@@ -181,19 +233,80 @@ def location():
         print("Skipping {}".format(url))
 
 
-def download(type, start, end):
+def corpus():
+    """
+    Download the Codes for Operations, Retail, & Planning - a Unified Solution (CORPUS) location reference data.
+    Requires authentication. Not clear how it can be done programmatically, unfortunately. Downloaded from
+    http://datafeeds.networkrail.co.uk/ntrod/SupportingFileAuthenticate?type=CORPUS
 
-    root = os.path.join("archive", "schedule")
+    :return: None
+    """
 
-    Path(root).mkdir(parents=True, exist_ok=True)
+    in_path = os.path.join(ROOT, "CORPUSExtract.json.gz")
+    out_path = os.path.join(ROOT, "corpus.csv")
+
+    with GzipFile(in_path) as in_file, open(out_path, "w", newline="") as out_file:
+
+        data = json.load(in_file)["TIPLOCDATA"]
+        fieldnames = data[0].keys()
+
+        writer = csv.DictWriter(out_file, fieldnames)
+        writer.writeheader()
+
+        for i in data:
+
+            try:
+
+                writer.writerow(i)
+
+            except UnicodeEncodeError:
+
+                pass
+
+
+def download(start, end):
+
+    if not os.path.exists(ROOT):
+
+        os.mkdir(ROOT)
+
+    # Download SCHEDULE data
+    print("\nSCHEDULE\n")
 
     for date, filename in dates(start, end, pad=True):
 
-        if type == "schedule":
+        schedule(date, filename)
 
-            schedule(date, filename)
+    # Download DARWIN data
+    print("\nDARWIN\n")
+
+    for date, filename in dates(start, end, pad=False):
+
+        movement("darwin", date, filename)
+
+    # Download weather data
+    print("\nMIDAS\n")
+
+    for year in years(start, end):
+
+        weather(year)
+
+    # Download MIDAS data
+    # This is the final one! And that was a bitch, remember.
+
+    # Download CORPUS data
+    print("\nCORPUS\n")
+
+    corpus()
+
+    # Download NAPTAN data
+    print("\nNAPTAN\n")
+
+    naptan()
+
+
 
 
 if __name__ == "__main__":
 
-    download("schedule", "2017-01-01", "2020-01-01")
+    download("2018-03-30", "2020-03-30")
