@@ -13,8 +13,8 @@ from zipfile import ZipFile
 
 def dates(start, end, pad=False):
     """
-    Returns a generator yielding two strings: a date url (YYYY/M/D), for downloading files, and a date path (YYYY-MM-DD)
-    for writing files.
+    Returns a generator yielding two strings: a date url (YYYY/xM/xD), for downloading files, and a date path
+    (YYYY-MM-DD) for writing files.
 
     :param start: A date in YYYY-MM-DD format.
     :param end:  A date in YYYY-MM-DD format.
@@ -29,7 +29,7 @@ def dates(start, end, pad=False):
 
         if pad is True:
 
-            yield start.strftime("%Y/%m/%d"), start.strftime("%Y-%m-%d")  # need to pad for dates
+            yield start.strftime("%Y/%m/%d"), start.strftime("%Y-%m-%d")  # need to pad dates
 
         else:
 
