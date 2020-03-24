@@ -9,16 +9,20 @@ if __name__ == "__main__":
 
         os.mkdir("data")
 
-    print("\nWEATHER\n")
-
-    df = weather("2018-04-01", "2019-03-30")
-
-    print(df.head())
-
-    df.to_csv(os.path.join("data", "weather.csv"))
+    # print("\nWEATHER\n")
+    #
+    # df = weather("2018-04-01", "2019-03-30")
+    #
+    # print(df.head())
+    #
+    # df.to_csv(os.path.join("data", "weather.csv"))
 
     print("\nLOCATION\n")
 
-    location()
+    df = location()
 
+    print(df.head())
 
+    df.to_csv(os.path.join("data", "location.csv"))
+
+    # And these are the easy two, let's not forget!

@@ -2,6 +2,8 @@ import os
 import pyproj
 
 import pandas as pd
+import numpy as np
+from functools import partial
 
 
 def transform():
@@ -35,41 +37,37 @@ def transform():
     bng = pyproj.Proj('epsg:27700')
     wgs84 = pyproj.Proj('epsg:4326')
 
-    df["longitude"], df["latitude"] = pyproj.transform(bng, wgs84, df["easting"].values, df['northing'].values)
+    df["latitude"], df["longitude"] = pyproj.transform(bng, wgs84, df["easting"].values, df['northing'].values)
     df = df.drop(["easting", "northing"], axis=1)
 
     # Load midas stations. 29840 records.
     midas = pd.read_csv(os.path.join("archive", "midas.csv"))
     midas = midas[midas["end_date"] == "Current"]
-
-    # midas = midas.drop(["area", "start_date", "end_date", "postcode"], axis=1)
     midas = midas.set_index("src_id")
     midas = midas.sort_index()
 
     # Create map columns
-    df["src_id"] = None
+    df["src_id"] = 0
     df["distance"] = -1
 
     geod = pyproj.Geod(ellps='WGS84')
 
-    # To slow. How would I parallelise it?
-    # It's all numpy arrays under the hood. It is essentially the dot product.
+    # Calculate the closest MIDAS station each train station
+    def closest(row):
 
-    for _, row in df.iterrows():
+        lat0, lon0 = np.full(len(midas), row["latitude"]), np.full(len(midas), row["longitude"])
+        lat1, lon1 = midas["latitude"].values, midas["longitude"].values
 
-        for src_id, midas_row in midas.iterrows():
+        azimuth1, azimuth2, distance = geod.inv(lon0, lat0, lon1, lat1)
+        distance /= 1000  # Convert from metres to kilometres
 
-            lat0, lon0 = row["latitude"], row["longitude"]
-            lat1, lon1 = midas_row["latitude"], midas_row["longitude"]
+        min_distance = np.nanmin(distance)
+        station = midas.iloc[np.nanargmin(distance)]
 
-            azimuth1, azimuth2, distance = geod.inv(lon0, lat0, lon1, lat1)
-            distance /= 1000
+        return station.name, min_distance
 
-            if row["src_id"] is None or row["distance"] > distance:
+    df[["src_id", "distance"]] = df[["latitude", "longitude"]].apply(closest, axis=1, result_type="expand")
 
-                row["src_id"] = src_id
-                row["distance"] = distance
+    return df
 
-        print(row)
 
-transform()
