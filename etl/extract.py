@@ -122,7 +122,7 @@ def schedule(date, filename):
     for schedule_type in ["full", "update"]:
 
         url = "https://cdn.area51.onl/archive/rail/timetable/{}-{}.cif.gz".format(date, schedule_type)
-        path = os.path.join(ROOT, "schedule", "{}-{}.schedule".format(filename, schedule_type))
+        path = os.path.join(ROOT, "schedule", "{}-{}.cif".format(filename, schedule_type))
 
         if not os.path.exists(path):
 

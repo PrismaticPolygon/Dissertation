@@ -2,6 +2,7 @@ import os
 
 from etl.transform.weather import transform as weather
 from etl.transform.location import transform as location
+from etl.transform.schedule import transform as schedule
 
 if __name__ == "__main__":
 
@@ -17,12 +18,20 @@ if __name__ == "__main__":
     #
     # df.to_csv(os.path.join("data", "weather.csv"))
 
-    print("\nLOCATION\n")
+    # print("\nLOCATION\n")
+    #
+    # df = location()
+    #
+    # print(df.head())
+    #
+    # df.to_csv(os.path.join("data", "location.csv"))
 
-    df = location()
+    print("\nSCHEDULE\n")
 
-    print(df.head())
+    path = os.path.join("data", "schedule")
 
-    df.to_csv(os.path.join("data", "location.csv"))
+    if not os.path.exists(path):
 
-    # And these are the easy two, let's not forget!
+        os.mkdir(path)
+
+    schedule()
