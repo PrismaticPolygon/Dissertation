@@ -1,6 +1,7 @@
 import os
 
 from etl.transform.weather import transform as weather
+from etl.transform.location import transform as location
 
 if __name__ == "__main__":
 
@@ -15,5 +16,9 @@ if __name__ == "__main__":
     print(df.head())
 
     df.to_csv(os.path.join("data", "weather.csv"))
+
+    print("\nLOCATION\n")
+
+    location()
 
 
