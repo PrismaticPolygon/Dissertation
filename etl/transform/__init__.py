@@ -1,0 +1,19 @@
+import os
+
+from etl.transform.weather import transform as weather
+
+if __name__ == "__main__":
+
+    if not os.path.exists("data"):
+
+        os.mkdir("data")
+
+    print("\nWEATHER\n")
+
+    df = weather("2018-04-01", "2019-03-30")
+
+    print(df.head())
+
+    df.to_csv(os.path.join("data", "weather.csv"))
+
+

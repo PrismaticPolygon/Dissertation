@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 
 from config import *
 
-ROOT = "archive"
+ROOT = os.path.join("..", "archive")
 
 
 def dates(start, end, pad=False):
@@ -47,7 +47,7 @@ def dates(start, end, pad=False):
         start += timedelta(days=1)  # increase day one by one
 
 
-def years(start, end):
+def generate_years(start, end):
     """
     Return a generator yielding the years between two dates
     :param start: A date in YYYY-MM-DD format.
@@ -333,13 +333,6 @@ def download(start, end):
 
         os.mkdir(ROOT)
 
-    # Download SCHEDULE data
-    print("\nSCHEDULE\n")
-
-    for date, filename in dates(start, end, pad=True):
-
-        schedule(date, filename)
-
     # Download DARWIN data
     print("\nDARWIN\n")
 
@@ -347,10 +340,17 @@ def download(start, end):
 
         movement("darwin", date, filename)
 
+        # Download SCHEDULE data
+    print("\nSCHEDULE\n")
+
+    for date, filename in dates(start, end, pad=True):
+
+        schedule(date, filename)
+
     # Download weather data
     print("\nMIDAS\n")
 
-    for year in years(start, end):
+    for year in generate_years(start, end):
 
         weather(year)
 
