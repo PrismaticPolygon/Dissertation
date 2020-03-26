@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 
 from config import *
 
-ROOT = os.path.join("..", "archive")
+ROOT = "archive"
 
 
 def dates(start, end, pad=False):
@@ -170,6 +170,8 @@ def movement(source, date, filename):
     url = "https://cdn.area51.onl/archive/rail/{}/{}.tbz2".format(source, date)
     path = os.path.join(ROOT, source, filename + "." + source)
 
+    # 2018/5/25 onwards are tbz2 files.
+
     if not os.path.exists(path):
 
         start = time.time()
@@ -177,17 +179,21 @@ def movement(source, date, filename):
         print("Downloading {} to {}... ".format(url, path), end="")
 
         response = requests.get(url)
-        fileobj = BytesIO(response.content)
+        # fileobj = BytesIO(response.content)
 
-        with tarfile.open(fileobj=fileobj, mode="r:bz2") as tar, open(path, mode="wb") as out:
+        with open(path, mode="wb") as out:
 
-            for member in tar.getmembers():
-
-                if member.isreg():
-
-                    file = tar.extractfile(member)
-
-                    out.write(file.read())
+            out.write(response.content)
+        #
+        # with tarfile.open(fileobj=fileobj, mode="r:bz2") as tar, open(path, mode="wb") as out:
+        #
+        #     for member in tar.getmembers():
+        #
+        #         if member.isreg():
+        #
+        #             file = tar.extractfile(member)
+        #
+        #             out.write(file.read())
 
         print("DONE ({:.2f}s)".format(time.time() - start))
 
@@ -371,4 +377,4 @@ def download(start, end):
 
 if __name__ == "__main__":
 
-    download("2018-03-30", "2019-03-30")
+    download("2018-04-01", "2019-04-01")

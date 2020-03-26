@@ -663,8 +663,8 @@ def write(db, date, out_dir):
 
 def transform():
 
-    out_dir = os.path.join("data", "schedule")
     in_dir = os.path.join("archive", "schedule")
+    out_dir = os.path.join("data", "schedule")
 
     if not os.path.exists(out_dir):
 

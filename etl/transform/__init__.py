@@ -3,6 +3,7 @@ import os
 from etl.transform.weather import transform as weather
 from etl.transform.location import transform as location
 from etl.transform.schedule import transform as schedule
+from etl.transform.movement import transform as movement
 
 if __name__ == "__main__":
 
@@ -12,26 +13,16 @@ if __name__ == "__main__":
 
     # print("\nWEATHER\n")
     #
-    # df = weather("2018-04-01", "2019-03-30")
+    # weather("2018-04-01", "2019-03-30")
     #
-    # print(df.head())
-    #
-    # df.to_csv(os.path.join("data", "weather.csv"))
-
     # print("\nLOCATION\n")
     #
-    # df = location()
+    # location()
     #
-    # print(df.head())
+    # print("\nSCHEDULE\n")
     #
-    # df.to_csv(os.path.join("data", "location.csv"))
+    # schedule()
 
-    print("\nSCHEDULE\n")
+    print("\nMOVEMENT\n")
 
-    path = os.path.join("data", "schedule")
-
-    if not os.path.exists(path):
-
-        os.mkdir(path)
-
-    schedule()
+    movement("2018-04-01", "2018-05-22")

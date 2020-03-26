@@ -1,6 +1,6 @@
-import pandas as pd
+import os
 
-from datetime import datetime, timedelta
+import pandas as pd
 
 from etl.extract import generate_years
 
@@ -430,4 +430,6 @@ def transform(start, end):
 
         dfs.append(df)
 
-    return pd.concat(dfs)
+    df = pd.concat(dfs)
+
+    df.to_csv(os.path.join("data", "weather.csv"))

@@ -3,7 +3,6 @@ import pyproj
 
 import pandas as pd
 import numpy as np
-from functools import partial
 
 
 def transform():
@@ -61,13 +60,13 @@ def transform():
         azimuth1, azimuth2, distance = geod.inv(lon0, lat0, lon1, lat1)
         distance /= 1000  # Convert from metres to kilometres
 
-        min_distance = np.nanmin(distance)
-        station = midas.iloc[np.nanargmin(distance)]
+        min_distance = np.nanmin(distance)              # Get the smallest distance, ignoring nans
+        station = midas.iloc[np.nanargmin(distance)]    # Get the row at which the closest distance occurs
 
         return station.name, min_distance
 
     df[["src_id", "distance"]] = df[["latitude", "longitude"]].apply(closest, axis=1, result_type="expand")
 
-    return df
+    df.to_csv(os.path.join("data", "location.csv"))
 
 
