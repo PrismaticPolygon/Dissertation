@@ -29,7 +29,7 @@ def load():
 
         groups = movement.groupby("uid")
 
-        schedule["atd"] = 0
+        schedule["atd"] = 0     # Does THIS have a date? I don't fucking think so! Wait. Movement should be fine.
         schedule["ata"] = 0
 
         for uid in movement.index.unique():  # There's likely to be UIDs in movement not in schedule (from STP and VSTP)

@@ -154,6 +154,8 @@ def transform(start, end):
     in_dir = os.path.join("archive", "darwin")
     out_dir = os.path.join("data", "darwin")
 
+    # For some reason my 2018-04-01 contains ssds with 2018-04-02. Something fishy is going on here.
+
     if not os.path.exists(out_dir):
 
         os.mkdir(out_dir)
