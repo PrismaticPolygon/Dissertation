@@ -333,7 +333,7 @@ def corpus():
                 pass
 
 
-def download(start, end):
+def extract(start, end):
 
     if not os.path.exists(ROOT):
 
@@ -377,4 +377,4 @@ def download(start, end):
 
 if __name__ == "__main__":
 
-    download("2018-04-01", "2019-04-01")
+    extract("2018-04-01", "2019-04-01")

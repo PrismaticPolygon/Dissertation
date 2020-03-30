@@ -169,6 +169,9 @@ def parse_date(string):
 
         return year + "-" + string[2:4] + "-" + string[4:6]
 
+# How can I know when it rolls over?
+# Not very easily, I'll bet. Nope.
+# It'll have to be manual.
 
 def parse_time(string):
     """
@@ -201,12 +204,13 @@ def suffix(char):
     return 0 if char == " " else int(char)
 
 
-def parse_lo(line):
+def parse_lo(line, bs):
     """
     Parse an origin location (LO). See pg. 20. LOs have no sta or stp. A LO always has an activity code of TB
     (train begins), and possibly more.
 
     :param line: raw SCHEDULE characters
+    :param line: the BS record containing metadata
     :return: dict
     """
 
@@ -230,10 +234,17 @@ def parse_lo(line):
 
     lo.update(one_hot("activity", line[29:41]))
 
+    lo["id"] = bs["id"]
+    lo["runs_to"] = bs["runs_to"]
+
+    bs["length"] += 1
+    bs["origin"] = lo["location"]
+    bs["departure_time"] = lo["std"]
+
     return lo
 
 
-def parse_li(line):
+def parse_li(line, bs):
     """
     Parse an intermediate location (LI). See pg. 21. LIs must have either an sta and std or an stp. If std is populated,
     at least one activity will be present.
@@ -262,10 +273,15 @@ def parse_li(line):
     li.update(one_hot("activity", line[42:54]))
     li["pass"] = 0 if li["stp"] is None else 1
 
+    li["id"] = bs["id"]
+    li["runs_to"] = bs["runs_to"]
+
+    bs["length"] += 1
+
     return li
 
 
-def parse_lt(line):
+def parse_lt(line, bs):
     """
     Parse a terminus location (LT). See pg. 23. An LT always has an activity of TF (train finish).
 
@@ -292,6 +308,13 @@ def parse_lt(line):
     }
 
     lt.update(one_hot("activity", line[25:37]))
+
+    lt["id"] = bs["id"]
+    lt["runs_to"] = bs["runs_to"]
+
+    bs["length"] += 1
+    bs["destination"] = lt["location"]
+    bs["arrival_time"] = lt["sta"]
 
     return lt
 
@@ -387,24 +410,35 @@ def parse_bs(line):
 
     bs["freight"] = 1 if bs["identity"] == "" else 0
 
+    bs["length"] = 0
+    bs["origin"] = None
+    bs["departure_time"] = None
+    bs["destination"] = None
+    bs["arrival_time"] = None
+    bs["id"] = bs["uid"] + "_" + bs["runs_from"] + "_" + bs["stp_indicator"]
+
     return bs
 
 
-def parse_bx(line):
+def parse_bx(line, bs):
     """
     Parse a basic schedule extended record.
     :param line:
     :return:
     """
 
-    return {
-        # "record_type": line[:2],
+    bx = {
+        # "transaction_type": line[:2],
         # "traction_class": line[2:6],    # Not used
         # "UIC_code": line[6:11],         # Used for services to/from Europe
         "ATOC_code": line[11:13],       # TOC codes (https://wiki.openraildata.com//index.php?title=TOC_Codes)
         "timetable_code": line[13]      # Y = subject to performance monitoring; N = not subject
     }
 
+    bs.update(bx)
+
+
+# Okay. I need to simply store the date. And as I don't care about routes, for good...
 
 def full(date, filename):
     """
@@ -437,7 +471,6 @@ def full(date, filename):
         with open(filename) as file:
 
             bs = None
-            id = None
 
             for line in file:
 
@@ -445,7 +478,7 @@ def full(date, filename):
 
                 if record_type == "BS":     # Basic schedule.
 
-                    if bs is not None:  # Write to csv. This way both BS and BSX are written.
+                    if bs is not None:  # Write to csv. This way both BS and BSX are written. Write the old BS.
 
                         if writers["metadata"].fieldnames is None:
 
@@ -455,18 +488,14 @@ def full(date, filename):
                         writers["metadata"].writerow(bs)
 
                     bs = parse_bs(line)
-                    bs["id"] = id = bs["uid"] + "_" + bs["runs_from"] + "_" + bs["stp_indicator"]
 
-                if record_type == "BX":     # Basic schedule extended.
+                if record_type == "BX":     # Basic schedule extended
 
-                    bx = parse_bx(line)
-                    bs.update(bx)
+                    parse_bx(line, bs)
 
                 elif record_type == "LO":  # Origin
 
-                    lo = parse_lo(line)
-                    lo["id"] = id
-                    lo["runs_to"] = bs["runs_to"]
+                    lo = parse_lo(line, bs)
 
                     if writers["routes"].fieldnames is None:
 
@@ -477,17 +506,13 @@ def full(date, filename):
 
                 elif record_type == "LI":  # Intermediate location
 
-                    li = parse_li(line)
-                    li["id"] = id
-                    li["runs_to"] = bs["runs_to"]
+                    li = parse_li(line, bs)
 
                     writers["routes"].writerow(li)
 
                 elif record_type == "LT":  # Terminating point
 
-                    lt = parse_lt(line)
-                    lt["id"] = id
-                    lt["runs_to"] = bs["runs_to"]
+                    lt = parse_lt(line, bs)
 
                     writers["routes"].writerow(lt)
 
@@ -505,6 +530,9 @@ def full(date, filename):
         "routes": pd.read_csv(os.path.join(path, "routes.csv"), index_col="id", parse_dates=True),
         "metadata": pd.read_csv(os.path.join(path, "metadata.csv"), index_col="id", parse_dates=True)
     }
+
+# This will require some complex update logic. So I'll just keep it for now.
+# It is exactly the same!
 
 
 def update(db, date, filename):
@@ -527,8 +555,6 @@ def update(db, date, filename):
         print("Parsing {}... \n".format(filename))
 
         bs = None
-        id = None
-        runs_to = None
         transaction_type = None
 
         for line in update:
@@ -538,51 +564,39 @@ def update(db, date, filename):
             if record_type == "BS":
 
                 transaction_type = line[2]
-
                 bs = parse_bs(line)
-                bs["id"] = id = bs["uid"] + "_" + bs["runs_from"] + "_" + bs["stp_indicator"]
 
                 if transaction_type == "D":  # Delete
 
                     for key in changes.keys():
 
-                        if id in db[key].index:
+                        if bs["id"] in db[key].index:
 
-                            changes[key]["D"].append(id)
+                            changes[key]["D"].append(bs["id"])
 
                 else:
 
-                    runs_to = bs["runs_to"]
-
-                    bs["id"] = id
                     changes["metadata"][transaction_type].append(bs)
 
             if record_type == "BX":
 
-                bx = parse_bx(line)
-                bs.update(bx)
+                parse_bx(line, bs)
 
             elif record_type == "LO":
 
-                lo = parse_lo(line)
-                lo["id"] = id
-                lo["runs_to"] = runs_to
+                lo = parse_lo(line, bs)
 
                 changes["routes"][transaction_type].append(lo)
 
             elif record_type == "LI":
 
-                li = parse_li(line)
-                li["id"] = id
-                li["runs_to"] = runs_to
+                li = parse_li(line, bs)
 
                 changes["routes"][transaction_type].append(li)
 
             elif record_type == "LT":
 
-                lt = parse_lt(line)
-                lt["id"] = id
-                lt["runs_to"] = runs_to
+                lt = parse_lt(line, bs)
 
                 changes["routes"][transaction_type].append(lt)
 
@@ -688,3 +702,8 @@ def transform():
         else:   # A full file.
 
             db = full(date, path)
+
+
+if __name__ == "__main__":
+
+    transform()

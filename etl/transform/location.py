@@ -67,6 +67,9 @@ def transform():
 
     df[["src_id", "distance"]] = df[["latitude", "longitude"]].apply(closest, axis=1, result_type="expand")
 
-    df.to_csv(os.path.join("data", "location.csv"))
+    df.to_csv(os.path.join("data", "location.csv"), index=False)
 
 
+if __name__ == "__main__":
+
+    transform()

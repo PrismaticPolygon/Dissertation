@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-from sklearn.experimental import enable_hist_gradient_boosting  # noqa
+from sklearn.experimental import enable_hist_gradient_boosting  # noqa. Required to using HistGradientBoost below.
 
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, HistGradientBoostingClassifier
 from sklearn.model_selection import train_test_split
@@ -54,7 +54,7 @@ def train():
         print("DONE ({:.2f}s)".format(time.time() - start))
         print("Accuracy: {:.2f}".format(model.score(X_test, Y_test)))
 
-        path = os.path.join("models", name + ".pickle")
+        path = os.path.join("models", "pickles", name + ".pickle")
 
         with open(path, "wb") as file:
 
@@ -98,49 +98,49 @@ def graph(model, c, std=None, print_ranking=False):
 
 def test():
 
-    for file in os.listdir("models"):
+    path = os.path.join("models", "pickles")
 
-        name, extension = file.split(".")
+    for file in os.listdir(path):
 
-        if extension == "pickle":
+        name, _ = file.split(".")
 
-            print("\nLoading {}...".format(file), end="")
+        print("\nLoading {}...".format(file), end="")
 
-            start = time.time()
+        start = time.time()
 
-            path = os.path.join("models", file)
-            model = load(path)
+        path = os.path.join("models", file)
+        model = load(path)
 
-            print(" DONE ({:.2f}s)\n".format(time.time() - start))
+        print(" DONE ({:.2f}s)\n".format(time.time() - start))
 
-            if isinstance(model, RandomForestClassifier):
+        if isinstance(model, RandomForestClassifier):
 
-                std = np.std([tree.feature_importances_ for tree in model.estimators_], axis=0)
-                graph(model, model.feature_importances_, std=std)
+            std = np.std([tree.feature_importances_ for tree in model.estimators_], axis=0)
+            graph(model, model.feature_importances_, std=std)
 
-            elif isinstance(model, GradientBoostingClassifier):
+        elif isinstance(model, GradientBoostingClassifier):
 
-                graph(model, model.feature_importances_)
+            graph(model, model.feature_importances_)
 
-            elif isinstance(model, HistGradientBoostingClassifier):
+        elif isinstance(model, HistGradientBoostingClassifier):
 
-                print(model)
+            print(model)
 
-                print(dir(model))
+            print(dir(model))
 
-                graph(model, model.feature_importances_)
+            graph(model, model.feature_importances_)
 
-            elif isinstance(model, LogisticRegression):
+        elif isinstance(model, LogisticRegression):
 
-                graph(model, model.coef_[0])
+            graph(model, model.coef_[0])
 
-            elif isinstance(model, BayesianRidge):
+        elif isinstance(model, BayesianRidge):
 
-                graph(model, model.coef_)
+            graph(model, model.coef_)
 
-            elif isinstance(model, SGDClassifier):
+        elif isinstance(model, SGDClassifier):
 
-                graph(model, model.coef_[0])
+            graph(model, model.coef_[0])
 
 
 if __name__ == "__main__":
