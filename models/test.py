@@ -1,80 +1,200 @@
 import time
 import os
+import csv
 
-import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
 from sklearn.experimental import enable_hist_gradient_boosting  # noqa. Required to using HistGradientBoost below.
 
+# Classifiers
+from sklearn.svm import LinearSVC
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, HistGradientBoostingClassifier
+from sklearn.linear_model import LogisticRegression, BayesianRidge, SGDClassifier, RidgeClassifier
+
+# Regressors
+from sklearn.svm import LinearSVR
+from sklearn.kernel_ridge import KernelRidge
+from sklearn.linear_model import SGDRegressor, Ridge
+from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor, HistGradientBoostingRegressor
+
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression, BayesianRidge, SGDClassifier
 from joblib import dump, load   # More efficient than pickle for objects with large internal NumPy arrays
 
+from models.preprocess import preprocess
 
-def train():
+regressors = [
+    RandomForestRegressor(),            # https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html
+    GradientBoostingRegressor(),        # https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html
+    # HistGradientBoostingRegressor(),    # https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.HistGradientBoostingRegressor.html
+    Ridge(),                            # https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html
+    # KernelRidge(),                      # https://scikit-learn.org/stable/modules/generated/sklearn.kernel_ridge.KernelRidge.html
+    SGDRegressor(),                     # https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDRegressor.html
+    LinearSVR(),                        # https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVR.html
+]
 
-    models = [
-        LogisticRegression(),
-        BayesianRidge(),
-        SGDClassifier(
-            loss="hinge",       # (soft-margin) linear SVM
-            penalty="l2",
-            max_iter=5,
-            random_state=0
-        ),
-        RandomForestClassifier(
-            n_jobs=-1,              # Use all available cores on the machine,
-            n_estimators=20         # Number of trees. Default of 100 takes too long.
-        ),
-        GradientBoostingClassifier(
-            n_estimators=100,
-            learning_rate=1.0,      # Controls over-fitting via shrinkage
-            max_depth=1,            # Tree depth
-            random_state=0
-        ),
-        HistGradientBoostingClassifier()
-    ]
+classifiers = [
+    LogisticRegression(),
+    BayesianRidge(),
+    RidgeClassifier(),
+    SGDClassifier(),
+    RandomForestClassifier(),
+    GradientBoostingClassifier(),
+    # HistGradientBoostingClassifier(),
+    # LinearSVC()
+]
 
+
+def pad(_, x):
     # https://stackoverflow.com/questions/4008546/how-to-pad-with-n-characters-in-python
-    pad = max([len(x.__class__.__name__) for x in models])
 
-    for model in models:
+    length = max([len(y.__class__.__name__) for y in _])
 
-        name = model.__class__.__name__
-
-        print("\n{s:{c}^{n}}".format(s=" " + name + " ", n=pad + 6, c="*"))
-        print("\nFitting model... ", end="")
-
-        start = time.time()
-
-        model.fit(X_train, Y_train)
-
-        print("DONE ({:.2f}s)".format(time.time() - start))
-        print("Accuracy: {:.2f}".format(model.score(X_test, Y_test)))
-
-        path = os.path.join("models", "pickles", name + ".pickle")
-
-        with open(path, "wb") as file:
-
-            dump(model, file)
+    return "{s:{c}^{n}}".format(s=" " + x.__class__.__name__ + " ", n=length + 6, c="*")
 
 
-def graph(model, c, std=None, print_ranking=False):
+def train(type, models, X_train, Y_train):
+
+    path = os.path.join("models", "features", type + ".csv")
+
+    with open(path, "w", newline="") as out:
+
+        writer = csv.DictWriter(out, None)
+
+        for model in models:
+
+            print("\n" + pad(models, model))
+            print("\nFitting model... ", end="")
+
+            start = time.time()
+
+            model.fit(X_train, Y_train)
+            accuracy = model.score(X_test, Y_test)
+
+            print("DONE ({:.2f}s)".format(time.time() - start))
+            print("Accuracy: {:.2f}".format(accuracy))
+
+            ranking = graph(model)
+
+            if ranking is not None:
+
+                ranking["name"] = model.__class__.__name__
+                ranking["accuracy"] = accuracy
+
+                if writer.fieldnames is None:
+
+                    writer.fieldnames = ranking.keys()
+                    writer.writeheader()
+
+                writer.writerow(ranking)
+
+            model_path = os.path.join("models", "pickles", model.__class__.__name__ + ".pickle")
+
+            with open(model_path, "wb") as file:
+
+                dump(model, file)
+
+
+def coefficients(model):
+
+    if isinstance(model, RandomForestClassifier):
+
+        return model.feature_importances_
+
+    elif isinstance(model, GradientBoostingClassifier):
+
+        return model.feature_importances_
+
+    elif isinstance(model, HistGradientBoostingClassifier):
+
+        return model.feature_importances_
+
+    elif isinstance(model, LogisticRegression):
+
+        return model.coef_[0]
+
+    elif isinstance(model, BayesianRidge):
+
+        return model.coef_
+
+    elif isinstance(model, SGDClassifier):
+
+        return model.coef_[0]
+
+    elif isinstance(model, RidgeClassifier):
+
+        return model.coef_[0]
+
+    elif isinstance(model, RandomForestRegressor):
+
+        return model.feature_importances_
+
+    elif isinstance(model, GradientBoostingRegressor):
+
+        return model.feature_importances_
+
+    elif isinstance(model, Ridge):
+
+        return model.coef_
+
+    elif isinstance(model, KernelRidge):
+
+        return None
+
+    elif isinstance(model, LinearSVR):
+
+        return model.coef_
+
+    elif isinstance(model, SGDRegressor):
+
+        return model.coef_
+
+
+def calc_std(model):
+
+    # if isinstance(model, RandomForestClassifier):
+    #
+    #     return np.std([tree.feature_importances_ for tree in model.estimators_], axis=0)
+    #
+    # if isinstance(model, RandomForestRegressor):
+    #
+    #     return np.std([tree.feature_importances_ for tree in model.estimators_], axis=0)
+
+    return None
+
+
+def graph(model, print_ranking=False):
+    """
+
+    :param model:
+    :param print_ranking:
+    :return: A dictionary of feature to importance
+    """
+
+    c = coefficients(model)
+
+    if c is None:
+
+        return None
 
     c = np.abs(c)
+    std = calc_std(model)
     indices = np.argsort(c)[::-1]               # The indices that would sort c in descending order
     num_features = X.shape[1]                   # The number of features
     columns = [df.columns[i] for i in indices]
-
-    print("Accuracy: {:.2f}".format(model.score(X_test, Y_test)))
+    ranking = dict()
 
     if print_ranking:
 
-        for i in range(num_features):
+        print("\nRanking\n")
+
+    for i in range(num_features):
+
+        if print_ranking:
 
             print("{}. {} ({:.4E})".format(i + 1, df.columns[indices[i]], c[indices[i]]))
+
+        ranking[df.columns[indices[i]]] = c[indices[i]]
 
     plt.figure()
     plt.title("{} importance".format(model.__class__.__name__))
@@ -91,7 +211,8 @@ def graph(model, c, std=None, print_ranking=False):
     plt.xlim([-1, num_features])
     plt.show()
 
-# Seems that there's much more to this.
+    return ranking
+
 # https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance.html#sphx-glr-auto-examples-inspection-plot-permutation-importance-py
 # https://github.com/scikit-learn/scikit-learn/issues/15132
 
@@ -113,50 +234,19 @@ def test():
 
         print(" DONE ({:.2f}s)\n".format(time.time() - start))
 
-        if isinstance(model, RandomForestClassifier):
-
-            std = np.std([tree.feature_importances_ for tree in model.estimators_], axis=0)
-            graph(model, model.feature_importances_, std=std)
-
-        elif isinstance(model, GradientBoostingClassifier):
-
-            graph(model, model.feature_importances_)
-
-        elif isinstance(model, HistGradientBoostingClassifier):
-
-            print(model)
-
-            print(dir(model))
-
-            graph(model, model.feature_importances_)
-
-        elif isinstance(model, LogisticRegression):
-
-            graph(model, model.coef_[0])
-
-        elif isinstance(model, BayesianRidge):
-
-            graph(model, model.coef_)
-
-        elif isinstance(model, SGDClassifier):
-
-            graph(model, model.coef_[0])
+        graph(model)
 
 
 if __name__ == "__main__":
 
-    print("Loading data... ", end="")
+    df = preprocess()
 
-    start = time.time()
+    for type in ["classification", "regression"]:
 
-    df = pd.read_csv("sklearn.csv", index_col="id")
+        models = regressors if type == "regression" else classifiers
+        Y = df["delay"] if type == "regression" else df["delayed"]
+        X = df.drop(["delay", "delayed"], axis=1)
 
-    Y = df["delayed"]
-    X = df.drop("delayed", axis=1)
+        X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state=0)
 
-    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state=0)
-
-    print("DONE ({:.2f}s)".format(time.time() - start))
-
-    # train()
-    test()
+        train(type, models, X_train, Y_train)
