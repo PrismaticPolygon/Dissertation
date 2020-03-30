@@ -340,41 +340,43 @@ def extract(start, end):
         os.mkdir(ROOT)
 
     # Download DARWIN data
-    print("\nDARWIN\n")
+    # print("\nDARWIN\n")
+    #
+    # for date, filename in dates(start, end, pad=False):
+    #
+    #     movement("darwin", date, filename)
 
-    for date, filename in dates(start, end, pad=False):
-
-        movement("darwin", date, filename)
-
-        # Download SCHEDULE data
+    # Download SCHEDULE data
     print("\nSCHEDULE\n")
 
     for date, filename in dates(start, end, pad=True):
 
         schedule(date, filename)
 
-    # Download weather data
-    print("\nMIDAS\n")
-
-    for year in generate_years(start, end):
-
-        weather(year)
-
-    # Download station data
-    print("\nCEDA\n")
-    ceda()
-
-    # Download CORPUS data
-    print("\nCORPUS\n")
-
-    corpus()
-
-    # Download NAPTAN data
-    print("\nNAPTAN\n")
-
-    naptan()
+    # # Download weather data
+    # print("\nMIDAS\n")
+    #
+    # for year in generate_years(start, end):
+    #
+    #     weather(year)
+    #
+    # # Download station data
+    # print("\nCEDA\n")
+    # ceda()
+    #
+    # # Download CORPUS data
+    # print("\nCORPUS\n")
+    #
+    # corpus()
+    #
+    # # Download NAPTAN data
+    # print("\nNAPTAN\n")
+    #
+    # naptan()
 
 
 if __name__ == "__main__":
 
-    extract("2018-04-01", "2019-04-01")
+    extract("2018-03-31", "2019-04-01")
+
+# Bizarre. They are all off by one day.

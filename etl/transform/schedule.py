@@ -4,7 +4,7 @@ import csv
 
 import pandas as pd
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def one_hot(name, string):
@@ -173,7 +173,7 @@ def parse_date(string):
 # Not very easily, I'll bet. Nope.
 # It'll have to be manual.
 
-def parse_time(string):
+def parse_time(string, date):
     """
     Parse time (scheduled departures, arrivals, and passes). 5 characters. HHMM with an optional 'H' for half-minute.
 
@@ -204,7 +204,7 @@ def suffix(char):
     return 0 if char == " " else int(char)
 
 
-def parse_lo(line, bs):
+def parse_lo(line, bs, date):
     """
     Parse an origin location (LO). See pg. 20. LOs have no sta or stp. A LO always has an activity code of TB
     (train begins), and possibly more.
@@ -219,11 +219,11 @@ def parse_lo(line, bs):
         "location": line[2:9].strip(),
         "suffix": suffix(line[9]),
         "sta": None,
-        "std": parse_time(line[10:15]),
+        "std": parse_time(line[10:15], date),
         "stp": None,
         "pta": None,
         "pass": 0,
-        "ptd": parse_time(line[15:19]),
+        "ptd": parse_time(line[15:19], date),
         "platform": line[19:22].strip(),
         "line": line[22:25].strip(),
         "path": None,
@@ -244,7 +244,7 @@ def parse_lo(line, bs):
     return lo
 
 
-def parse_li(line, bs):
+def parse_li(line, bs, date):
     """
     Parse an intermediate location (LI). See pg. 21. LIs must have either an sta and std or an stp. If std is populated,
     at least one activity will be present.
@@ -257,11 +257,11 @@ def parse_li(line, bs):
         "type": "LI",
         "location": line[2:9].strip(),
         "suffix": suffix(line[9]),
-        "sta": parse_time(line[10:15]),
-        "std": parse_time(line[15:20]),
-        "stp": parse_time(line[20:25]),
-        "pta": parse_time(line[25:29]),
-        "ptd": parse_time(line[29:33]),
+        "sta": parse_time(line[10:15], date),
+        "std": parse_time(line[15:20], date),
+        "stp": parse_time(line[20:25], date),
+        "pta": parse_time(line[25:29], date),
+        "ptd": parse_time(line[29:33], date),
         "platform": line[33:36].strip(),
         "line": line[36:39].strip(),
         "path": line[39:42].strip(),
@@ -281,7 +281,7 @@ def parse_li(line, bs):
     return li
 
 
-def parse_lt(line, bs):
+def parse_lt(line, bs, date):
     """
     Parse a terminus location (LT). See pg. 23. An LT always has an activity of TF (train finish).
 
@@ -293,10 +293,10 @@ def parse_lt(line, bs):
         "type": "LT",
         "location": line[2:9].strip(),
         "suffix": suffix(line[9]),
-        "sta": parse_time(line[10:15]),
+        "sta": parse_time(line[10:15], date),
         "std": None,
         "stp": None,
-        "pta": parse_time(line[15:19]),
+        "pta": parse_time(line[15:19], date),
         "pass": 0,
         "ptd": None,
         "platform": line[19:22].strip(),
@@ -314,6 +314,13 @@ def parse_lt(line, bs):
 
     bs["length"] += 1
     bs["destination"] = lt["location"]
+
+    # if lt["sta"] < bs["departure_time"]:    # We've rolled over into the next day. Increment sta.
+    #
+    #     fmt = "%Y-%m-%d %H:%M:%S"
+    #
+    #     lt["sta"] = (datetime.strptime(lt["sta"], fmt) + timedelta(days=1)).strftime(fmt)
+
     bs["arrival_time"] = lt["sta"]
 
     return lt
@@ -399,6 +406,8 @@ def parse_bs(line):
         "stp_indicator": line[79]
     }
 
+    bs["id"] = bs["uid"] + "_" + bs["runs_from"] + "_" + bs["stp_indicator"]
+
     if bs["transaction_type"] == "D":
 
         return bs
@@ -415,7 +424,6 @@ def parse_bs(line):
     bs["departure_time"] = None
     bs["destination"] = None
     bs["arrival_time"] = None
-    bs["id"] = bs["uid"] + "_" + bs["runs_from"] + "_" + bs["stp_indicator"]
 
     return bs
 
@@ -460,7 +468,7 @@ def full(date, filename):
 
         fields = {
             "metadata": None,
-            "routes": None,
+            # "routes": None,
         }
 
         start = time.time()
@@ -495,26 +503,26 @@ def full(date, filename):
 
                 elif record_type == "LO":  # Origin
 
-                    lo = parse_lo(line, bs)
-
-                    if writers["routes"].fieldnames is None:
-
-                        writers["routes"].fieldnames = lo.keys()
-                        writers["routes"].writeheader()
-
-                    writers["routes"].writerow(lo)
+                    lo = parse_lo(line, bs, date)
+                    #
+                    # if writers["routes"].fieldnames is None:
+                    #
+                    #     writers["routes"].fieldnames = lo.keys()
+                    #     writers["routes"].writeheader()
+                    #
+                    # writers["routes"].writerow(lo)
 
                 elif record_type == "LI":  # Intermediate location
 
-                    li = parse_li(line, bs)
-
-                    writers["routes"].writerow(li)
+                    li = parse_li(line, bs, date)
+                    #
+                    # writers["routes"].writerow(li)
 
                 elif record_type == "LT":  # Terminating point
 
-                    lt = parse_lt(line, bs)
-
-                    writers["routes"].writerow(lt)
+                    lt = parse_lt(line, bs, date)
+                    #
+                    # writers["routes"].writerow(lt)
 
         for file in files.values():
 
@@ -527,18 +535,17 @@ def full(date, filename):
         print("Skipping {}...".format(filename))
 
     return {
-        "routes": pd.read_csv(os.path.join(path, "routes.csv"), index_col="id", parse_dates=True),
+        # "routes": pd.read_csv(os.path.join(path, "routes.csv"), index_col="id", parse_dates=True),
         "metadata": pd.read_csv(os.path.join(path, "metadata.csv"), index_col="id", parse_dates=True)
     }
-
-# This will require some complex update logic. So I'll just keep it for now.
-# It is exactly the same!
 
 
 def update(db, date, filename):
     """
     Apply an update CIF to the current DB. Updates always consist of the BS (and possibly the BX) to identify
-    the schedule, followed by the changes to the route.
+    the schedule, followed by the changes to the route. Pay special attention to dates. If the putative destination_time
+    is smaller than the origin_time (in BS), increment the day by one. Don't bother with LIs, as we aren't using them,
+    and doing so would require some clever refactoring.
 
     :param db:
     :param filename:
@@ -547,7 +554,7 @@ def update(db, date, filename):
 
     changes = {
         "metadata": {"N": [], "R": [], "D": []},
-        "routes": {"N": [], "R": [], "D": []}
+        # "routes": {"N": [], "R": [], "D": []}
     }
 
     with open(filename) as update:
@@ -584,21 +591,21 @@ def update(db, date, filename):
 
             elif record_type == "LO":
 
-                lo = parse_lo(line, bs)
+                lo = parse_lo(line, bs, date)
 
-                changes["routes"][transaction_type].append(lo)
+                # changes["routes"][transaction_type].append(lo)
 
             elif record_type == "LI":
 
-                li = parse_li(line, bs)
+                li = parse_li(line, bs, date)
 
-                changes["routes"][transaction_type].append(li)
+                # changes["routes"][transaction_type].append(li)
 
             elif record_type == "LT":
 
-                lt = parse_lt(line, bs)
+                lt = parse_lt(line, bs, date)
 
-                changes["routes"][transaction_type].append(lt)
+                # changes["routes"][transaction_type].append(lt)
 
     for key, value in changes.items():
 
@@ -648,31 +655,53 @@ def update(db, date, filename):
 
 
 def write(db, date, out_dir):
+    """
+
+    Write a single day's schedule to CSV.
+
+    :param db:
+    :param date:
+    :param out_dir:
+    :return:
+    """
 
     path = os.path.join(out_dir, date + ".csv")
-
-    route = db["routes"]
+    fmt = "%Y-%m-%d"
     metadata = db["metadata"]
 
     start = time.time()
 
     print("\nWriting metadata for " + date + " to " + path + "...", end="")
 
-    day = datetime.strptime(date, "%Y-%m-%d").strftime("%a").lower()
+    df = metadata.loc[metadata["runs_from"] <= date, :]     # All rows with date_runs_from <= 2018-04-15. Must be str
 
-    df = metadata.loc[metadata["runs_from"] <= date, :]     # All rows with date_runs_from <= 2018-04-15 (181415)
+    date = datetime.strptime(date, "%Y-%m-%d")
+    day = date.strftime("%a").lower()                       # mon, tue, wed, thu, fri, sat, sun
+
     df = df.loc[df[day] == 1, :]                            # All rows running on today
 
     df = df.sort_values(["uid", "stp_indicator"])           # Sort stp_indicator
     df = df.drop_duplicates(["uid", "stp_indicator"])       # Keep the rows with the lowest stp_indicator
 
-    # df = df.drop("runs_to", axis=1)
+    # If the arrival_time is smaller than the departure_time, prepend tomorrow's date. Otherwise, prepend today's date.
 
-    # result = df.join(route)
+    mask = (df["arrival_time"] < df["departure_time"])
+
+    df.loc[mask, "arrival_time"] = (date + timedelta(days=1)).strftime(fmt) + " " + df.loc[mask, "arrival_time"]
+    df.loc[~mask, "arrival_time"] = date.strftime(fmt) + " " + df.loc[~mask, "arrival_time"]
+
+    df["departure_time"] = date.strftime(fmt) + " " + df["departure_time"]    # Prepend today's date to the arrival time
 
     df.to_csv(path)
 
     print(" DONE ({:.2f}s) ({} records)\n".format(time.time() - start, len(df)))
+
+# And the error is clearly here.
+# And then it resets every week.
+# This does actually make sense, frustratingly. We use the date that we wrote when we wrote the full,
+# instead of today's date. There is a solution: fix the dates when writing it. It's not pleasant, though.
+
+# It would be a lot faster without routes.
 
 
 def transform():
