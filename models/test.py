@@ -18,6 +18,8 @@ from sklearn.kernel_ridge import KernelRidge
 from sklearn.linear_model import SGDRegressor, Ridge
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor, HistGradientBoostingRegressor
 
+# Helpers
+from sklearn.metrics import recall_score
 from sklearn.model_selection import train_test_split
 from joblib import dump, load   # More efficient than pickle for objects with large internal NumPy arrays
 
@@ -69,30 +71,38 @@ def train(type, models, X_train, Y_train):
             start = time.time()
 
             model.fit(X_train, Y_train)
+            Y_pred = model.predict(X_test)
             accuracy = model.score(X_test, Y_test)
 
             print("DONE ({:.2f}s)".format(time.time() - start))
             print("Accuracy: {:.2f}".format(accuracy))
 
             ranking = graph(model)
+            ranking["name"] = model.__class__.__name__
+            ranking["accuracy"] = accuracy
 
-            if ranking is not None:
+            metrics = [
+                recall_score
+            ]
 
-                ranking["name"] = model.__class__.__name__
-                ranking["accuracy"] = accuracy
+            for m in metrics:
 
-                if writer.fieldnames is None:
+                ranking[m.__name__] = m()
 
-                    writer.fieldnames = ranking.keys()
-                    writer.writeheader()
+            # Do I have the target? I'm not sure.
 
-                writer.writerow(ranking)
+        if writer.fieldnames is None:
 
-            model_path = os.path.join("models", "pickles", model.__class__.__name__ + ".pickle")
+                writer.fieldnames = ranking.keys()
+                writer.writeheader()
 
-            with open(model_path, "wb") as file:
+        writer.writerow(ranking)
 
-                dump(model, file)
+        model_path = os.path.join("models", "pickles", model.__class__.__name__ + ".pickle")
+
+        with open(model_path, "wb") as file:
+
+            dump(model, file)
 
 
 def coefficients(model):
@@ -235,6 +245,13 @@ def test():
         print(" DONE ({:.2f}s)\n".format(time.time() - start))
 
         graph(model)
+
+# Cross-validation
+# Up-sample
+
+def test():
+
+    # Should be separate for sure.
 
 
 if __name__ == "__main__":
