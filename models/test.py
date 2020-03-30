@@ -19,7 +19,8 @@ from sklearn.linear_model import SGDRegressor, Ridge
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor, HistGradientBoostingRegressor
 
 # Helpers
-from sklearn.metrics import recall_score
+from sklearn.metrics import recall_score, average_precision_score, mean_squared_error, mean_absolute_error, \
+    classification_report
 from sklearn.model_selection import train_test_split
 from joblib import dump, load   # More efficient than pickle for objects with large internal NumPy arrays
 
@@ -33,11 +34,11 @@ regressors = [
     # KernelRidge(),                      # https://scikit-learn.org/stable/modules/generated/sklearn.kernel_ridge.KernelRidge.html
     SGDRegressor(),                     # https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDRegressor.html
     LinearSVR(),                        # https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVR.html
+    BayesianRidge(),
 ]
 
 classifiers = [
     LogisticRegression(),
-    BayesianRidge(),
     RidgeClassifier(),
     SGDClassifier(),
     RandomForestClassifier(),
@@ -50,59 +51,26 @@ classifiers = [
 def pad(_, x):
     # https://stackoverflow.com/questions/4008546/how-to-pad-with-n-characters-in-python
 
-    length = max([len(y.__class__.__name__) for y in _])
+    length = max([len(y) for y in _])
 
-    return "{s:{c}^{n}}".format(s=" " + x.__class__.__name__ + " ", n=length + 6, c="*")
+    return "{s:{c}^{n}}".format(s=" " + x.upper() + " ", n=length + 6, c="*")
 
 
-def train(type, models, X_train, Y_train):
+def train(model, X_train, Y_train):
 
-    path = os.path.join("models", "features", type + ".csv")
+    print("Fitting {}... ".format(model.__class__.__name__), end="")
 
-    with open(path, "w", newline="") as out:
+    start = time.time()
 
-        writer = csv.DictWriter(out, None)
+    model.fit(X_train, Y_train)
 
-        for model in models:
+    print("DONE ({:.2f}s)".format(time.time() - start))
 
-            print("\n" + pad(models, model))
-            print("\nFitting model... ", end="")
+    model_path = os.path.join("models", "pickles", model.__class__.__name__ + ".pickle")
 
-            start = time.time()
+    with open(model_path, "wb") as file:
 
-            model.fit(X_train, Y_train)
-            Y_pred = model.predict(X_test)
-            accuracy = model.score(X_test, Y_test)
-
-            print("DONE ({:.2f}s)".format(time.time() - start))
-            print("Accuracy: {:.2f}".format(accuracy))
-
-            ranking = graph(model)
-            ranking["name"] = model.__class__.__name__
-            ranking["accuracy"] = accuracy
-
-            metrics = [
-                recall_score
-            ]
-
-            for m in metrics:
-
-                ranking[m.__name__] = m()
-
-            # Do I have the target? I'm not sure.
-
-        if writer.fieldnames is None:
-
-                writer.fieldnames = ranking.keys()
-                writer.writeheader()
-
-        writer.writerow(ranking)
-
-        model_path = os.path.join("models", "pickles", model.__class__.__name__ + ".pickle")
-
-        with open(model_path, "wb") as file:
-
-            dump(model, file)
+        dump(model, file)
 
 
 def coefficients(model):
@@ -160,110 +128,131 @@ def coefficients(model):
         return model.coef_
 
 
-def calc_std(model):
+def rank(model, X, df):
 
-    # if isinstance(model, RandomForestClassifier):
-    #
-    #     return np.std([tree.feature_importances_ for tree in model.estimators_], axis=0)
-    #
-    # if isinstance(model, RandomForestRegressor):
-    #
-    #     return np.std([tree.feature_importances_ for tree in model.estimators_], axis=0)
-
-    return None
-
-
-def graph(model, print_ranking=False):
-    """
-
-    :param model:
-    :param print_ranking:
-    :return: A dictionary of feature to importance
-    """
-
-    c = coefficients(model)
-
-    if c is None:
-
-        return None
-
-    c = np.abs(c)
-    std = calc_std(model)
-    indices = np.argsort(c)[::-1]               # The indices that would sort c in descending order
-    num_features = X.shape[1]                   # The number of features
-    columns = [df.columns[i] for i in indices]
+    c = np.abs(coefficients(model))     # Absolute coefficients
+    indices = np.argsort(c)[::-1]       # The indices that would sort c in descending order
+    num_features = X.shape[1]           # The number of features
     ranking = dict()
-
-    if print_ranking:
-
-        print("\nRanking\n")
 
     for i in range(num_features):
 
-        if print_ranking:
-
-            print("{}. {} ({:.4E})".format(i + 1, df.columns[indices[i]], c[indices[i]]))
-
         ranking[df.columns[indices[i]]] = c[indices[i]]
 
-    plt.figure()
-    plt.title("{} importance".format(model.__class__.__name__))
+    return ranking, c, indices
 
-    if std is not None:
 
-        plt.bar(range(num_features), c[indices], color="r", yerr=std[indices], align="center")
-
-    else:
-
-        plt.bar(range(num_features), c[indices], color="r", align="center")
-
-    plt.xticks(range(num_features), columns, rotation=90)
-    plt.xlim([-1, num_features])
-    plt.show()
-
-    return ranking
+# def graph(model, print_ranking=False):
+#
+#     _, c, indices = rank(model)
+#     num_features = X.shape[1]
+#     columns = [df.columns[i] for i in indices]
+#
+#     if print_ranking:
+#
+#         print("\nRanking\n")
+#
+#     for i in range(num_features):
+#
+#         if print_ranking:
+#
+#             print("{}. {} ({:.4E})".format(i + 1, df.columns[indices[i]], c[indices[i]]))
+#
+#     plt.figure()
+#     plt.title("{} importance".format(model.__class__.__name__))
+#
+#     plt.bar(range(num_features), c[indices], color="r", align="center")
+#
+#     plt.xticks(range(num_features), columns, rotation=90)
+#     plt.xlim([-1, num_features])
+#     plt.show()
 
 # https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance.html#sphx-glr-auto-examples-inspection-plot-permutation-importance-py
 # https://github.com/scikit-learn/scikit-learn/issues/15132
 
-
-def test():
-
-    path = os.path.join("models", "pickles")
-
-    for file in os.listdir(path):
-
-        name, _ = file.split(".")
-
-        print("\nLoading {}...".format(file), end="")
-
-        start = time.time()
-
-        path = os.path.join("models", file)
-        model = load(path)
-
-        print(" DONE ({:.2f}s)\n".format(time.time() - start))
-
-        graph(model)
-
 # Cross-validation
 # Up-sample
 
-def test():
 
-    # Should be separate for sure.
+def test(model_type, models, X, df, X_test, Y_test):
 
+    path = os.path.join("models", "features", model_type + ".csv")
 
-if __name__ == "__main__":
+    if model_type == "classification":
+
+        metrics = [
+            recall_score,
+            average_precision_score,
+        ]
+
+    else:
+
+        metrics = [
+            mean_absolute_error,
+            mean_squared_error
+        ]
+
+    with open(path, "w", newline="") as out:
+
+        writer = csv.DictWriter(out, None)
+
+        for model in models:
+
+            Y_pred = model.predict(X_test)
+
+            results = {
+                "accuracy": model.score(X_test, Y_test)
+            }
+
+            ranking, _, _ = rank(model, X, df)
+            ranking["name"] = model.__class__.__name__
+
+            for m in metrics:
+
+                results[m.__name__] = m(Y_test.values, Y_pred)
+
+            if model_type == "classification":
+
+                print(model.__class__.__name__ + "\n")
+                print(classification_report(Y_test.values, Y_pred, target_names=["not delayed", "delayed"]))
+
+            else:
+
+                print(model.__class__.__name__, results)
+
+            ranking.update(results)
+
+            if writer.fieldnames is None:
+
+                writer.fieldnames = ranking.keys()
+                writer.writeheader()
+
+            writer.writerow(ranking)
+
+def run():
 
     df = preprocess()
+    model_types = ["classification", "regression"]
 
-    for type in ["classification", "regression"]:
+    for model_type in model_types:
 
-        models = regressors if type == "regression" else classifiers
-        Y = df["delay"] if type == "regression" else df["delayed"]
+        print("\n" + pad(model_types, model_type) + "\n")
+
+        models = regressors if model_type == "regression" else classifiers
+        Y = df["delay"] if model_type == "regression" else df["delayed"]
         X = df.drop(["delay", "delayed"], axis=1)
 
         X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state=0)
 
-        train(type, models, X_train, Y_train)
+        for model in models:
+
+            train(model, X_train, Y_train)
+
+        print("")
+
+        test(model_type, models, X, df, X_test, Y_test)
+
+
+if __name__ == "__main__":
+
+    run()

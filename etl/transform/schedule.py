@@ -706,7 +706,7 @@ def write(db, date, out_dir):
 
 def transform():
 
-    in_dir = os.path.join("archive", "schedule")
+    in_dir = os.path.join("archive", "schedule")    # This WILL be interesting. 26 MB per day => 9 GB
     out_dir = os.path.join("data", "schedule")
 
     if not os.path.exists(out_dir):

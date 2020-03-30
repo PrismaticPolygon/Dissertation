@@ -18,7 +18,7 @@ from config import *
 ROOT = "archive"
 
 
-def dates(start, end, pad=False):
+def dates(start, end, pad=False, before=0, after=0):
     """
     Returns a generator yielding two strings: a date url (YYYY/xM/xD), for downloading files, and a date path
     (YYYY-MM-DD) for writing files.
@@ -29,13 +29,15 @@ def dates(start, end, pad=False):
     2 days later.
 
     :param start: A date in YYYY-MM-DD format.
+    :param before: how many days before to retrieve
+    :param after: how many days after to retrieve
     :param end:  A date in YYYY-MM-DD format.
     :param pad: whether or not to zero-pad url dates
     :return:
     """
 
-    start = datetime.strptime(start, "%Y-%m-%d") + timedelta(days=-1)
-    end = datetime.strptime(end, "%Y-%m-%d") + timedelta(days=2)
+    start = datetime.strptime(start, "%Y-%m-%d") + timedelta(days=-before)
+    end = datetime.strptime(end, "%Y-%m-%d") + timedelta(days=after)
 
     while start < end:
 
@@ -78,7 +80,7 @@ def weather(year):
     ftp.set_pasv(False)
     ftp.cwd("badc/ukmo-midas/data/WH/yearly_files")
 
-    folder = os.path.join(ROOT, "weather")
+    folder = os.path.join("D:", ROOT, "weather")
 
     if not os.path.exists(folder):
 
@@ -106,7 +108,7 @@ def weather(year):
 
     else:
 
-        print("Skipping {}...".format(ftp.pwd()))
+        print("Skipping {}/{}...".format(ftp.pwd(), file))
 
 
 def schedule(date, filename):
@@ -122,7 +124,7 @@ def schedule(date, filename):
     for schedule_type in ["full", "update"]:
 
         url = "https://cdn.area51.onl/archive/rail/timetable/{}-{}.cif.gz".format(date, schedule_type)
-        path = os.path.join(ROOT, "schedule", "{}-{}.cif".format(filename, schedule_type))
+        path = os.path.join("D:", ROOT, "schedule", "{}-{}.cif".format(filename, schedule_type))
 
         if not os.path.exists(path):
 
@@ -169,8 +171,6 @@ def movement(source, date, filename):
 
     url = "https://cdn.area51.onl/archive/rail/{}/{}.tbz2".format(source, date)
     path = os.path.join(ROOT, source, filename + "." + source)
-
-    # 2018/5/25 onwards are tbz2 files.
 
     if not os.path.exists(path):
 
@@ -311,7 +311,7 @@ def corpus():
     :return: None
     """
 
-    in_path = os.path.join(ROOT, "CORPUSExtract.json.gz")
+    in_path = os.path.join("D:", ROOT, "CORPUSExtract.json.gz")
     out_path = os.path.join(ROOT, "corpus.csv")
 
     with GzipFile(in_path) as in_file, open(out_path, "w", newline="") as out_file:
@@ -340,43 +340,41 @@ def extract(start, end):
         os.mkdir(ROOT)
 
     # Download DARWIN data
-    # print("\nDARWIN\n")
-    #
-    # for date, filename in dates(start, end, pad=False):
-    #
-    #     movement("darwin", date, filename)
+    print("\nDARWIN\n")
+
+    for date, filename in dates(start, end, after=1):
+
+        movement("darwin", date, filename)
 
     # Download SCHEDULE data
     print("\nSCHEDULE\n")
 
-    for date, filename in dates(start, end, pad=True):
+    for date, filename in dates(start, end, pad=True, before=2):
 
         schedule(date, filename)
 
-    # # Download weather data
-    # print("\nMIDAS\n")
-    #
-    # for year in generate_years(start, end):
-    #
-    #     weather(year)
-    #
-    # # Download station data
-    # print("\nCEDA\n")
-    # ceda()
-    #
-    # # Download CORPUS data
-    # print("\nCORPUS\n")
-    #
-    # corpus()
-    #
-    # # Download NAPTAN data
-    # print("\nNAPTAN\n")
-    #
-    # naptan()
+    # Download weather data
+    print("\nMIDAS\n")
+
+    for year in generate_years(start, end):
+
+        weather(year)
+
+    # Download station data
+    print("\nCEDA\n")
+    ceda()
+
+    # Download CORPUS data
+    print("\nCORPUS\n")
+
+    corpus()
+
+    # Download NAPTAN data
+    print("\nNAPTAN\n")
+
+    naptan()
 
 
 if __name__ == "__main__":
 
-    extract("2018-03-31", "2019-04-01")
-
-# Bizarre. They are all off by one day.
+    extract("2018-04-01", "2019-04-01")
