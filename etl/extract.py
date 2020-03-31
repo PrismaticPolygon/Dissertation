@@ -346,19 +346,19 @@ def extract(start, end):
 
         movement("darwin", date, filename)
 
-    # Download SCHEDULE data
-    print("\nSCHEDULE\n")
+    # # Download SCHEDULE data
+    # print("\nSCHEDULE\n")
+    #
+    # for date, filename in dates(start, end, pad=True, before=2):
+    #
+    #     schedule(date, filename)
 
-    for date, filename in dates(start, end, pad=True, before=2):
-
-        schedule(date, filename)
-
-    # Download weather data
-    print("\nMIDAS\n")
-
-    for year in generate_years(start, end):
-
-        weather(year)
+    # # Download weather data
+    # print("\nMIDAS\n")
+    #
+    # for year in generate_years(start, end):
+    #
+    #     weather(year)
 
     # Download station data
     print("\nCEDA\n")
@@ -373,8 +373,3 @@ def extract(start, end):
     print("\nNAPTAN\n")
 
     naptan()
-
-
-if __name__ == "__main__":
-
-    extract("2018-04-01", "2019-04-01")

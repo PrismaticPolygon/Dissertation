@@ -169,9 +169,6 @@ def parse_date(string):
 
         return year + "-" + string[2:4] + "-" + string[4:6]
 
-# How can I know when it rolls over?
-# Not very easily, I'll bet. Nope.
-# It'll have to be manual.
 
 def parse_time(string, date):
     """
@@ -458,7 +455,7 @@ def full(date, filename):
     :return:
     """
 
-    path = os.path.join("data", "schedule", date)
+    path = os.path.join("D:", "data", "schedule", date)
 
     if not os.path.exists(path):
 
@@ -696,18 +693,11 @@ def write(db, date, out_dir):
 
     print(" DONE ({:.2f}s) ({} records)\n".format(time.time() - start, len(df)))
 
-# And the error is clearly here.
-# And then it resets every week.
-# This does actually make sense, frustratingly. We use the date that we wrote when we wrote the full,
-# instead of today's date. There is a solution: fix the dates when writing it. It's not pleasant, though.
-
-# It would be a lot faster without routes.
-
 
 def transform():
 
-    in_dir = os.path.join("archive", "schedule")    # This WILL be interesting. 26 MB per day => 9 GB
-    out_dir = os.path.join("data", "schedule")
+    in_dir = os.path.join("D:", "archive", "schedule")    # This WILL be interesting. 26 MB per day => 9 GB
+    out_dir = os.path.join("D:", "data", "schedule")
 
     if not os.path.exists(out_dir):
 
@@ -731,8 +721,3 @@ def transform():
         else:   # A full file.
 
             db = full(date, path)
-
-
-if __name__ == "__main__":
-
-    transform()

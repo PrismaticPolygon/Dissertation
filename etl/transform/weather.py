@@ -359,7 +359,7 @@ def transform(start, end):
 
     for i, year in enumerate(years):
 
-        df = pd.read_csv("archive/weather/{}.csv".format(year), parse_dates=[0],
+        df = pd.read_csv("D:/archive/weather/{}.csv".format(year), parse_dates=[0],
                          usecols=["ob_time", "src_id", "wind_direction", "wind_speed", "q10mnt_mxgst_spd",
                                   "wind_speed_unit_id", "air_temperature", "visibility", "rltv_hum", "src_opr_type", "prst_wx_id"],
                          na_values=" ",
@@ -432,4 +432,4 @@ def transform(start, end):
 
     df = pd.concat(dfs)
 
-    df.to_csv(os.path.join("data", "weather.csv"))
+    df.to_csv(os.path.join("D:", "data", "weather.csv"))

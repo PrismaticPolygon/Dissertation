@@ -152,9 +152,7 @@ def transform(start, end):
     """
 
     in_dir = os.path.join("archive", "darwin")
-    out_dir = os.path.join("data", "darwin")
-
-    # For some reason my 2018-04-01 contains ssds with 2018-04-02. Something fishy is going on here.
+    out_dir = os.path.join("D:", "data", "darwin")
 
     if not os.path.exists(out_dir):
 
@@ -169,7 +167,7 @@ def transform(start, end):
         in_path = os.path.join(in_dir, file)
         out_path = os.path.join(out_dir, date) + ".csv"
 
-        if date < start or date > end or os.path.exists(in_path):
+        if date < start or date > end or os.path.exists(out_path):
 
             print("Skipping {}...".format(in_path))
 
@@ -232,3 +230,8 @@ def transform(start, end):
 
         yesterday = today
         yesterday_writer = today_writer
+
+
+if __name__ == "__main__":
+
+    transform("2018-04-01", "2019-04-02")

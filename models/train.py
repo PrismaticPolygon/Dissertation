@@ -20,7 +20,7 @@ from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor, H
 
 # Helpers
 from sklearn.metrics import recall_score, average_precision_score, mean_squared_error, mean_absolute_error, \
-    classification_report
+    classification_report, confusion_matrix
 from sklearn.model_selection import train_test_split
 from joblib import dump, load   # More efficient than pickle for objects with large internal NumPy arrays
 
@@ -56,7 +56,7 @@ def pad(_, x):
     return "{s:{c}^{n}}".format(s=" " + x.upper() + " ", n=length + 6, c="*")
 
 
-def train(model, X_train, Y_train):
+def train(model, model_type, X_train, Y_train):
 
     print("Fitting {}... ".format(model.__class__.__name__), end="")
 
@@ -66,7 +66,7 @@ def train(model, X_train, Y_train):
 
     print("DONE ({:.2f}s)".format(time.time() - start))
 
-    model_path = os.path.join("models", "pickles", model.__class__.__name__ + ".pickle")
+    model_path = os.path.join("models", model_type, "pickles", model.__class__.__name__ + ".pickle")
 
     with open(model_path, "wb") as file:
 
@@ -201,7 +201,7 @@ def test(model_type, models, X, df, X_test, Y_test):
             Y_pred = model.predict(X_test)
 
             results = {
-                "accuracy": model.score(X_test, Y_test)
+                "score": model.score(X_test, Y_test)
             }
 
             ranking, _, _ = rank(model, X, df)
@@ -215,6 +215,7 @@ def test(model_type, models, X, df, X_test, Y_test):
 
                 print(model.__class__.__name__ + "\n")
                 print(classification_report(Y_test.values, Y_pred, target_names=["not delayed", "delayed"]))
+                print(confusion_matrix(Y_test.values, Y_pred, labels=["not delayed", "delayed"]))
 
             else:
 
@@ -228,6 +229,9 @@ def test(model_type, models, X, df, X_test, Y_test):
                 writer.writeheader()
 
             writer.writerow(ranking)
+
+# It is important that we have both, after all.
+# Hm. If I've set the random_state, it's all Gucci. Otherwise I would be concerned.
 
 def run():
 
@@ -246,7 +250,7 @@ def run():
 
         for model in models:
 
-            train(model, X_train, Y_train)
+            train(model, model_type, X_train, Y_train)
 
         print("")
 

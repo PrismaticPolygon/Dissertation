@@ -2,7 +2,7 @@ import os
 import time
 import pandas as pd
 
-root = "data"
+root = "D:data"
 
 
 def load():
@@ -13,7 +13,7 @@ def load():
 
         os.remove(path)
 
-    # location = pd.read_csv(os.path.join(root, "location.csv"), index_col=["tiploc"], dtype={"src_id": int}, usecols=["tiploc", "stanox_area"])
+    location = pd.read_csv(os.path.join(root, "location.csv"), dtype={"src_id": int}, usecols=["tiploc", "stanox_area"])
     # weather = pd.read_csv(os.path.join(root, "weather.csv"), parse_dates=[1], dtype={"src_id": int})
 
     for file in os.listdir(os.path.join(root, "darwin")):
@@ -60,6 +60,14 @@ def load():
                 # print(e)
 
         results = schedule[(schedule["ata"] != 0) & (schedule["atd"] != 0)]    # Only get those with ata correctly set
+
+        # Add origin stanox area
+        results = results.merge(location, left_on="origin", right_on="tiploc")
+        results = results.rename({"stanox_area": "origin_stanox_area"}, axis=1)
+
+        # Add destination stanox area
+        results = results.merge(location, left_on="destination", right_on="tiploc")
+        results = results.rename({"stanox_area": "destination_stanox_area"}, axis=1)
 
         print("DONE ({:.2f}s)".format(time.time() - start))
 
