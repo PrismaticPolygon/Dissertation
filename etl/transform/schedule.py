@@ -22,41 +22,41 @@ def one_hot(name, string):
         length = 2
         count = 12
         code = {
-            "A": 0,  # Stops or shunts for other trains to pass
+            "A ": 0,  # Stops or shunts for other trains to pass
             "AE": 0,  # Attach / detach assisting locomotive
             "AX": 0,  # Shows as 'X' on arrival
             "BL": 0,  # Stops for banking locomotive
-            "C": 0,  # Stops to change trainmen
-            "D": 0,  # Stops to set down passengers
+            "C ": 0,  # Stops to change trainmen
+            "D ": 0,  # Stops to set down passengers
             "-D": 0,  # Stops to detach vehicles
-            "E": 0,  # Stops for examination
-            "G": 0,  # National Rail Timetable data to add
-            "H": 0,  # Notional activity to prevent WTT timing columns merge
+            "E ": 0,  # Stops for examination
+            "G ": 0,  # National Rail Timetable data to add
+            "H ": 0,  # Notional activity to prevent WTT timing columns merge
             "HH": 0,  # As H, where a third column is involved
-            "K": 0,  # Passenger count point
+            "K ": 0,  # Passenger count point
             "KC": 0,  # Ticket collection and examination point
             "KE": 0,  # Ticket examination point
             "KF": 0,  # Ticket examination point, 1st class only
             "KS": 0,  # Selective ticket examination point
-            "L": 0,  # Stops to change locomotives
-            "N": 0,  # Stops not advertised
+            "L ": 0,  # Stops to change locomotives
+            "N ": 0,  # Stops not advertised
             "OP": 0,  # Stops for other operating reasons
             "OR": 0,  # Train locomotive on rear
             "PR": 0,  # Propelling between points shown
-            "R": 0,  # Stops when required
+            "R ": 0,  # Stops when required
             "RM": 0,  # Reversing movement, or driver changes ends
             "RR": 0,  # Stops for locomotive to run around train
-            "S": 0,  # Stops for railway personnel only
-            "T": 0,  # Stops to take up and set down passengers
+            "S ": 0,  # Stops for railway personnel only
+            "T ": 0,  # Stops to take up and set down passengers
             "-T": 0,  # Stops to attach and detach vehicles
             "TB": 0,  # Train begins (origin)
             "TF": 0,  # Train finishes (destination)
             "TS": 0,  # Detail consist for TOPS direct
             "TW": 0,  # Stops (or at pass) for tablet, staff, or token
-            "U": 0,  # Stops to take up passengers
+            "U ": 0,  # Stops to take up passengers
             "-U": 0,  # Stops to attach vehicles
-            "W": 0,  # Stops for watering of coaches
-            "X": 0  # Passes another train at crossing point on single line
+            "W ": 0,  # Stops for watering of coaches
+            "X ": 0  # Passes another train at crossing point on single line
         }
 
     elif name == "catering":
