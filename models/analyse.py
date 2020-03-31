@@ -1,4 +1,5 @@
 import os
+import eli5
 
 import pandas as pd
 import numpy as np
@@ -6,7 +7,6 @@ import matplotlib.pyplot as plt
 
 from joblib import load
 from models.lib import *
-
 
 def coefficients(model):
 
@@ -27,6 +27,7 @@ def coefficients(model):
 
         return model.coef_
 
+# There's a library called ELI5 which does this for you!
 
 def graph(model, X, print_ranking=False):
 
@@ -111,8 +112,10 @@ def classification(model, X_test, Y_test):
     print(classification_report(Y_test.values, Y_pred, target_names=["not delayed", "delayed"]))
     print(confusion_matrix(Y_test.values, Y_pred, labels=["not delayed", "delayed"]))
 
-    return results
+    eli5.show_weights(model, feature_names={i: k for i, k in enumerate(df.columns)},
+                      target_names={0: "not delayed", 1: "delayed"})
 
+    return results
 
 def regression(model, X_test, Y_test):
 
@@ -131,6 +134,7 @@ def regression(model, X_test, Y_test):
     for m in metrics:
 
         results[m.__name__] = m(Y_test.values, Y_pred)
+
 
     return results
 
