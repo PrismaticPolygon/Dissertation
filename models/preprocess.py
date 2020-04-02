@@ -70,7 +70,7 @@ def preprocess():
         ["id", "transaction_type", "runs_to", "runs_from", "identity", "headcode", "service_code", "stp_indicator",
          "timetable_code", "atd"], axis=1)
 
-    print(df["stp_indicator"].value_counts())   # Might be worth one-hot. Are alterations more likely to be bad?
+    # print(df["stp_indicator"].value_counts())   # Might be worth one-hot. Are alterations more likely to be bad?
 
     df = df.drop(["sleepers", "reservations", "branding"], axis=1)
 
