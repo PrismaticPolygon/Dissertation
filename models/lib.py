@@ -13,20 +13,20 @@ from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor, H
 
 # Metrics
 from sklearn.metrics import recall_score, average_precision_score, mean_squared_error, mean_absolute_error, \
-    classification_report, confusion_matrix
+    classification_report, confusion_matrix, mean_squared_log_error, r2_score
 
 # Helpers
 from sklearn.model_selection import train_test_split
 
 # Pre-processing
-from models.preprocess import preprocess
+from models.preprocess import *
 
 classifiers = [
     # LogisticRegression(),
-    RidgeClassifier(),
-    SGDClassifier(),
+    # RidgeClassifier(),
+    # SGDClassifier(),
     RandomForestClassifier(),
-    GradientBoostingClassifier(),
+    # GradientBoostingClassifier(),
     # HistGradientBoostingClassifier(),
     # LinearSVC()
 ]
@@ -34,17 +34,16 @@ classifiers = [
 regressors = [
     RandomForestRegressor(),            # https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html
     GradientBoostingRegressor(),        # https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html
-    # HistGradientBoostingRegressor(),    # https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.HistGradientBoostingRegressor.html
-    # Ridge(),                            # https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html
-    # KernelRidge(),                      # https://scikit-learn.org/stable/modules/generated/sklearn.kernel_ridge.KernelRidge.html
+    HistGradientBoostingRegressor(),    # https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.HistGradientBoostingRegressor.html
+    Ridge(),                            # https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html
+    KernelRidge(),                      # https://scikit-learn.org/stable/modules/generated/sklearn.kernel_ridge.KernelRidge.html
     SGDRegressor(),                     # https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDRegressor.html
-    # LinearSVR(),                        # https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVR.html
-    # BayesianRidge(),
+    LinearSVR(),                        # https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVR.html
+    BayesianRidge(),
 ]
 
 df = preprocess()
-model_types = ["classification", "regression"]
-
+model_types = ["regression"]
 
 def pad(_, x):
     # https://stackoverflow.com/questions/4008546/how-to-pad-with-n-characters-in-python

@@ -4,30 +4,60 @@ import os
 from joblib import dump     # More efficient than pickle for objects with large internal NumPy arrays
 
 from models.lib import *
+# from imblearn.over_sampling import SMOTE
+# from imblearn.under_sampling import RandomUnderSampler
+#
+# from sklearn.pipeline import Pipeline
+#
+# over = SMOTE(sampling_strategy=0.1)                 # Over-sample minority to have 10% samples of majority
+# under = RandomUnderSampler(sampling_strategy=0.5)   # Under-sample majority to have 150% samples of minority
+#
+# # Original paper suggests combining SMOTE with random under-sampling of the majority class.
+# # Use repeated stratified k-fold cross-validation to evalute the model.
+#
+# pipeline = Pipeline([('o', over), ('u', under)])
 
 
-def train(model, model_type, X_train, Y_train):
+def train(model, path, X_train, Y_train):
 
     print("Fitting {}... ".format(model.__class__.__name__), end="")
 
     start = time.time()
 
-    model.fit(X_train, Y_train)
+    try:
 
-    print("DONE ({:.2f}s)".format(time.time() - start))
+        model.fit(X_train, Y_train)
 
-    model_path = os.path.join("models", model_type, model.__class__.__name__ + ".pickle")
+        print("DONE ({:.2f}s)".format(time.time() - start))
 
-    with open(model_path, "wb") as file:
+        model_path = os.path.join(path, model.__class__.__name__ + ".pickle")
 
-        dump(model, file)
+        with open(model_path, "wb") as file:
+
+            dump(model, file)
+
+    except ValueError as e: # Catch bad encoding errors
+
+        print(e)
 
 
-def main():
+def run():
 
     for model_type in model_types:
 
         print("\n" + pad(model_types, model_type) + "\n")
+
+        path = os.path.join("models", model_type)
+
+        if not os.path.exists(path):
+
+            os.mkdir(path)
+
+        path = os.path.join(path, arg())
+
+        if not os.path.exists(path):
+
+            os.mkdir(path)
 
         models = regressors if model_type == "regression" else classifiers
         Y = df["delay"] if model_type == "regression" else df["delayed"]
@@ -37,9 +67,9 @@ def main():
 
         for model in models:
 
-            train(model, model_type, X_train, Y_train)
+            train(model, path, X_train, Y_train)
 
 
 if __name__ == "__main__":
 
-    main()
+    run()

@@ -2,19 +2,19 @@ import os
 import time
 import pandas as pd
 
-root = "D:data"
+root = "E:data"
 
 
 def load():
 
-    path = os.path.join(root, "dscm.csv")
+    path = os.path.join(root, "dscm_w.csv")
 
     if os.path.exists(path):    # Delete if it exists
 
         os.remove(path)
 
-    location = pd.read_csv(os.path.join(root, "location.csv"), dtype={"src_id": int}, usecols=["tiploc", "stanox_area"])
-    # weather = pd.read_csv(os.path.join(root, "weather.csv"), parse_dates=[1], dtype={"src_id": int})
+    location = pd.read_csv(os.path.join("data", "location.csv"), dtype={"src_id": int}, usecols=["tiploc", "stanox_area", "src_id"])
+    weather = pd.read_csv(os.path.join("data", "weather.csv"), parse_dates=[1], dtype={"src_id": int})
 
     for file in os.listdir(os.path.join(root, "darwin")):
 
@@ -63,11 +63,21 @@ def load():
 
         # Add origin stanox area
         results = results.merge(location, left_on="origin", right_on="tiploc")
-        results = results.rename({"stanox_area": "origin_stanox_area"}, axis=1)
+        results = results.rename({"stanox_area": "origin_stanox_area", "src_id": "origin_src_id", "tiploc": "origin_tiploc"}, axis=1)
 
         # Add destination stanox area
         results = results.merge(location, left_on="destination", right_on="tiploc")
-        results = results.rename({"stanox_area": "destination_stanox_area"}, axis=1)
+        results = results.rename({"stanox_area": "destination_stanox_area", "src_id": "destination_src_id", "tiploc": "destination_tiploc"}, axis=1)
+
+        # Join origin weather
+        results["origin_hour"] = pd.to_datetime(results['atd'], format="%Y-%m-%d %H:%M:%S").dt.round('H')
+        results = results.merge(weather, left_on=["origin_src_id", "origin_hour"], right_on=["src_id", "ob_time"])
+        results = results.rename({col: col + "_origin" for col in weather.columns}, axis=1)
+
+        # Join destination weather
+        results["destination_hour"] = pd.to_datetime(results['ata'], format="%Y-%m-%d %H:%M:%S").dt.round('H')
+        results = results.merge(weather, left_on=["destination_src_id", "destination_hour"], right_on=["src_id", "ob_time"])
+        results = results.rename({col: col + "_destination" for col in weather.columns}, axis=1)
 
         print("DONE ({:.2f}s)".format(time.time() - start))
 

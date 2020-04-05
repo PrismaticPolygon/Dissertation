@@ -109,11 +109,10 @@ def classification(model, X_test, Y_test):
         results[m.__name__] = m(Y_test.values, Y_pred)
 
     print(model.__class__.__name__ + "\n")
+    print(results)
     print(classification_report(Y_test.values, Y_pred, target_names=["not delayed", "delayed"]))
-    print(confusion_matrix(Y_test.values, Y_pred, labels=["not delayed", "delayed"]))
 
-    eli5.show_weights(model, feature_names={i: k for i, k in enumerate(df.columns)},
-                      target_names={0: "not delayed", 1: "delayed"})
+    # eli5.show_weights(model, feature_names={i: k for i, k in enumerate(df.columns)}, target_names={0: "not delayed", 1: "delayed"})
 
     return results
 
@@ -146,7 +145,7 @@ def run():
 
     for model_type in model_types:
 
-        folder = os.path.join(root, model_type)
+        folder = os.path.join(root, model_type, arg())
         Y = df["delay"] if model_type == "regression" else df["delayed"]
         X = df.drop(["delay", "delayed"], axis=1)
         X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state=0)

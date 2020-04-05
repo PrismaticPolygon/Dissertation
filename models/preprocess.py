@@ -4,6 +4,46 @@ import time
 import numpy as np
 import pandas as pd
 
+from sklearn.preprocessing import scale
+from imblearn.over_sampling import SMOTE
+
+class Args:
+
+    def __init__(self):
+
+        self.properties = {
+            "onehot": True,
+            "cyclical": True,
+            "gaussian": False,
+            "smote": False,
+            "weather": False
+        }
+
+    def __str__(self):
+
+        if not any(self.properties.values()):
+
+            return "default"
+
+        else:
+
+            return "_".join([k for k, v in self.properties.items() if v])
+
+args = {
+    "onehot": True,
+    "cyclical": False,
+    "gaussian": False,
+    "smote": False,
+    "weather": False
+}
+
+args["default"] = not any(args.values())
+
+
+def arg():
+
+    return "_".join([k for k, v in args.items() if v])
+
 
 def datetime(df, key):
 
@@ -15,7 +55,9 @@ def datetime(df, key):
             "month": 12,
             "day": 31,
             "day_of_week": 7,
-            "minutes": 1440
+            "hour": 24,
+            "minute": 60,
+            "day_minute": 1440
         }
 
         f = np.sin if f == "sin" else np.cos
@@ -24,20 +66,53 @@ def datetime(df, key):
 
     df[prefix + "_year"] = df[key].dt.year.astype("uint16")
 
-    df[prefix + "_month_sin"] = cyclical(df[key].dt.month, "sin", "month")
-    df[prefix + "_month_cos"] = cyclical(df[key].dt.month, "cos", "month")
+    if args["cyclical"]:
 
-    df[prefix + "_day_sin"] = cyclical(df[key].dt.day, "sin", "day")
-    df[prefix + "_day_cos"] = cyclical(df[key].dt.day, "cos", "day")
+        for f in ["sin", "cos"]:
 
-    df[prefix + "_day_of_week_sin"] = cyclical(df[key].dt.day, "sin", "day_of_week")
-    df[prefix + "_day_of_week_cos"] = cyclical(df[key].dt.day, "cos", "day_of_week")
+            df[prefix + "_month_" + f] = cyclical(df[key].dt.month, f, "month")
+            df[prefix + "_day_" + f] = cyclical(df[key].dt.day, f, "day")
+            df[prefix + "_day_of_week_" + f] = cyclical(df[key].dt.dayofweek, f, "day_of_week")
+            df[prefix + "_hour_" + f] = cyclical(df[key].dt.hour, f, "hour")
+            df[prefix + "_minutes_" + f] = cyclical(df[key].dt.minutes, f, "minute")
+            # df[prefix + "_minutes_" + f] = cyclical(df[key].dt.hour * 60 + df[key].dt.minute, f, "day_minute")
 
-    df[prefix + "_minutes_sin"] = cyclical(df[key].dt.hour * 60 + df[key].dt.minute, "sin", "minutes")
-    df[prefix + "_minutes_cos"] = cyclical(df[key].dt.hour * 60 + df[key].dt.minute, "cos", "minutes")
+    else:
 
+        df[prefix + "_month"] = df[key].dt.month.astype("uint8")
+        df[prefix + "_day"] = df[key].dt.day.astype("uint8")
+        df[prefix + "_day_of_week"] = df[key].dt.dayofweek.astype("uint8")
+        df[prefix + "_hour"] = df[key].dt.hour.astype("uint8")
+        df[prefix + "_minutes"] = df[key].dt.minute.astype("uint8")
+        # df[prefix + "_minutes"] = df[key].dt.hour * 60 + df[key].dt.minute
+
+
+def onehot():
+
+    pass
+
+
+def gaussian():
+
+    pass
 
 def preprocess():
+
+    start = time.time()
+
+    path = os.path.join("data", "preprocessed", "{}.csv".format(arg()))
+
+    if os.path.exists(path):
+
+        print("Loading {}...".format(path), end="")
+
+        df =  pd.read_csv(path)
+
+        print(" DONE ({:.2f}s)".format(time.time() - start))
+
+        return df
+
+    print("Preprocessing to {}...".format(path), end="")
 
     # Set dtypes for already encoded variables to save space
     dtype = ['characteristic_B', 'characteristic_C', 'characteristic_D', 'characteristic_E', 'characteristic_G',
@@ -48,15 +123,21 @@ def preprocess():
 
     dtype = {key: "uint8" for key in dtype}
 
-    path = os.path.join("D:", "data", "dscm.csv")
+    # Handle mixed DtypeWarning
+    dtype["headcode"] = str
+    dtype["sleepers"] = str
+    dtype["branding"] = str
 
-    df = pd.read_csv(path, index_col=0, parse_dates=["departure_time", "arrival_time", "ata", "atd"], dtype=dtype)
+    df = pd.read_csv(os.path.join("data", "dscm.csv"), index_col=0, parse_dates=["departure_time", "arrival_time", "ata", "atd"], dtype=dtype)
 
-    # Create origin time columns
+    # Drop useless fields
+    df = df.drop(["id", "transaction_type", "runs_to", "runs_from", "identity", "headcode", "service_code",
+                  "stp_indicator", "timetable_code", "atd", "sleepers", "reservations", "branding", "origin",
+                  "destination", "tiploc_x", "tiploc_y"], axis=1)
+
+    # Create origin and destination time columns
     datetime(df, "departure_time")
-
-    # Create departure time columns
-    datetime(df, "departure_time")
+    datetime(df, "arrival_time")
 
     # Create delay variables
     df["delay"] = (df["ata"] - df["arrival_time"]).map(lambda x: x.total_seconds()) / 60.0
@@ -65,34 +146,36 @@ def preprocess():
 
     df = df.drop(["departure_time", "arrival_time", "ata"], axis=1)  # All useful data has been extracted.
 
-    # Useless fields
-    df = df.drop(
-        ["id", "transaction_type", "runs_to", "runs_from", "identity", "headcode", "service_code", "stp_indicator",
-         "timetable_code", "atd"], axis=1)
-
-    # print(df["stp_indicator"].value_counts())   # Might be worth one-hot. Are alterations more likely to be bad?
-
-    df = df.drop(["sleepers", "reservations", "branding"], axis=1)
+    # This should really be all objects.
 
     encodes = ["status", "category", "power_type", "timing_load", "ATOC_code", "seating", "origin_stanox_area",
                "destination_stanox_area"]
 
-    df = pd.get_dummies(df, prefix=encodes, columns=encodes)
-    df["delayed"] = df["delay"] > 5     # Delays are legally only more than 5 minutes
+    if args["onehot"]: # One-hot encode categorical variables
 
-    df = df[df["delay"] > -120]         # Filter out ridiculous values caused by day mismatch (yet to be debugged)
+        df = pd.get_dummies(df, prefix=encodes, columns=encodes)
+
+    else:   # Still need to convert strings to categorical
+
+        for e in encodes:
+
+            df[e] = df[e].astype("category").cat.codes
+
+    if args["gaussian"]: # Convert all features to Gaussian: zero mean and unit variance.
+
+        df = pd.DataFrame(scale(df), columns=df.columns)
+
+
+    df.to_csv(path, index=False)
+
+    print(" DONE ({:.2f}s)".format(time.time() - start))
 
     return df
 
-
 if __name__ == "__main__":
-
-    start = time.time()
-
-    print("Preprocessing DataFrame...", end="")
 
     x = preprocess()
 
-    print(" DONE ({.:2f}s)".format(time.time() - start), end="\n\n")
-
     print(x.head())
+
+    print(x.info())
