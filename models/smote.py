@@ -7,48 +7,22 @@ import imblearn.pipeline.Pipeline as IPipeline
 import pandas as pd
 import numpy as np
 
-# import matplotlib.pyplot as plt
-# from numpy import where
-#
-# # define dataset
-# X, y = make_classification(n_samples=10000, n_features=2, n_redundant=0, n_clusters_per_class=1, weights=[0.99], flip_y=0, random_state=1)
-#
-# # summarize class distribution
-# counter = Counter(y)
-# print(counter)
-#
-# # define pipeline
-# over = SMOTE(sampling_strategy=0.1)
-# under = RandomUnderSampler(sampling_strategy=0.5)
-# steps = [('o', over), ('u', under)]
-# pipeline = Pipeline(steps=steps)
-#
-# # transform the dataset
-# X, y = pipeline.fit_resample(X, y)
-#
-# # summarize the new class distribution
-# counter = Counter(y)
-# print(counter)
-#
-# # scatter plot of examples by class label
-# for label, _ in counter.items():
-#     row_ix = where(y == label)[0]
-#     plt.scatter(X[row_ix, 0], X[row_ix, 1], label=str(label))
-#
-# plt.legend()
-# plt.show()
 
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import cross_val_score, train_test_split
 from sklearn.linear_model import LogisticRegression
 
-class CyclicalEncoder(BaseEstimator, TransformerMixin):
-    """Convert datetime columns to their cyclical representation"""
+
+class DatetimeEncoder(BaseEstimator, TransformerMixin):
+
+    def __init__(self, cyclical=False):
+
+        self.cyclical = cyclical
 
     @staticmethod
-    def cyclical(column):
+    def encode(column):
 
         _ = 2 * np.pi * column / np.max(column)
 
@@ -60,21 +34,29 @@ class CyclicalEncoder(BaseEstimator, TransformerMixin):
 
     def transform(self, X, y=None):
 
-        columns = X.select_dtypes("datetime").columns
+        columns = X.select_dtypes("datetime").columns   # [arrival_time, departure_time]
 
         for column in columns:
 
-            for period in ["month", "day", "dayofweek", "hour", "minute"]:
+            for period in ["dayofyear", "month", "day", "dayofweek", "hour", "minute"]:
 
                 key = "{}_{}".format(column, period)
 
-                X[[key + "_sin", key + "_cos"]] = X[column].dt[period].map(CyclicalEncoder.cyclical)
+                if self.cyclical:
 
-            X = X.drop(column, axis=1)
+                    X[[key + "_sin", key + "_cos"]] = X[column].dt[period].map(DatetimeEncoder.encode)
+
+                else:
+
+                    X[key] = X[column].dt[period].astype("uint8")
+
+        X = X.drop(columns, axis=1)
 
         return X
 
-class DatetimeEncoder(BaseEstimator, TransformerMixin):
+# Might need a custom list encoder.
+
+class ListOneHotEncoder(BaseEstimator, TransformerMixin):
 
     def fit(self, X, y=None):
 
@@ -82,46 +64,14 @@ class DatetimeEncoder(BaseEstimator, TransformerMixin):
 
     def transform(self, X, y=None):
 
-        columns = X.select_dtypes("datetime").columns
-
-        for column in columns:
-
-            for period in ["month", "day", "dayofweek", "hour", "minute"]:
-
-                key = "{}_{}".format(column, period)
-
-                X[key] = X[column].dt[period].astype("uint8")
-
-            X = X.drop(column, axis=1)
-
         return X
 
 
-# class DelayEncoder(BaseEstimator, TransformerMixin):
-#
-#     def __init__(self):
-#
-#         pass
-#
-#     def fit(self, X, y=None):
-#
-#         return self
-#
-#     def transform(self, X, y=None):
-#
-#         X["delay"] = (X["ata"] - X["arrival_time"]).map(lambda x: x.total_seconds()) / 60.0
-#         X["delayed"] = X["delay"] > 5  # Delays are legally only more than 5 minutes
-#
-#         X = X[X["delay"] > -120]  # Filter out ridiculous values caused by day mismatch (yet to be debugged)
-#
-#         return X.drop(["departure_time", "arrival_time", "ata"], axis=1)
+# So we probably still want our split.
+X, Y = [], []
 
-
-
-
-
-# add your data here
-X_train, Y_train = [], []
+#
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state=0)
 
 # Resample pipeline
 i_pipeline = IPipeline([
@@ -131,15 +81,17 @@ i_pipeline = IPipeline([
 
 X_train, Y_train = i_pipeline.fit_resample(X_train, Y_train)
 
+# Use StandardScaler(with_mean=False) for sparse matrices.
+
 # Training pipeline
 pipeline = Pipeline([
     ('scaler', StandardScaler()),
     ('onehot', OneHotEncoder()),    # One-hot encode categorical variables
-    ("cylical", CyclicalEncoder()), # Cyclically encode datetime
+    ("cylical", DatetimeEncoder(cyclical=False)), # Cyclically encode datetime
     ('clf', LogisticRegression())
 ])
 
-# 3-fold cross validation on the pipeline
+# k-fold cross validation on the pipeline
 scores = cross_val_score(pipeline, X_train, Y_train, cv=3, scoring='f1_micro')
 
 # pipeline.fit(X_train,y_train)

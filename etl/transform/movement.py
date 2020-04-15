@@ -1,8 +1,10 @@
 import os
 import time
-from lxml import etree
 import csv
 
+import pandas as pd
+
+from lxml import etree
 
 def parse_time(string, date):
     """
@@ -19,14 +21,11 @@ def parse_time(string, date):
 
     return date + " " + string
 
-# Some have both arrival and departure times. Arrival would always come before departure.
-# So we might actually have a problem.
-# There's an idea: break it into two separate movements.
-
 
 def parse(ts, date):
     """
     Parse Darwin Forecast ElementTrees. Some TS elements contain multiple arr/dep/pass children, so return a list.
+
     :param ts: a Darwin Forecast ElementTree
     :param date: the date the message was sent
     :return: a movement dictionary
@@ -44,6 +43,7 @@ def parse(ts, date):
 
                     movement = {
                         "uid": ts.attrib["uid"],
+                        "ssd": ts.attrib["ssd"],
                         "tiploc": child.attrib["tpl"],
                         "at": parse_time(grandchild.attrib["at"], date)
                     }
@@ -68,14 +68,19 @@ def parse(ts, date):
 
     return ts.attrib["ssd"], movements
 
-def transform(start="2018-04-01", end="2019-03-31"):
+# Maybe I can't know for sure? No. That is simply unacceptable.
+
+def transform(start="2018-04-01", end="2019-04-01"):
     """
     Convert each day's XML messages into a CSV. Disregard trains that started before start and after end.
     If a train runs between two days, the service start date (ssd) is the file to which it is saved.
+
+    Include the start but exclude the end
+
     """
 
-    in_dir = os.path.join("E:", "archive", "darwin")
-    out_dir = os.path.join("E:", "data", "darwinII")
+    in_dir = os.path.join("archive", "darwin")
+    out_dir = os.path.join("data", "darwinII")
 
     if not os.path.exists(out_dir):
 
@@ -90,16 +95,23 @@ def transform(start="2018-04-01", end="2019-03-31"):
         in_path = os.path.join(in_dir, file)
         out_path = os.path.join(out_dir, date) + ".csv"
 
-        if date < start or date > end or os.path.exists(out_path):
+        # if date < start or date > end or os.path.exists(out_path):
+        #
+        #     print("Skipping {}...".format(in_path))
+        #
+        #     continue
 
-            print("Skipping {}...".format(in_path))
+        # files["today"] = open(out_path, "w", newline="")
+        #
+        # writers["today"] = csv.DictWriter(files["today"], ["uid", "ssd", "tiploc", "at", "type"])
+        # writers["today"].writeheader()
 
-            continue
+        days = {
+            "yesterday": None,
+            "today": []
+        }
 
-        files["today"] = open(out_path, "w", newline="")
-
-        writers["today"] = csv.DictWriter(files["today"], ["uid", "ssd", "tiploc", "at", "type"])
-        writers["today"].writeheader()
+        # We shouldn't have that timestamp.
 
         cur = time.time()
 
@@ -117,19 +129,25 @@ def transform(start="2018-04-01", end="2019-03-31"):
 
                         ts = root.attrib['ts'][:10]
 
-                        print(ts)
-
                         try:
 
-                            ssd, movements = parse(root[0][0], ts)
+                            ssd, movements = parse(root[0][0], date)
 
-                            if start < ssd < date:  # the service started yesterday, after the start date
+                            if start <= ssd < end:
 
-                                writers["yesterday"].writerows(movements)
+                                if ssd < ts:  # the service started yesterday, after the start date
 
-                            elif ssd < end:         # the service started before the end date
+                                    print(ssd, ts, root.attrib["ts"], movements)
 
-                                writers["today"].writerows(movements)
+                                    days["yesterday"] += movements  # Shouldn't be possible on first iteration.
+
+                                else:         # the service started before the end date
+
+                                    days["today"] += movements
+
+                            else:
+
+                                pass
 
                         except ValueError:  #
 
@@ -139,16 +157,28 @@ def transform(start="2018-04-01", end="2019-03-31"):
 
                     pass
 
-        if files["yesterday"] is not None:
+        if days["yesterday"] is not None:
 
-            files["yesterday"].close()
+            print(len(days["yesterday"]))
+            print(len(days["today"]))
 
-        files["yesterday"] = writers["today"]
-        writers["yesterday"] = writers["today"]
+            df = pd.DataFrame(days["yesterday"])
+            df.to_csv("yesterday.csv")
+
+            print(df.head())
+
+            df = df.drop_duplicates(ignore_index=True)
+            df = df.sort_values(["uid", "at"])
+
+            for uid, train in df.groupby("uid"):
+
+                print(train)
+
+            df.to_csv("yesterday.csv")
+
+        days["yesterday"] = days["today"].copy()
 
         print(" DONE ({:.2f}s)".format(time.time() - cur))
-
-    files["yesterday"].close()
 
 
 if __name__ == "__main__":
