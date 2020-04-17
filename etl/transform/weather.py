@@ -7,12 +7,12 @@ from etl.extract import generate_years
 
 def knots_to_mph(wind):
 
-    return wind * 1.15078
+    return int(wind * 1.15078)
 
 
 def ms_to_mph(wind):
 
-    return wind * 2.23694
+    return int(wind * 2.23694)
 
 
 def degrees_to_direction(degrees):
@@ -406,7 +406,7 @@ def transform(start, end):
         df = df.rename({"wind_speed_mph": "wind_speed", "q10mnt_mxgst_spd": "wind_gust"}, axis=1)
 
         # Fill new temperature column and rename
-        df["air_temperature"] = df["air_temperature"].fillna(df["air_temperature"].mean())
+        df["air_temperature"] = df["air_temperature"].fillna(df["air_temperature"].mean()).astype("uint8")
         df = df.rename({"air_temperature": "temperature"}, axis=1)
 
         # Fill new humidity column and rename
@@ -419,6 +419,7 @@ def transform(start, end):
         # Create an empty column for the weather type
         df["weather_type"] = ""
 
+        # Ah, right. This is why. Fuck the weather for now. Let's do this.
         # Fill observation codes with the most common (presumably some form of rain) and convert to int
         df["prst_wx_id"] = df["prst_wx_id"].fillna(df["prst_wx_id"].median()).astype(int)
 

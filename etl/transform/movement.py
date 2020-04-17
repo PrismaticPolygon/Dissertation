@@ -2,25 +2,40 @@ import os
 import time
 import csv
 
-import pandas as pd
-
 from lxml import etree
 
-def parse_time(string, date):
+from etl.extract import dates
+
+def parse_time(string, ssd, date):
     """
-    Convert a Darwin time to a datetime by adding the date the file was written and the
+    Convert a Darwin time to a datetime by adding the date the file was written and the.
+
+    It is never possible that we receive a message before the actual event. But Darwin messages can be delayed.
+
+    We don't have to consider the case that ssd == timestamp BUT it should be that timestamp = ssd + 1.
 
     :param string: a time. Either HH:MM or HH:MM:SS
     :param date: a d
     :return:
     """
 
-    if len(string) == 5:    # HH:MM.
+    if len(string) == 5:    # String is HH:MM format
 
         string += ":00"
 
-    return date + " " + string
+    if ssd == date:     # Timestamp and SSD match up
 
+        return ssd + " " + string
+
+    if ssd < date:      # Timestamp is a day ahead
+
+        if string > "12:00:00":  # It's late. Assume there's been an error. Use the SSD
+
+            return ssd + " " + string
+
+        else:                    # It's early morning, and so likely the day after
+
+            return date + " " + string
 
 def parse(ts, date):
     """
@@ -31,21 +46,23 @@ def parse(ts, date):
     :return: a movement dictionary
     """
 
+    uid = ts.attrib["uid"]
+    ssd = ts.attrib["ssd"]
     movements = []
 
     for child in ts:  # Either PlatformData, TSTimeData, or TSLocation
 
-        if child.tag == "{http://www.thalesgroup.com/rtti/PushPort/Forecasts/v2}Location":  # If the CHILD tag has these things, then we're interested.
+        if child.tag == "{http://www.thalesgroup.com/rtti/PushPort/Forecasts/v2}Location":  # If the CHILD tag has this, we're interested.
 
             for grandchild in child:
 
                 if "at" in grandchild.attrib:
 
                     movement = {
-                        "uid": ts.attrib["uid"],
-                        "ssd": ts.attrib["ssd"],
+                        "uid": uid,
+                        "ssd": ssd,
                         "tiploc": child.attrib["tpl"],
-                        "at": parse_time(grandchild.attrib["at"], date)
+                        "at": parse_time(grandchild.attrib["at"], ssd, date)
                     }
 
                     if grandchild.tag == "{http://www.thalesgroup.com/rtti/PushPort/Forecasts/v2}arr":
@@ -66,52 +83,38 @@ def parse(ts, date):
 
         raise ValueError("No movements")
 
-    return ts.attrib["ssd"], movements
-
-# Maybe I can't know for sure? No. That is simply unacceptable.
+    return ssd, movements
 
 def transform(start="2018-04-01", end="2019-04-01"):
     """
     Convert each day's XML messages into a CSV. Disregard trains that started before start and after end.
     If a train runs between two days, the service start date (ssd) is the file to which it is saved.
 
-    Include the start but exclude the end
+    Include the start but exclude the end.
 
     """
 
     in_dir = os.path.join("archive", "darwin")
-    out_dir = os.path.join("data", "darwinII")
+    out_dir = os.path.join("data", "darwin")
 
     if not os.path.exists(out_dir):
 
         os.mkdir(out_dir)
 
-    files = {"yesterday": None, "today": None}
-    writers = {"yesterday": None, "today": None}
+    files = dict()
+    writers = dict()
 
     for file in os.listdir(in_dir):
 
         date = file[:10]
         in_path = os.path.join(in_dir, file)
-        out_path = os.path.join(out_dir, date) + ".csv"
+        out_path = os.path.join(out_dir, date + ".csv")
 
-        # if date < start or date > end or os.path.exists(out_path):
-        #
-        #     print("Skipping {}...".format(in_path))
-        #
-        #     continue
+        if date < start or date > end:
 
-        # files["today"] = open(out_path, "w", newline="")
-        #
-        # writers["today"] = csv.DictWriter(files["today"], ["uid", "ssd", "tiploc", "at", "type"])
-        # writers["today"].writeheader()
+            print("Skipping {}...".format(in_path))
 
-        days = {
-            "yesterday": None,
-            "today": []
-        }
-
-        # We shouldn't have that timestamp.
+            continue
 
         cur = time.time()
 
@@ -131,25 +134,28 @@ def transform(start="2018-04-01", end="2019-04-01"):
 
                         try:
 
-                            ssd, movements = parse(root[0][0], date)
+                            ssd, movements = parse(root[0][0], ts)
 
-                            if start <= ssd < end:
+                            if start <= ssd < end:  # The ssd is in range
 
-                                if ssd < ts:  # the service started yesterday, after the start date
+                                if ssd not in files:
 
-                                    print(ssd, ts, root.attrib["ts"], movements)
+                                    files[ssd] = open(os.path.join(out_dir, ssd + ".csv"), "w", newline="")
 
-                                    days["yesterday"] += movements  # Shouldn't be possible on first iteration.
+                                    writers[ssd] = csv.DictWriter(files[ssd], ["uid", "ssd", "tiploc", "at", "type"])
+                                    writers[ssd].writeheader()
 
-                                else:         # the service started before the end date
-
-                                    days["today"] += movements
+                                writers[ssd].writerows(movements)
 
                             else:
 
                                 pass
 
-                        except ValueError:  #
+                        except ValueError as e:  # Why aren't there any key errors?
+
+                            if str(e) != "No movements":
+
+                                print(e)
 
                             pass
 
@@ -157,29 +163,11 @@ def transform(start="2018-04-01", end="2019-04-01"):
 
                     pass
 
-        if days["yesterday"] is not None:
-
-            print(len(days["yesterday"]))
-            print(len(days["today"]))
-
-            df = pd.DataFrame(days["yesterday"])
-            df.to_csv("yesterday.csv")
-
-            print(df.head())
-
-            df = df.drop_duplicates(ignore_index=True)
-            df = df.sort_values(["uid", "at"])
-
-            for uid, train in df.groupby("uid"):
-
-                print(train)
-
-            df.to_csv("yesterday.csv")
-
-        days["yesterday"] = days["today"].copy()
-
         print(" DONE ({:.2f}s)".format(time.time() - cur))
 
+    for file in files.values():
+
+        file.close()
 
 if __name__ == "__main__":
 

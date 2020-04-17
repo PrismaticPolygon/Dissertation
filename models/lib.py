@@ -3,7 +3,10 @@ from sklearn.experimental import enable_hist_gradient_boosting  # to use HistGra
 # Classifiers
 from sklearn.svm import LinearSVC
 from sklearn.linear_model import LogisticRegression, SGDClassifier, RidgeClassifier
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, HistGradientBoostingClassifier
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, HistGradientBoostingClassifier, AdaBoostClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.neural_network import MLPClassifier
 
 # Regressors
 from sklearn.svm import LinearSVR
@@ -22,13 +25,18 @@ from sklearn.model_selection import train_test_split
 from models.preprocess import *
 
 classifiers = [
-    # LogisticRegression(),
-    # RidgeClassifier(),
-    # SGDClassifier(),
+    GaussianNB(),
+    LogisticRegression(),
+    RidgeClassifier(),
+    SGDClassifier(),
     RandomForestClassifier(),
-    # GradientBoostingClassifier(),
-    # HistGradientBoostingClassifier(),
-    # LinearSVC()
+    GradientBoostingClassifier(),
+    HistGradientBoostingClassifier(),
+    DecisionTreeClassifier(),
+    GaussianNB(),
+    MLPClassifier(),
+    AdaBoostClassifier(),
+    LinearSVC()
 ]
 
 regressors = [

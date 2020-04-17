@@ -56,7 +56,7 @@ def one_hot(name, string):
             "U ": 0,  # Stops to take up passengers
             "-U": 0,  # Stops to attach vehicles
             "W ": 0,  # Stops for watering of coaches
-            "X ": 0  # Passes another train at crossing point on single line
+            "X ": 0   # Passes another train at crossing point on single line
         }
 
     elif name == "catering":
@@ -69,7 +69,7 @@ def one_hot(name, string):
             "H": 0,  # Service of hot food available
             "M": 0,  # Meal included for first class passengers
             "R": 0,  # Restaurant
-            "T": 0  # Trolley service
+            "T": 0   # Trolley service
         }
 
     elif name == "characteristic":
@@ -236,7 +236,7 @@ def parse_lo(line, bs, date):
 
     bs["length"] += 1
     bs["origin"] = lo["location"]
-    bs["departure_time"] = lo["std"]
+    bs["std"] = lo["std"]
 
     return lo
 
@@ -318,7 +318,7 @@ def parse_lt(line, bs, date):
     #
     #     lt["sta"] = (datetime.strptime(lt["sta"], fmt) + timedelta(days=1)).strftime(fmt)
 
-    bs["arrival_time"] = lt["sta"]
+    bs["sta"] = lt["sta"]
 
     return lt
 
