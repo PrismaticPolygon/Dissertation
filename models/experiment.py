@@ -37,6 +37,10 @@ from imblearn.pipeline import Pipeline as IPipeline
 
 class DatetimeEncoder(BaseEstimator, TransformerMixin):
 
+    def get_feature_names(self, input_features=None):
+
+        return []
+
     def __init__(self, cyclical=False):
 
         self.cyclical = cyclical
@@ -77,21 +81,6 @@ class DatetimeEncoder(BaseEstimator, TransformerMixin):
                 X = self.encode(X, column, period)
 
         return X.drop(columns, axis=1)
-
-
-classifiers = [
-    LogisticRegression(),
-    RidgeClassifier(),
-    SGDClassifier(),
-    LinearSVC(),
-    GaussianNB(),
-    DecisionTreeClassifier(),
-    MLPClassifier(),
-    AdaBoostClassifier(),
-    RandomForestClassifier(),
-    GradientBoostingClassifier(),
-    HistGradientBoostingClassifier(),
-]
 
 def train(model, path, X_train, Y_train):
 
@@ -209,6 +198,18 @@ def run():
     print("{}, delayed: {}, not delayed: {}\n".format(X.shape, Y.sum(), len(Y) - Y.sum()))
 
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state=1)
+
+    classifiers = [
+        # LogisticRegression(),
+        # RidgeClassifier(),
+        # SGDClassifier(),
+        # LinearSVC(),
+        # DecisionTreeClassifier(),
+        # MLPClassifier(),
+        # AdaBoostClassifier(),
+        # GradientBoostingClassifier(),
+        RandomForestClassifier(n_jobs=-1),
+    ]
 
     for clf in classifiers:
 
