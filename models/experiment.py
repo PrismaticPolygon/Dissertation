@@ -6,6 +6,9 @@ import numpy as np
 
 from sklearn.experimental import enable_hist_gradient_boosting  # to use HistGradientBoosting models
 
+# Metrics
+from sklearn.metrics import classification_report, recall_score, average_precision_score
+
 # Classifiers
 from sklearn.svm import LinearSVC
 from sklearn.linear_model import LogisticRegression, SGDClassifier, RidgeClassifier
@@ -77,18 +80,17 @@ class DatetimeEncoder(BaseEstimator, TransformerMixin):
 
 
 classifiers = [
-    GaussianNB(),
     LogisticRegression(),
     RidgeClassifier(),
     SGDClassifier(),
+    LinearSVC(),
+    GaussianNB(),
+    DecisionTreeClassifier(),
+    MLPClassifier(),
+    AdaBoostClassifier(),
     RandomForestClassifier(),
     GradientBoostingClassifier(),
     HistGradientBoostingClassifier(),
-    DecisionTreeClassifier(),
-    GaussianNB(),
-    MLPClassifier(),
-    AdaBoostClassifier(),
-    LinearSVC()
 ]
 
 def train(model, path, X_train, Y_train):
@@ -110,6 +112,10 @@ def train(model, path, X_train, Y_train):
             dump(model, file)
 
     except ValueError as e: # Catch bad encoding errors
+
+        print(e)
+
+    except TypeError as e:  # Catch sparse matrix errors
 
         print(e)
 
@@ -136,10 +142,18 @@ def run():
         "origin_stanox_area": "category"
     })
 
+    start = time.time()
+
+    print("Loading data...", end="")
+
     df = pd.read_csv("data/dscm_w.csv",
                      index_col=["uid"],
                      parse_dates=["std", "sta", "atd", "ata"],
                      dtype=dtype)
+
+    print(" DONE ({:.2f}s)".format(time.time() - start), end="\n\n")
+
+    print(df.info())
 
     path = os.path.join("models", "select")
 
@@ -148,7 +162,7 @@ def run():
         os.mkdir(path)
 
     Y = df["delayed"]
-    X = df.drop(["delay", "delayed", "atd", "ata"], axis=1)
+    X = df.drop(["delay", "delayed", "atd", "ata", "origin", "destination"], axis=1)
 
     categorical_features = X.select_dtypes(include="category").columns.values
     categorical_transformer = Pipeline([
@@ -172,18 +186,55 @@ def run():
     ])
 
     resampler = IPipeline([
-        ('over', SMOTE(sampling_strategy=0.1, random_state=1)),
-        ('under', RandomUnderSampler(sampling_strategy=0.5, random_state=1)),
+        # ('over', SMOTE(sampling_strategy=0.2, random_state=1)),                 # Increase minority to 20% of majority
+        ('under', RandomUnderSampler(sampling_strategy=1.0, random_state=1)),   # Reduce majority to 50% of minority
     ])
 
+    start = time.time()
+
+    print("\nPreprocessing data...", end="")
+
     X = preprocessor.fit_transform(X, Y)
+
+    print(" DONE ({:.2f}s)".format(time.time() - start), end="\n\n")
+
+    print(X.shape)
+
+    print("\nResampling data...", end="")
+
     X, Y = resampler.fit_resample(X, Y)
 
-    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state=0)
+    print(" DONE ({:.2f}s)".format(time.time() - start), end="\n\n")
+
+    print("{}, delayed: {}, not delayed: {}\n".format(X.shape, Y.sum(), len(Y) - Y.sum()))
+
+    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state=1)
 
     for clf in classifiers:
 
         train(clf, path, X_train, Y_train)
+
+        metrics = [
+            recall_score,
+            average_precision_score,
+        ]
+
+        Y_pred = clf.predict(X_test)
+
+        results = {
+            "name": clf.__class__.__name__,
+            "score": clf.score(X_test, Y_test)
+        }
+
+        for m in metrics:
+
+            results[m.__name__] = m(Y_test.values, Y_pred)
+
+        print(clf.__class__.__name__ + "\n")
+        print(results)
+        print(classification_report(Y_test.values, Y_pred, target_names=["not delayed", "delayed"]))
+
+
 
 if __name__ == "__main__":
 

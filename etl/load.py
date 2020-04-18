@@ -18,7 +18,7 @@ def load():
     location = pd.read_csv(os.path.join("data", "location.csv"), index_col="tiploc", dtype={"src_id": int}, usecols=["tiploc", "stanox_area"])
     # weather = pd.read_csv(os.path.join("data", "weather.csv"), parse_dates=[1], dtype={"src_id": int})
 
-    for file in os.listdir(os.path.join(root, "darwinII")):
+    for file in os.listdir(os.path.join(root, "darwin")):
 
         date = file[:10]
 

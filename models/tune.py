@@ -23,8 +23,6 @@ clf = RandomForestClassifier(
 
 def plot(df, model, print_ranking=True):
 
-    # It's clear that several characteristics are useless. But why the size mismatch? Because they have a different number of columns
-
     importances = model.feature_importances_
     std = np.std([tree.feature_importances_ for tree in model.estimators_], axis=0)
     indices = np.argsort(importances)[::-1]
