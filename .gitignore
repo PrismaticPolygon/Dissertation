@@ -1,5 +1,6 @@
 .idea
-archive/*/*
+archive
+venv
 *.csv
 __pycache__
 ~$*.docx

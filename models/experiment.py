@@ -9,9 +9,18 @@ from sklearn.experimental import enable_hist_gradient_boosting  # to use HistGra
 # Metrics
 from sklearn.metrics import classification_report, recall_score, average_precision_score
 
+# Classifiers
+from sklearn.svm import LinearSVC
+from sklearn.linear_model import LogisticRegression, SGDClassifier, RidgeClassifier
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, AdaBoostClassifier, \
+    HistGradientBoostingClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.neural_network import MLPClassifier
+
 # Utils
 from sklearn.model_selection import train_test_split
-from joblib import load
+from joblib import dump
 
 # Preprocessing
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -27,6 +36,10 @@ from imblearn.pipeline import Pipeline as IPipeline
 
 
 class DatetimeEncoder(BaseEstimator, TransformerMixin):
+
+    def get_feature_names(self, input_features=None):
+
+        return []
 
     def __init__(self, cyclical=False):
 
@@ -69,61 +82,31 @@ class DatetimeEncoder(BaseEstimator, TransformerMixin):
 
         return X.drop(columns, axis=1)
 
-def raw(y_actual, y_hat):
+def train(model, path, X_train, Y_train):
 
-    TP = 0
-    FP = 0
-    TN = 0
-    FN = 0
+    print("Fitting {}... ".format(model.__class__.__name__), end="")
 
-    for i in range(len(y_hat)):
+    start = time.time()
 
-        if y_actual[i] == y_hat[i] == 1:
+    try:
 
-            TP += 1
+        model.fit(X_train, Y_train)
 
-        if y_hat[i] == 1 and y_actual[i] != y_hat[i]:
+        print("DONE ({:.2f}s)".format(time.time() - start))
 
-            FP += 1
+        model_path = os.path.join(path, model.__class__.__name__ + ".pickle")
 
-        if y_actual[i] == y_hat[i] == 0:
+        with open(model_path, "wb") as file:
 
-            TN += 1
+            dump(model, file)
 
-        if y_hat[i] == 0 and y_actual[i] != y_hat[i]:
+    except ValueError as e: # Catch bad encoding errors
 
-            FN += 1
+        print(e)
 
-    return {"TP": TP, "FP": FP, "TN": TN, "FN": FN}
+    except TypeError as e:  # Catch sparse matrix errors
 
-
-
-def classification(model, X_test, Y_test):
-
-    metrics = [
-        recall_score,
-        average_precision_score,
-    ]
-
-    Y_pred = model.predict(X_test)
-
-    results = {
-        "name": model.__class__.__name__,
-        "score": model.score(X_test, Y_test)
-    }
-
-    results.update(raw(Y_test.values, Y_pred))
-
-    for m in metrics:
-
-        results[m.__name__] = m(Y_test.values, Y_pred)
-
-    print(model.__class__.__name__ + "\n")
-    print(results)
-    print(classification_report(Y_test.values, Y_pred, target_names=["not delayed", "delayed"]))
-
-    return results
-
+        print(e)
 
 def run():
 
@@ -164,6 +147,7 @@ def run():
     path = os.path.join("models", "select")
 
     if not os.path.exists(path):
+
         os.mkdir(path)
 
     Y = df["delayed"]
@@ -192,7 +176,7 @@ def run():
 
     resampler = IPipeline([
         # ('over', SMOTE(sampling_strategy=0.2, random_state=1)),                 # Increase minority to 20% of majority
-        ('under', RandomUnderSampler(sampling_strategy=1.0, random_state=1)),  # Reduce majority to 50% of minority
+        ('under', RandomUnderSampler(sampling_strategy=1.0, random_state=1)),   # Reduce majority to 50% of minority
     ])
 
     start = time.time()
@@ -215,16 +199,44 @@ def run():
 
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state=1)
 
-    root = os.path.join("models", "tune")
+    classifiers = [
+        # LogisticRegression(),
+        # RidgeClassifier(),
+        # SGDClassifier(),
+        # LinearSVC(),
+        # DecisionTreeClassifier(),
+        # MLPClassifier(),
+        # AdaBoostClassifier(),
+        # GradientBoostingClassifier(),
+        RandomForestClassifier(n_jobs=-1),
+    ]
 
-    for file in os.listdir(root):
+    for clf in classifiers:
 
-        path = os.path.join(root, file)
-        model = load(path)
+        train(clf, path, X_train, Y_train)
 
-        classification(model, X_test, Y_test)
+        metrics = [
+            recall_score,
+            average_precision_score,
+        ]
 
-# I barely remember how this is supposed to work now! Yeah, let's start the LaTeX.
+        Y_pred = clf.predict(X_test)
+
+        results = {
+            "name": clf.__class__.__name__,
+            "score": clf.score(X_test, Y_test)
+        }
+
+        for m in metrics:
+
+            results[m.__name__] = m(Y_test.values, Y_pred)
+
+        print(clf.__class__.__name__ + "\n")
+        print(results)
+        print(classification_report(Y_test.values, Y_pred, target_names=["not delayed", "delayed"]))
+
+
+
 if __name__ == "__main__":
 
     run()
