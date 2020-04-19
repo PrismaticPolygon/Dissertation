@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.12)  14 MAR 2020 11:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.12)  19 APR 2020 09:25
 entering extended mode
 **./projectpaper.tex
 (projectpaper.tex
@@ -32,88 +32,433 @@ Package: harvard
  ("C:\Users\domwh\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ifthen.sty"
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 ))
+("C:\Users\domwh\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphicx.
+sty"
+Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Users\domwh\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\keyval.st
+y"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+("C:\Users\domwh\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphics.
+sty"
+Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Users\domwh\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\trig.sty"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+("C:\Users\domwh\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cfg\graph
+ics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+
+("C:\Users\domwh\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-def\pdfte
+x.def"
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen135
+\Gin@req@width=\dimen136
+)
+("C:\Users\domwh\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\multicol.sty
+"
+Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
+\c@tracingmulticols=\count175
+\mult@box=\box45
+\multicol@leftmargin=\dimen137
+\c@unbalance=\count176
+\c@collectmore=\count177
+\doublecol@number=\count178
+\multicoltolerance=\count179
+\multicolpretolerance=\count180
+\full@width=\dimen138
+\page@free=\dimen139
+\premulticols=\dimen140
+\postmulticols=\dimen141
+\multicolsep=\skip49
+\multicolbaselineskip=\skip50
+\partial@page=\box46
+\last@line=\box47
+\maxbalancingoverflow=\dimen142
+\mult@rightbox=\box48
+\mult@grightbox=\box49
+\mult@gfirstbox=\box50
+\mult@firstbox=\box51
+\@tempa=\box52
+\@tempa=\box53
+\@tempa=\box54
+\@tempa=\box55
+\@tempa=\box56
+\@tempa=\box57
+\@tempa=\box58
+\@tempa=\box59
+\@tempa=\box60
+\@tempa=\box61
+\@tempa=\box62
+\@tempa=\box63
+\@tempa=\box64
+\@tempa=\box65
+\@tempa=\box66
+\@tempa=\box67
+\@tempa=\box68
+\@tempa=\box69
+\@tempa=\box70
+\@tempa=\box71
+\@tempa=\box72
+\@tempa=\box73
+\@tempa=\box74
+\@tempa=\box75
+\@tempa=\box76
+\@tempa=\box77
+\@tempa=\box78
+\@tempa=\box79
+\@tempa=\box80
+\@tempa=\box81
+\@tempa=\box82
+\@tempa=\box83
+\@tempa=\box84
+\@tempa=\box85
+\@tempa=\box86
+\@tempa=\box87
+\@tempa=\box88
+\c@minrows=\count181
+\c@columnbadness=\count182
+\c@finalcolumnbadness=\count183
+\last@try=\dimen143
+\multicolovershoot=\dimen144
+\multicolundershoot=\dimen145
+\mult@nat@firstbox=\box89
+\colbreak@box=\box90
+\mc@col@check@num=\count184
+)
+("C:\Users\domwh\AppData\Local\Programs\MiKTeX 2.9\tex/latex/subfig\subfig.sty"
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+
+("C:\Users\domwh\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\caption.st
+y"
+Package: caption 2020/01/03 v3.4h Customizing captions (AR)
+
+("C:\Users\domwh\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\caption3.s
+ty"
+Package: caption3 2020/01/03 v1.8h caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 61.
+\captionmargin=\dimen146
+\captionmargin@=\dimen147
+\captionwidth=\dimen148
+\caption@tempdima=\dimen149
+\caption@indent=\dimen150
+\caption@parindent=\dimen151
+\caption@hangindent=\dimen152
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count185
+\c@continuedfloat=\count186
+)
+\c@KVtest=\count187
+\sf@farskip=\skip51
+\sf@captopadj=\dimen153
+\sf@capskip=\skip52
+\sf@nearskip=\skip53
+\c@subfigure=\count188
+\c@subfigure@save=\count189
+\c@lofdepth=\count190
+\c@subtable=\count191
+\c@subtable@save=\count192
+\c@lotdepth=\count193
+\sf@top=\skip54
+\sf@bottom=\skip55
+)
 ("C:\Users\domwh\AppData\Local\Programs\MiKTeX 2.9\tex/latex/l3backend\l3backen
 d-pdfmode.def"
 File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count175
-\l__pdf_internal_box=\box45
-)
-No file projectpaper.aux.
+\l__kernel_color_stack_int=\count194
+\l__pdf_internal_box=\box91
+) (projectpaper.aux)
 \openout1 = `projectpaper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 1
-7.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 2
+0.
+
 ("C:\Users\domwh\AppData\Local\Programs\MiKTeX 2.9\tex/latex/psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-
-LaTeX Warning: Reference `units' on page 1 undefined on input line 44.
-
-[1
+("C:\Users\domwh\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-p
+df.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count195
+\scratchdimen=\dimen154
+\scratchbox=\box92
+\nofMPsegments=\count196
+\nofMParguments=\count197
+\everyMPshowfont=\toks15
+\MPscratchCnt=\count198
+\MPscratchDim=\dimen155
+\MPnumerator=\count199
+\makeMPintoPDFobject=\count266
+\everyMPtoPDFconversion=\toks16
+)
+("C:\Users\domwh\AppData\Local\Programs\MiKTeX 2.9\tex/latex/epstopdf-pkg\epsto
+pdf-base.sty"
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 40.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 40.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 40.
+ [1
 
 {C:/Users/domwh/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 52.
+(Font)              <12> on input line 55.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 52.
+(Font)              <7> on input line 55.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 52.
+(Font)              <5> on input line 55.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 5
+5.
+
+("C:\Users\domwh\AppData\Local\Programs\MiKTeX 2.9\tex/latex/psnfss\ts1ptm.fd"
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+)
+
+LaTeX Warning: Citation 'nao_2008' on page 2 undefined on input line 55.
 
 
-LaTeX Warning: Citation 'budgen' on page 2 undefined on input line 59.
+LaTeX Warning: Citation 'harris_godward_1992' on page 2 undefined on input line
+ 57.
 
 
-LaTeX Warning: Citation 'euther' on page 2 undefined on input line 61.
+LaTeX Warning: Citation 'oneto_et_al_2016' on page 2 undefined on input line 61
+.
 
 
-LaTeX Warning: Citation 'futher' on page 2 undefined on input line 61.
+LaTeX Warning: Citation 'oneto_et_al_2016' on page 2 undefined on input line 63
+.
 
 
-LaTeX Warning: Citation 'futher' on page 2 undefined on input line 61.
-
-[2]
-
-LaTeX Warning: Reference `summary' on page 3 undefined on input line 83.
-
-No file projectpaper.bbl.
-[3] (projectpaper.aux)
-
-LaTeX Warning: There were undefined references.
+LaTeX Warning: Citation 'lessan_fu_wen_2019' on page 2 undefined on input line 
+63.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: Citation 'olsson_haugland_2004' on page 2 undefined on input lin
+e 67.
 
- ) 
+
+LaTeX Warning: Citation 'oneto_et_al_2016' on page 2 undefined on input line 67
+.
+
+
+LaTeX Warning: Citation 'berger_et_al_2011' on page 2 undefined on input line 6
+7.
+
+
+LaTeX Warning: Citation 'milinkovic_et_al_2013' on page 2 undefined on input li
+ne 67.
+
+
+Package multicol Warning: I moved some lines to the next page.
+(multicol)                Footnotes on page 2 might be wrong on input line 77.
+
+[2
+
+] [3]
+
+LaTeX Warning: Citation 'markovic_et_al_2015' on page 4 undefined on input line
+ 122.
+
+
+LaTeX Warning: Citation 'friedenthal_moore_steiner_2012' on page 4 undefined on
+ input line 126.
+
+
+LaTeX Warning: Citation 'oneto_et_al_2016' on page 4 undefined on input line 12
+6.
+
+
+LaTeX Warning: Citation 'frank_1966' on page 4 undefined on input line 128.
+
+
+LaTeX Warning: Citation 'petersen_1974' on page 4 undefined on input line 128.
+
+
+LaTeX Warning: Citation 'chen_harker_1990' on page 4 undefined on input line 12
+8.
+
+
+LaTeX Warning: Citation 'carey_kwiecinski_1994' on page 4 undefined on input li
+ne 128.
+
+
+LaTeX Warning: Citation 'berger_et_al_2011' on page 4 undefined on input line 1
+28.
+
+[4] [5] [6]
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 1
+62.
+
+("C:\Users\domwh\AppData\Local\Programs\MiKTeX 2.9\tex/latex/psnfss\ot1pcr.fd"
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+
+LaTeX Warning: Citation 'yaghini_et_al_2013' on page 7 undefined on input line 
+166.
+
+
+LaTeX Warning: Citation 'wang_zhang_2019' on page 7 undefined on input line 166
+.
+
+
+LaTeX Warning: Citation 'ponniah_2010' on page 7 undefined on input line 166.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--177
+[]\OT1/ptm/m/n/12 Twice a
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 180--180
+[]\OT1/ptm/m/n/12 Once a
+ []
+
+
+Underfull \hbox (badness 1577) in paragraph at lines 181--181
+\OT1/ptm/m/n/12 from the In-te-grated Train Plan-ning Sys-tem
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 181--181
+[]\OT1/ptm/m/n/12 Overnight
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 184--184
+[]\OT1/ptm/m/n/12 Once a
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 184--184
+\OT1/ptm/m/n/12 week on
+ []
+
+[7
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 218--218
+[]\OT1/ptm/m/n/12 EASTING,
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[8] [9] [10] [11]
+
+LaTeX Warning: Citation 'wang_zhang_2019' on page 12 undefined on input line 29
+6.
+
+
+LaTeX Warning: Citation 'wang_work_2015' on page 12 undefined on input line 296
+.
+
+[12]
+
+LaTeX Warning: Citation 'chawla_et_al_2002' on page 13 undefined on input line 
+323.
+
+[13
+
+]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 359.
+
+
+Underfull \hbox (badness 1127) in paragraph at lines 370--370
+[]\OT1/ptm/m/n/12 The min-i-mum num-ber of sam-ples re-
+ []
+
+
+Overfull \hbox (58.6216pt too wide) in paragraph at lines 380--385
+ [][] 
+ []
+
+<images/roc_auc.png, id=55, 642.4pt x 481.8pt>
+File: images/roc_auc.png Graphic file (type png)
+<use images/roc_auc.png>
+Package pdftex.def Info: images/roc_auc.png  used on input line 388.
+(pdftex.def)             Requested size: 461.13188pt x 345.85915pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[14]
+
+LaTeX Warning: Text page 15 contains only floats.
+
+[15 <./images/roc_auc.png (PNG copy)>] [16
+
+]
+Overfull \hbox (2.49312pt too wide) in paragraph at lines 419--420
+[]\OT1/ptm/m/n/12 The lin-ear mod-els per-formed poorly, as ex-pected. We an-ti
+c-i-pated ran-dom forests and gradient-
+ []
+
+
+Overfull \hbox (24.15717pt too wide) in paragraph at lines 431--432
+\OT1/ptm/m/n/12 lim-its. We had par-tic-u-lar trou-ble us-ing [][]\OT1/pcr/m/n/
+12 scikit-learn []\OT1/ptm/m/n/12 in con-junc-tion with [][]\OT1/pcr/m/n/12 imb
+alanced-learn[]\OT1/ptm/m/n/12 . 
+ []
+
+[17] [18
+
+] (projectpaper.bbl) (projectpaper.aux) ) 
 Here is how much of TeX's memory you used:
- 626 strings out of 481565
- 10006 string characters out of 2914159
- 241182 words of memory out of 3000000
- 15911 multiletter control sequences out of 15000+200000
- 546339 words of font info for 47 fonts, out of 3000000 for 9000
+ 2852 strings out of 481565
+ 46690 string characters out of 2914159
+ 290396 words of memory out of 3000000
+ 18072 multiletter control sequences out of 15000+200000
+ 553416 words of font info for 60 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 24i,8n,24p,614b,244s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc
-}<C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmb8a
-.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/ut
-mbi8a.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/tim
-es/utmr8a.pfb>
-Output written on projectpaper.pdf (3 pages, 51810 bytes).
+ 50i,17n,48p,1422b,367s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/domwh/AppData/Local/Programs
+/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Users/domwh/AppData/Local/Programs/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/domwh/AppData/Lo
+cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/dom
+wh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><
+C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmr10.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmr12.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmr8.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/domwh/AppData/Local/Pr
+ograms/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/domwh/AppData/Lo
+cal/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Users/domwh/AppDat
+a/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/domwh/A
+ppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/dom
+wh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on projectpaper.pdf (18 pages, 245941 bytes).
 PDF statistics:
- 25 PDF objects out of 1000 (max. 8388607)
+ 110 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,20 +1,79 @@
 \relax 
 \bibstyle{agsm}
-\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {II}Related Work}{1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A}Main Text}{1}\protected@file@percent }
-\citation{budgen}
-\citation{euther}
-\citation{futher}
-\citation{futher}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B}Figures and Tables}{2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces UNITS FOR MAGNETIC PROPERTIES}}{2}\protected@file@percent }
-\newlabel{units}{{1}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {C}References}{2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {III}Solution}{2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {IV}Results}{2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {V}Evaluation}{2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A}Context / Background}{1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B}Aims}{1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {C}Method}{1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {D}Results}{1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {E}Conclusions}{1}\protected@file@percent }
+\citation{nao_2008}
+\citation{harris_godward_1992}
+\citation{oneto_et_al_2016}
+\citation{oneto_et_al_2016}
+\citation{lessan_fu_wen_2019}
+\citation{olsson_haugland_2004}
+\citation{oneto_et_al_2016}
+\citation{berger_et_al_2011,milinkovic_et_al_2013}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A}Background}{2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B}Objectives}{3}\protected@file@percent }
+\citation{markovic_et_al_2015}
+\citation{friedenthal_moore_steiner_2012}
+\citation{oneto_et_al_2016}
+\citation{frank_1966}
+\citation{petersen_1974,chen_harker_1990}
+\citation{carey_kwiecinski_1994}
+\citation{berger_et_al_2011}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Related Work}{4}\protected@file@percent }
+\newlabel{section:related_work}{{II}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A}Analytical approaches}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B}Online / dynamic data-driven approaches}{5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {C}Offline / static data-driven approaches}{6}\protected@file@percent }
+\citation{yaghini_et_al_2013,wang_zhang_2019}
+\citation{ponniah_2010}
+\@writefile{toc}{\contentsline {section}{\numberline {III}Solution}{7}\protected@file@percent }
+\newlabel{section:solution}{{III}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A}Dataset construction: the Extract-Transform-Load (ETL) pipeline}{7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.1}Schedules: SCHEDULE}{7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2}Movement: TD, TRUST, and Darwin}{7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Network Rail data feeds and their use in this project. I = investigated, U = used, N = not used.\relax }}{8}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{table:nr_feeds}{{1}{8}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.3}Location: CORPUS (and NaPTAN)}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.4}Weather: MIDAS, CEDA, and Datapoint}{8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces UK rail network location codes.\relax }}{9}\protected@file@percent }
+\newlabel{table:codes}{{2}{9}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.5}Infrastructure: BPLAN and the Train Planning Network Model}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.6}Engineering: TSR}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B}Extraction}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {C}Transform}{9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Extraction methods for each data source\relax }}{10}\protected@file@percent }
+\newlabel{table:extraction}{{3}{10}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.1}Transforming schedules}{10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.2}Transforming weather}{11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.3}Transforming movement}{11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {C.4}Transforming location}{11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {D}Load}{11}\protected@file@percent }
+\citation{wang_zhang_2019,wang_work_2015}
+\@writefile{toc}{\contentsline {subsection}{\numberline {E}Model selection}{12}\protected@file@percent }
+\newlabel{subsection:model_selection}{{E}{12}}
+\citation{chawla_et_al_2002}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Results}{13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Experiment environment system specification\relax }}{13}\protected@file@percent }
+\newlabel{table:experiment}{{4}{13}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A}ETL}{13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B}Binary classification}{13}\protected@file@percent }
+\newlabel{equation:f_measure}{{1}{14}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces A full statistical analysis of each model after training\relax }}{14}\protected@file@percent }
+\newlabel{table:results_explore}{{5}{14}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {C}Random forests}{14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Random forest hyperparameter optimisation\relax }}{15}\protected@file@percent }
+\newlabel{table:results_parameters}{{6}{15}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces A full statistical analysis of each model after training\relax }}{15}\protected@file@percent }
+\newlabel{table:results_tune}{{7}{15}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces A boat.\relax }}{15}\protected@file@percent }
+\newlabel{fig:boat1}{{1}{15}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Evaluation}{16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A}ETL}{16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B}Binary classification}{16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusion}{18}\protected@file@percent }
 \bibdata{projectpaper}
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces SUMMARY OF PAGE LENGTHS FOR SECTIONS}}{3}\protected@file@percent }
-\newlabel{summary}{{2}{3}}
