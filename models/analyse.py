@@ -25,49 +25,8 @@ from imblearn.over_sampling import SMOTE
 from imblearn.under_sampling import RandomUnderSampler
 from imblearn.pipeline import Pipeline as IPipeline
 
+from models.encoders import DatetimeEncoder
 
-class DatetimeEncoder(BaseEstimator, TransformerMixin):
-
-    def __init__(self, cyclical=False):
-
-        self.cyclical = cyclical
-
-    def encode(self, X, column, period):
-
-        key = "{}_{}".format(column, period)  # Oh yeah.
-
-        if not self.cyclical:
-
-            dtype = "uint8" if period != "dayofyear" else "uint16"
-
-            X[key] = X[column].dt.__getattribute__(period).astype(dtype)
-
-        else:
-
-            data = X[column].dt.__getattribute__(period)
-
-            _ = 2 * np.pi * data / np.max(data)
-
-            X[key + "_sin"] = np.sin(_)
-            X[key + "_cos"] = np.cos(_)
-
-        return X
-
-    def fit(self, X, y=None):
-
-        return self
-
-    def transform(self, X, y=None):
-
-        columns = X.columns.values
-
-        for column in X:
-
-            for period in ["dayofyear", "month", "day", "dayofweek", "hour", "minute"]:
-
-                X = self.encode(X, column, period)
-
-        return X.drop(columns, axis=1)
 
 def raw(y_actual, y_hat):
 
@@ -228,3 +187,5 @@ def run():
 if __name__ == "__main__":
 
     run()
+
+# {'n_estimators': 200, 'min_samples_split': 10, 'min_samples_leaf': 2, 'max_features': 'sqrt', 'max_depth': 40, 'bootstrap': False}
