@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.12)  19 APR 2020 09:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.12)  21 APR 2020 13:10
 entering extended mode
 **./projectpaper.tex
 (projectpaper.tex
@@ -227,238 +227,382 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 40.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 40.
- [1
+
+Overfull \hbox (5.51233pt too wide) in paragraph at lines 40--41
+[]\OT1/ptm/m/n/10.95 An en-tirely new high-quality dataset has been con-structe
+d, com-pris-ing $\OT1/cmr/m/n/10.95 5\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 2$
+ \OT1/ptm/m/n/10.95 mil-lion rows and $\OT1/cmr/m/n/10.95 23$ \OT1/ptm/m/n/10.9
+5 columns.
+ []
+
+[1
 
 {C:/Users/domwh/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 55.
+(Font)              <12> on input line 56.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 55.
+(Font)              <7> on input line 56.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 55.
+(Font)              <5> on input line 56.
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 5
-5.
+6.
 
 ("C:\Users\domwh\AppData\Local\Programs\MiKTeX 2.9\tex/latex/psnfss\ts1ptm.fd"
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
 
-LaTeX Warning: Citation 'nao_2008' on page 2 undefined on input line 55.
+LaTeX Warning: Citation 'nao_2008' on page 2 undefined on input line 56.
 
 
 LaTeX Warning: Citation 'harris_godward_1992' on page 2 undefined on input line
- 57.
+ 58.
 
 
-LaTeX Warning: Citation 'oneto_et_al_2016' on page 2 undefined on input line 61
+LaTeX Warning: Citation 'oneto_et_al_2016' on page 2 undefined on input line 62
 .
 
 
-LaTeX Warning: Citation 'oneto_et_al_2016' on page 2 undefined on input line 63
+LaTeX Warning: Citation 'oneto_et_al_2016' on page 2 undefined on input line 64
 .
 
 
 LaTeX Warning: Citation 'lessan_fu_wen_2019' on page 2 undefined on input line 
-63.
+64.
 
 
 LaTeX Warning: Citation 'olsson_haugland_2004' on page 2 undefined on input lin
-e 67.
+e 69.
 
 
-LaTeX Warning: Citation 'oneto_et_al_2016' on page 2 undefined on input line 67
+LaTeX Warning: Citation 'oneto_et_al_2016' on page 2 undefined on input line 69
 .
 
 
 LaTeX Warning: Citation 'berger_et_al_2011' on page 2 undefined on input line 6
-7.
+9.
 
 
 LaTeX Warning: Citation 'milinkovic_et_al_2013' on page 2 undefined on input li
-ne 67.
+ne 69.
 
 
-Package multicol Warning: I moved some lines to the next page.
-(multicol)                Footnotes on page 2 might be wrong on input line 77.
+LaTeX Warning: Reference `table:primary_delay' on page 2 undefined on input lin
+e 69.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 71.
+
+
+LaTeX Warning: Reference `fig:delay_propagation' on page 2 undefined on input l
+ine 85.
 
 [2
 
-] [3]
+]
+<images/Knock-on-delays-1.jpg, id=18, 596.2275pt x 803.0pt>
+File: images/Knock-on-delays-1.jpg Graphic file (type jpg)
+<use images/Knock-on-delays-1.jpg>
+Package pdftex.def Info: images/Knock-on-delays-1.jpg  used on input line 89.
+(pdftex.def)             Requested size: 99.58464pt x 134.1189pt.
+<images/Knock-on-delays-2.jpg, id=19, 596.2275pt x 803.0pt>
+File: images/Knock-on-delays-2.jpg Graphic file (type jpg)
+<use images/Knock-on-delays-2.jpg>
+Package pdftex.def Info: images/Knock-on-delays-2.jpg  used on input line 91.
+(pdftex.def)             Requested size: 99.58464pt x 134.1189pt.
+<images/Knock-on-delays-3.jpg, id=20, 596.2275pt x 803.0pt>
+File: images/Knock-on-delays-3.jpg Graphic file (type jpg)
+<use images/Knock-on-delays-3.jpg>
+Package pdftex.def Info: images/Knock-on-delays-3.jpg  used on input line 93.
+(pdftex.def)             Requested size: 99.58464pt x 134.1189pt.
+<images/Knock-on-delays-4.jpg, id=21, 596.2275pt x 803.0pt>
+File: images/Knock-on-delays-4.jpg Graphic file (type jpg)
+<use images/Knock-on-delays-4.jpg>
+Package pdftex.def Info: images/Knock-on-delays-4.jpg  used on input line 95.
+(pdftex.def)             Requested size: 99.58464pt x 134.1189pt.
+
+
+LaTeX Warning: Citation 'markovic_et_al_2015' on page 3 undefined on input line
+ 100.
+
+
+LaTeX Warning: Citation 'milinkovic_et_al_2013' on page 3 undefined on input li
+ne 100.
+
+
+LaTeX Warning: Citation 'lessan_fu_wen_2019' on page 3 undefined on input line 
+100.
+
+
+LaTeX Warning: Citation 'oneto_et_al_2016' on page 3 undefined on input line 10
+0.
+
+
+LaTeX Warning: Citation 'wang_zhang_2019' on page 3 undefined on input line 100
+.
+
+
+LaTeX Warning: Citation 'oneto_et_al_2017' on page 3 undefined on input line 10
+0.
+
+
+LaTeX Warning: Citation 'lessan_fu_wen_2019' on page 3 undefined on input line 
+100.
+
+
+LaTeX Warning: Citation 'markovic_et_al_2015' on page 3 undefined on input line
+ 100.
+
+
+LaTeX Warning: Citation 'oneto_et_al_2019' on page 3 undefined on input line 10
+0.
+
+
+LaTeX Warning: Citation 'lessan_fu_wen_2019' on page 3 undefined on input line 
+100.
+
+
+LaTeX Warning: Citation 'oneto_et_al_2017' on page 3 undefined on input line 10
+0.
+
+[3 <./images/Knock-on-delays-1.jpg> <./images/Knock-on-delays-2.jpg> <./images/
+Knock-on-delays-3.jpg> <./images/Knock-on-delays-4.jpg>]
 
 LaTeX Warning: Citation 'markovic_et_al_2015' on page 4 undefined on input line
- 122.
+ 123.
 
 
 LaTeX Warning: Citation 'friedenthal_moore_steiner_2012' on page 4 undefined on
- input line 126.
+ input line 127.
 
 
 LaTeX Warning: Citation 'oneto_et_al_2016' on page 4 undefined on input line 12
-6.
+7.
 
 
-LaTeX Warning: Citation 'frank_1966' on page 4 undefined on input line 128.
+LaTeX Warning: Citation 'frank_1966' on page 4 undefined on input line 129.
 
 
-LaTeX Warning: Citation 'petersen_1974' on page 4 undefined on input line 128.
+LaTeX Warning: Citation 'petersen_1974' on page 4 undefined on input line 129.
 
 
 LaTeX Warning: Citation 'chen_harker_1990' on page 4 undefined on input line 12
-8.
+9.
 
 
 LaTeX Warning: Citation 'carey_kwiecinski_1994' on page 4 undefined on input li
-ne 128.
+ne 129.
+
+[4]
+
+LaTeX Warning: Citation 'kecman_corman_meng_2015' on page 5 undefined on input 
+line 131.
 
 
-LaTeX Warning: Citation 'berger_et_al_2011' on page 4 undefined on input line 1
-28.
+LaTeX Warning: Citation 'corman_kecman_2018' on page 5 undefined on input line 
+131.
 
-[4] [5] [6]
+
+LaTeX Warning: Citation 'oneto_et_al_2017' on page 5 undefined on input line 13
+5.
+
+
+LaTeX Warning: Citation 'oneto_et_al_2019' on page 5 undefined on input line 13
+5.
+
+
+LaTeX Warning: Citation 'oneto_et_al_2017' on page 5 undefined on input line 13
+8.
+
+
+LaTeX Warning: Citation 'oneto_et_al_2019' on page 5 undefined on input line 13
+9.
+
+
+LaTeX Warning: Citation 'lessan_fu_wen_2019' on page 5 undefined on input line 
+141.
+
+[5]
+
+LaTeX Warning: Citation 'peters_et_al_2005' on page 6 undefined on input line 1
+45.
+
+
+LaTeX Warning: Citation 'yaghini_et_al_2013' on page 6 undefined on input line 
+145.
+
+
+LaTeX Warning: Citation 'milinkovic_et_al_2013' on page 6 undefined on input li
+ne 147.
+
+
+LaTeX Warning: Citation 'markovic_et_al_2015' on page 6 undefined on input line
+ 147.
+
+
+LaTeX Warning: Citation 'wang_work_2015' on page 6 undefined on input line 147.
+
+
+
+LaTeX Warning: Citation 'wang__and_zhang_2015' on page 6 undefined on input lin
+e 147.
+
+
+LaTeX Warning: Citation 'milinkovic_et_al_2013' on page 6 undefined on input li
+ne 149.
+
+
+LaTeX Warning: Citation 'markovic_et_al_2015' on page 6 undefined on input line
+ 151.
+
+
+LaTeX Warning: Citation 'wang_work_2015' on page 6 undefined on input line 153.
+
+
+
+LaTeX Warning: Citation 'wang_zhang_2019' on page 6 undefined on input line 155
+.
+
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 1
-62.
-
+60.
 ("C:\Users\domwh\AppData\Local\Programs\MiKTeX 2.9\tex/latex/psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 
-LaTeX Warning: Citation 'yaghini_et_al_2013' on page 7 undefined on input line 
-166.
+LaTeX Warning: Citation 'yaghini_et_al_2013' on page 6 undefined on input line 
+164.
 
 
-LaTeX Warning: Citation 'wang_zhang_2019' on page 7 undefined on input line 166
+LaTeX Warning: Citation 'wang_zhang_2019' on page 6 undefined on input line 164
 .
 
 
-LaTeX Warning: Citation 'ponniah_2010' on page 7 undefined on input line 166.
+LaTeX Warning: Citation 'ponniah_2010' on page 6 undefined on input line 164.
+
+[6]
+
+LaTeX Warning: Reference `section:introduction' on page 7 undefined on input li
+ne 166.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 177--177
+LaTeX Warning: Reference `subsection:background' on page 7 undefined on input l
+ine 166.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 175--175
 []\OT1/ptm/m/n/12 Twice a
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--180
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 []\OT1/ptm/m/n/12 Once a
  []
 
 
-Underfull \hbox (badness 1577) in paragraph at lines 181--181
-\OT1/ptm/m/n/12 from the In-te-grated Train Plan-ning Sys-tem
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 181--181
+Underfull \hbox (badness 10000) in paragraph at lines 179--179
 []\OT1/ptm/m/n/12 Overnight
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 184--184
-[]\OT1/ptm/m/n/12 Once a
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 184--184
-\OT1/ptm/m/n/12 week on
- []
-
-[7
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 218--218
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 216--216
 []\OT1/ptm/m/n/12 EASTING,
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[8] [9] [10] [11]
+[8] [9] [10]
 
-LaTeX Warning: Citation 'wang_zhang_2019' on page 12 undefined on input line 29
-6.
+LaTeX Warning: Citation 'wang_zhang_2019' on page 11 undefined on input line 28
+0.
 
 
-LaTeX Warning: Citation 'wang_work_2015' on page 12 undefined on input line 296
+LaTeX Warning: Citation 'wang_work_2015' on page 11 undefined on input line 280
 .
 
-[12]
+[11]
 
-LaTeX Warning: Citation 'chawla_et_al_2002' on page 13 undefined on input line 
-323.
+LaTeX Warning: Citation 'chawla_et_al_2002' on page 12 undefined on input line 
+303.
 
-[13
+
+Overfull \hbox (2315.86082pt too wide) in paragraph at lines 303--304
+\OT1/cmr/m/n/12 5\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 2$ \OT1/ptm/m/n/12 mil-lion 
+rows and $\OT1/cmr/m/n/12 47$ \OT1/ptm/m/n/12 columns, over a pe-riod of one ye
+ar ([][]\OT1/pcr/m/n/12 2018-04-01 []\OT1/ptm/m/n/12 to [][]\OT1/pcr/m/n/12 201
+9-04-031). Approximately $20,000$ trains run a day in the UK, and we were succe
+ssful in capturing approximately $76\%$. Before testing our models, we preproce
+ssed our dataset. We encoded datetime data cyclically, whereby each datetime is
+ split into its constituent parts and each part is converted into two values, o
+ne for \verb[]\OT1/ptm/m/n/12 sin|
+ []
+
+[12
 
 ]
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 359.
-
-
-Underfull \hbox (badness 1127) in paragraph at lines 370--370
+Underfull \hbox (badness 1127) in paragraph at lines 352--352
 []\OT1/ptm/m/n/12 The min-i-mum num-ber of sam-ples re-
  []
 
+[13]
 
-Overfull \hbox (58.6216pt too wide) in paragraph at lines 380--385
- [][] 
- []
+LaTeX Warning: Citation 'kohavi_1995' on page 14 undefined on input line 370.
 
-<images/roc_auc.png, id=55, 642.4pt x 481.8pt>
-File: images/roc_auc.png Graphic file (type png)
-<use images/roc_auc.png>
-Package pdftex.def Info: images/roc_auc.png  used on input line 388.
-(pdftex.def)             Requested size: 461.13188pt x 345.85915pt.
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+LaTeX Warning: Reference `fig:roc' on page 14 undefined on input line 370.
 
-[14]
+<images/roc_auc_10.png, id=59, 462.528pt x 346.896pt>
+File: images/roc_auc_10.png Graphic file (type png)
+<use images/roc_auc_10.png>
+Package pdftex.def Info: images/roc_auc_10.png  used on input line 373.
+(pdftex.def)             Requested size: 461.13188pt x 345.86826pt.
 
-LaTeX Warning: Text page 15 contains only floats.
+LaTeX Warning: Reference `table:results_weather' on page 14 undefined on input 
+line 380.
 
-[15 <./images/roc_auc.png (PNG copy)>] [16
+[14 <./images/roc_auc_10.png>] [15] [16
 
 ]
-Overfull \hbox (2.49312pt too wide) in paragraph at lines 419--420
-[]\OT1/ptm/m/n/12 The lin-ear mod-els per-formed poorly, as ex-pected. We an-ti
-c-i-pated ran-dom forests and gradient-
- []
 
-
-Overfull \hbox (24.15717pt too wide) in paragraph at lines 431--432
-\OT1/ptm/m/n/12 lim-its. We had par-tic-u-lar trou-ble us-ing [][]\OT1/pcr/m/n/
-12 scikit-learn []\OT1/ptm/m/n/12 in con-junc-tion with [][]\OT1/pcr/m/n/12 imb
-alanced-learn[]\OT1/ptm/m/n/12 . 
- []
+LaTeX Warning: Citation 'oneto_et_al_2016' on page 17 undefined on input line 4
+20.
 
 [17] [18
 
-] (projectpaper.bbl) (projectpaper.aux) ) 
+] (projectpaper.bbl) (projectpaper.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 2852 strings out of 481565
- 46690 string characters out of 2914159
- 290396 words of memory out of 3000000
- 18072 multiletter control sequences out of 15000+200000
+ 2885 strings out of 481565
+ 47608 string characters out of 2914159
+ 288396 words of memory out of 3000000
+ 18100 multiletter control sequences out of 15000+200000
  553416 words of font info for 60 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 50i,17n,48p,1422b,367s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/domwh/AppData/Local/Programs
-/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Users/domwh/AppData/Local/Programs/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/domwh/AppData/Lo
-cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/dom
-wh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><
-C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmr10.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
-/amsfonts/cm/cmr12.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmr8.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/domwh/AppData/Local/Pr
-ograms/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/domwh/AppData/Lo
-cal/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Users/domwh/AppDat
-a/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/domwh/A
-ppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/dom
-wh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on projectpaper.pdf (18 pages, 245941 bytes).
+ 50i,17n,49p,1391b,367s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc
+}<C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmmi10.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmmi12.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/domwh/AppData/Local/Programs/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/domwh/AppData/Loca
+l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/domwh/
+AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/U
+sers/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
+y10.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/couri
+er/ucrr8a.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw
+/times/utmb8a.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
+/urw/times/utmbi8a.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/
+type1/urw/times/utmr8a.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fo
+nts/type1/urw/times/utmri8a.pfb>
+Output written on projectpaper.pdf (18 pages, 415830 bytes).
 PDF statistics:
- 110 PDF objects out of 1000 (max. 8388607)
+ 116 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

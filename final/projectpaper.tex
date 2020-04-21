@@ -25,11 +25,11 @@
 
 \subsection{Context / Background}
 
-Trains are one of the most popular forms of public transport. The perceived likelihood and severity of train delays is a turn-off for many consumers, and so a system predicting train delays in the medium-term would improve both customer satisfaction and operating profits. There are currently no solutions to this problem in the literature, nor in practice, although extensive research has been carried out into real-time delay prediction.
+Trains are a popular form of public transport. The perceived likelihood and severity of train delays important both for customers' satisfaction and to various business stakeholders, and, and so a system predicting train delays in the medium-term would improve both customer satisfaction and operating profits. There are currently no solutions to this problem in the literature, nor in practice, although extensive research has been carried out into real-time delay prediction.
 
 \subsection{Aims}
 
-The aims of this project are twofold. The primary aim is to identify a suitable binary classification model for predicting medium-term train delays. The secondary, supporting aim is to develop a new train delay dataset to train this model on, as there are none publicly available. 
+The aims of this project are twofold. The primary aim is to identify a suitable binary classification model for predicting medium-term train delays. The secondary, supporting aim is to develop a new train delay dataset to train this model on.
 
 \subsection{Method}
 
@@ -37,7 +37,7 @@ Using historical schedule data, movement data, location data, and weather data f
 
 \subsection{Results}
 
-An entirely new high-quality dataset has been constructed, comprising $5.2$ million rows and $23$ columns. Of the classification models tested, a random forest achieved the greatest $F_1$-measure of $0.76$. Evaluation using repeated stratified $6-$fold cross validation resulted in a $ROC_{AUC}$ of $0.86$. 
+An entirely new high-quality dataset has been constructed, comprising $5.2$ million rows and $23$ columns. Of the classification models tested, a random forest achieved the greatest $F_1$-measure of $0.76$. Evaluation using repeated stratified $10-$fold cross validation resulted in a $ROC_{AUC}$ of $0.77$. 
 
 \subsection{Conclusions}
 
@@ -46,18 +46,18 @@ This project explores a relatively unstudied area in train delay prediction. The
 \end{abstract}
 
 \begin{keywords}
-Machine learning, train delay, delay prediction, extract-transform-load, etl, classification, regression
+Machine learning, train delay, delay prediction, extract-transform-load, ETL, classification, regression
 \end{keywords}
 
 \clearpage
 \section{Introduction}
 \label{section:introduction}
 
-$1.76$ billion rail journeys were made in the 2018 - 2019 financial year\footnote{https://dataportal.orr.gov.uk/statistics/usage/passenger-rail-usage/}. Of these journeys, approximately $12.2$\% were delayed by more than 5 minutes. Train delays impose a huge cost on passengers and operators by contributing to the inefficiency of train operations (Van Oort, 2011). In 2006 – 07, for example, delays cost a minimum of £1 billion in terms of time lost to passengers \cite{nao_2008}. Furthermore, under a scheme known as ‘Delay Repay’, train operating companies (TOCs) are automatically obliged to refund $50\%$ of the cost of passengers’ tickets if a train is between 30 – 60 minutes late and $100\%$ if it is more than 60 minutes late. $4.6$ million fares were repaid in 2018 - 2019.
+$1.76$ billion rail journeys were made in the 2018 - 2019 financial year\footnote{https://dataportal.orr.gov.uk/statistics/usage/passenger-rail-usage/. Data is published quarterly.}. Of these journeys, approximately $12.2$\% were delayed by more than 5 minutes. Train delays impose a huge cost on passengers and operators by contributing to the inefficiency of train operations (Van Oort, 2011). In 2006 – 07, for example, delays cost a minimum of £1 billion in terms of time lost to passengers \cite{nao_2008}. Furthermore, under a scheme known as ‘Delay Repay’, Train Operating Companies (TOCs) are automatically obliged to refund $50\%$ of the cost of passengers’ tickets if a train is between 30 – 60 minutes late and $100\%$ if it is more than 60 minutes late. $4.6$ million fares were repaid in 2018 - 2019.
 
 So it is no understatement to say that train delay is a serious problem. The issue is compounded for passengers, who tend to perceive punctuality as worse than it is for three reasons: passengers tend to recall delayed trains over punctual trains; more passengers travel on late trains than punctual trains (as passengers accumulate while waiting); and operators avoid early running, so late trains are not balanced out by early trains \cite[p.~130]{harris_godward_1992}. Furthermore, passengers expect trains to run on time as TOCs are considered to be in greater control of their environment.
 
-This mismatch in perception places great importance on reducing the impact of delays on passengers. So: what if passengers could know in advance whether or not a train would be delayed? The aim of this project is not to answer this questions, but to see whether doing so is possible: can train delays be predicted in advance? 
+This mismatch in perception places great importance on reducing the impact of delays on passengers. So: what if passengers could know in advance how likely it is that a might train is delayed? The aim of this project is not to answer this questions, but to see whether doing so is possible: can train delays be predicted in advance? 
 
 Systems already exist for predicting real-time train delay; the problem is well-studied. The majority are analytical \cite{oneto_et_al_2016}. Such models are online, i.e. updated as information on train movements becomes periodically available. At the other end of the spectrum is the optimisation problem of train scheduling, which is also very well studied. Between the two extremes lies is a poorly-defined region, the medium-term timeframe, neither online nor offline, lower-bounded by the availability of forecasts of exogenous data and upper-bounded by the times trains depart their origins. This is the timeframe this project focuses on. Knowing that a train will be delayed while on it is of little help to most passengers, but knowing it will be a week in advance is. 
 
@@ -120,22 +120,22 @@ The advanced objective is to build upon the intermediate objective by extensivel
 \section{Related Work}
 \label{section:related_work}
 
-In the section, we present work related to our research question: \textit{Can medium-term train delays be predicted?}. Although there has been significant academic effort into producing real-time TDP systems, research on medium-term TDP is rather sparse. Fortunately, there is considerable overlap between the two timeframes. Solutions to the problem of real-time TDP use a variety of machine learning regression models, with the field tending towards ensembles / hybrids  and random forests. The inclusion of exogenous data pertaining to weather and infrastructure is also popular.  There are many classifications of TDP models, based on scope, model type, and solution methods \cite{markovic_et_al_2015}. Generally, approaches may be divided using two axes: whether they are offline or online, and whether they use analytical or data-driven models. As this project is concerned with latter, the former is discussed only briefly. Online models are updated with new data as it comes available; data-driven models are trained using historical data.
+In the section, we present work related to our research question: \textit{Can medium-term train delays be predicted?}. Although there has been significant academic effort into producing real-time train delay prediction (TDP) systems, research on medium-term TDP is rather sparse. Fortunately, there is considerable overlap between the two timeframes. Solutions to the problem of real-time TDP use a variety of machine learning regression models, with the field tending towards ensembles / hybrids  and random forests. The inclusion of exogenous data pertaining to weather and infrastructure is also popular.  There are many classifications of TDP models, based on scope, model type, and solution methods \cite{markovic_et_al_2015}. Generally, approaches may be divided using two axes: whether they are offline or online, and whether they use analytical or data-driven models. As this project is concerned with latter, the former is discussed only briefly. Online models are updated with new data as it becomes available; data-driven models are trained using historical data.
 
 \subsection{Analytical approaches}
 
 An analytical model is “primarily quantitative or computational in nature and represents the system in terms of a set of mathematical equations that specify parametric relationships and their associated parameter values as a function of time, space, and/or other system parameters” \cite{friedenthal_moore_steiner_2012}. Current state-of-the-art train delay prediction systems use analytical models \cite{oneto_et_al_2016}: “static rules, built by experts on railway infrastructure, and based on classical univariate statistics”.
 
-Simplistic early models, such as those developed by \cite{frank_1966} make overly restrictive assumptions about railway operations, e.g. no overtakes are allowed, departure times are uniformly distributed, and that the speed of each train is unique and constant. Subsequent work in this area has largely relaxed these assumptions by including factors such as overtakes, different speeds, priority systems, and uncertainties associated with train departure time \cite{petersen_1974,chen_harker_1990}. Further models have become increasingly advanced, incorporating stochastic approximation \cite{carey_kwiecinski_1994}, and the impacts of dispatching strategies on train delays and passenger waiting time. The current state-of-the-art is likely \cite{berger_et_al_2011}, whose model is currently used by DB.
+Simplistic early models, such as those developed by \cite{frank_1966} make overly restrictive assumptions about railway operations, e.g. no overtakes are allowed, departure times are uniformly distributed, and that the speed of each train is unique and constant. Subsequent work in this area has largely relaxed these assumptions by including factors such as overtakes, different speeds, priority systems, and uncertainties associated with train departure time \cite{petersen_1974,chen_harker_1990}. Further models have become increasingly advanced, incorporating stochastic approximation \cite{carey_kwiecinski_1994}, and the impacts of dispatching strategies on train delays and passenger waiting time.
 
 Much work has also been done which blurs the line between analyitical and data-driven models \cite{kecman_corman_meng_2015,corman_kecman_2018} by using stochastic models based on Bayesian networks and trained on historical data to predict delays, with considerable success. However, there is a fundamental limit on the complexity of analytical models, and as the field of machine learning has matured, the applicability of data-driven models to TDP has been increasingly well explored. 
 
 \subsection{Online / dynamic data-driven approaches}
 
 Most real-time TDP systems are online. The first comprehensive attempt at developing a TDP system was made by Oneto et al. (2016). Subsequent papers \cite{oneto_et_al_2017,oneto_et_al_2019} have expanded the proposed models in scope and performance.
-The authors consider a rail network a graph, where nodes represent checkpoints and edges tracks connecting them. A train follows an itinerary composed of $N_c$ checkpoints characterised by an origin, a terminus, and intermediate locations such as stops and transits. A schedule is modelled as a time series forecast problem, with performance at previous checkpoints used to predict performance at subsequent checkpoints. A model for each train is trained using historical delay data. The authors tested random forests (RF), extreme learning machines (ELM), and kernel methods (KM) and found that their RF performed twice as well as current state-of-the-art TDP systems. The inclusion of weather further improved accuracy by approximately 10\%. Their model was very computationally expensive, however, requiring approximately 600,000 models to be trained daily across the entire rail network. 
+The authors consider a rail network a graph, where nodes represent checkpoints and edges tracks connecting them. A train follows an itinerary composed of $N_c$ checkpoints characterised by an origin, a terminus, and intermediate locations such as stops and transits. A schedule is modelled as a time series forecast problem, with performance at previous checkpoints used to predict performance at subsequent checkpoints. A model for each train is trained using historical delay data. The authors tested random forests (RF), Extreme Learning Machines (ELM), and Kernel Methods (KM) and found that their RF performed twice as well as current state-of-the-art TDP systems. The inclusion of weather further improved accuracy by approximately 10\%. Their model was very computationally expensive, however, requiring approximately 600,000 models to be trained daily across the entire rail network. 
 
-The authors then generalise their work to produce a dynamic data-driven TDP system \cite{oneto_et_al_2017}, with performance tuned using thresholdout, which reduces overfitting. They compare the performance of two implementations of shallow and deep ELMs. 
+The authors then generalise their work to produce a dynamic data-driven TDP system \cite{oneto_et_al_2017}, with performance tuned using Thresholdout, which reduces overfitting. They compare the performance of two implementations of shallow and deep ELMs. 
 This work laid the groundwork for their most recent paper \cite{oneto_et_al_2019}, which combines an experience-based model (EBM) and multiple RFs into a hybrid model (HM). The EBM uses operators’ knowledge and experience of the network to inform features. As Martin (2016) notes, in real-world train operations, delay prediction relies heavily on the experience and intuition of a local dispatcher, rather than a network-wide computational instrument. The HM is a decision tree where each leaf is a RF. Trains are directed to the appropriate RF by similarity, eliminating the need for a model for every train. A new leaf is added each time a new train is seen that belongs to a previously unexplored branch of the decision tree. The RF regressor in the leaf is trained based on all the past train movements in that leaf. Trains older than 3 months are ‘forgotten’, to keep the size of the model constrained. Furthermore, this model naturally handles the mercurial nature of train schedules, which are both released periodically and revised constantly. The model requires only 10 days’ of data after a new schedule comes into effect to reach optimal accuracy, with excellent performance also noted for outliers. The HM offers the best trade-off between accuracy and computational requirements, with superior results to all current models. 
 
 A similarly impressive model was developed by Lessan \textit{et al.} \cite{lessan_fu_wen_2019}, working closely with Deutsche Bahn (DB). The authors used $3.25$ years’ of data from DB and incorporated a wide range of exogenous data, with approximately $350$ features for operational (i.e. currently running) trains and $70$ for non-operational trains. The authors tested support vector regression (SVR) but settled on RFs. Three models were used for operational trains: an online RF, mesoscopic simulation, and kernel regression. Two were used for non-operational trains: an offline RF and mesoscopic simulation. The authors found an accuracy of over $80\%$ in predictions within a $60$-minute horizon, a considerable improvement in real-time forecasts, but found that beyond that horizon predictions were only marginally better than the schedule.
@@ -144,7 +144,7 @@ A similarly impressive model was developed by Lessan \textit{et al.} \cite{lessa
 
 Static models are not updated with data as it comes available. Early attempts used simple neural networks \cite{peters_et_al_2005} and were essentially proofs-of-concept. The use of neural networks was further investigated by Yaghini \textit{et al.} \cite{yaghini_et_al_2013} using data from Iranian Railways to predict the late arrival of passenger trains. Their model performed better to alternatives such as decision trees and logistic regression. The authors also tested the impact of various encoding schemes. 
 
-Subsequent work is largely exploratory, with no clear sense of progression as described in the previous section. Papers investigate a wide variety of models, such as fuzzy Petri nets (FPNs) \cite{milinkovic_et_al_2013}, support vector regression (SVM) \cite{markovic_et_al_2015} logistic regression \cite{wang_work_2015} and gradient-boosted random forests \cite{wang_zhang_2015}.
+Subsequent work is largely exploratory, with no clear sense of progression as described in the previous section. Papers investigate a wide variety of models, such as Fuzzy Petri Nets (FPNs) \cite{milinkovic_et_al_2013}, support vector regression (SVM) \cite{markovic_et_al_2015} logistic regression \cite{wang_work_2015} and gradient-boosted random forests \cite{wang__and_zhang_2015}.
 
 Milinkovic \textit{et al.} \cite{milinkovic_et_al_2013} presented the first use of an FPN. The authors explored two separate FPNs. In the first, expert knowledge was used to define fuzzy sets and rules. In the second, an Adaptive Network Fuzzy Inference System (ANFIS) was trained on historical delay data and then replicated in an FPN. Both were then tested with real data from a Belgrade station node. The ANFIS-FPN produced results within 5\% of actual delay values for a subset of the data; slightly worse performance was observed for the expert-defined FPN.
 
@@ -300,7 +300,7 @@ OS        & Windows 10                  \\ \hline
 
 \subsection{ETL}
 
-The output of our ETL pipeline is a single CSV, \verb|1.1 GB| in size, containing approximately $5.2$ million rows and $47$ columns. Approximately $20000$ trains run a day in the UK, and we were successful in capturing approximately $76\%$. Before testing our models, we preprocessed our dataset. We encoded datetime data cyclically, whereby each datetime is split into its constituent parts and each part is converted into two values, one for \verb|sin| and one for \verb|cos|, such that each is encoded as a point on unit circle. For compatibility between different models, we one-hot encoded categorical variables and scaled numeric variables to Gaussian. We later relax this requirement. We also resampled the dataset. Approximately $10\%$ of rows are positive (i.e. delayed). This causes poor performance: a model can learn to always predict negative (i.e. not delayed) to trivially achieve approximately $90$\% accuracy. To remedy this we investigated different ways to balance the dataset, and chose to oversample the minority class (i.e. delayed) using SMOTE \cite{chawla_et_al_2002} and randomly undersample the majority class (i.e. not delayed) to achieve a 50:50 ratio. The final form of our dataset is a $(1178694, 283)$ sparse matrix.
+The output of our ETL pipeline is a single CSV, \verb|1.1 GB| in size, containing approximately $5.2$ million rows and $47$ columns, over a period of one year (\verb|2018-04-01| to \verb|2019-04-031). Approximately $20,000$ trains run a day in the UK, and we were successful in capturing approximately $76\%$. Before testing our models, we preprocessed our dataset. We encoded datetime data cyclically, whereby each datetime is split into its constituent parts and each part is converted into two values, one for \verb|sin| and one for \verb|cos|, such that each is encoded as a point on unit circle. For compatibility between different models, we one-hot encoded categorical variables and scaled numeric variables to Gaussian. We later relax this requirement. We also resampled the dataset. Approximately $10\%$ of rows are positive (i.e. delayed). This causes poor performance: a model can learn to always predict negative (i.e. not delayed) to trivially achieve approximately $90$\% accuracy. To remedy this we investigated different ways to balance the dataset, and chose to oversample the minority class (i.e. delayed) using SMOTE \cite{chawla_et_al_2002} and randomly undersample the majority class (i.e. not delayed) to achieve a 50:50 ratio. The final form of our dataset is a $(1178694, 283)$ sparse matrix.
 
 \subsection{Binary classification}
 
@@ -315,7 +315,7 @@ F_\beta = (1 + \beta) \frac{precision \cdot recall}{\beta^2 \cdot (precision + r
 
 \begin{table}[htb]
 \centering
-\caption{A full statistical analysis of each model after training}
+\caption{A full statistical analysis of each model after training on the test dataset}
 \label{table:results_explore}
 \begin{tabular}{|p{5cm}|c|c|c|c|}
 \hline
@@ -336,7 +336,7 @@ Table~\ref{table:results_explore} shows that the random forest is the superior m
 
 \subsection{Random forests}
 
-Random forests (RFs) are ensembles consisting of multiple random decision trees. Each tree is built on a random subset of the original data; at each tree node, a subset of features are randomly selected to generate the best fit. They do not require feature scaling or categorical feature encoding, so we simplified the pipeline by removing these features. We then identified five hyperparameters likely to impact performance and used randomised search combined with $3$-fold cross validation to optimise them; the results are presented in Table~\ref{table:results_parameters}.
+Random forests (RFs) are ensembles consisting of multiple random decision trees. Each tree is built on a random subset of the original data; at each tree node, a random subset of features are randomly selected to generate the best fit. They do not require feature scaling or categorical feature encoding, so we simplified the pipeline by removing these features. We then identified five hyperparameters likely to impact performance and used randomised search combined with $3$-fold cross validation to optimise them; the results are presented in Table~\ref{table:results_parameters}.
 
 \begin{table}[h!]
 \centering
@@ -367,20 +367,30 @@ RandomForestClassifier & 0.76                     & 0.76                      & 
 \end{tabular}
 \end{table}
 
-Finally, we evaluated the model using repeated stratified $6$-fold cross validation, which is “generally a better scheme, both in terms of bias and variance, when compared to regular cross-validation” \cite{kohavi_1995}, and selects folds so that each contains roughly the same class distribution in the original dataset (in this case, the re-sampled dataset). The results are plotted in Figure~\ref{fig:roc} as a $ROC_{AUC}$ curve. $ROC$ curves visualise the trade-off between the true positive rate (TPR) and false positive rate (FPR) for a predictive model using different probability thresholds. The top-left corner of the plot is the ‘ideal’ point: a false positive rate of $0.0$, and a true positive rate of $1.0$. A larger area under the curve ($AUC$) is therefore better. We obtained a mean AUC of $0.88 \pm 0.05$. 
+Finally, we evaluated the model using repeated stratified $10$-fold cross validation, which is “generally a better scheme, both in terms of bias and variance, when compared to regular cross-validation” \cite{kohavi_1995}, and selects folds so that each contains roughly the same class distribution in the original dataset (in this case, the re-sampled dataset). The results are plotted in Figure~\ref{fig:roc} as a $ROC_{AUC}$ curve. $ROC$ curves visualise the trade-off between the true positive rate (TPR) and false positive rate (FPR) for a predictive model using different probability thresholds. A larger area under the curve ($AUC$) is better. We obtained a mean $ROC_{AUC}$ of $0.77 \pm 0.00$. This is because our dataset was perfectly balanced, and sufficiently large that there was essentially no difference between the folds.  
 
-\begin{figure}[h!]
-  \includegraphics[width=\linewidth]{images/roc_auc.png}
+\begin{figure}[h]
+  \includegraphics[width=\linewidth]{images/roc_auc_10.png}
   \caption{A ROC\textsubscript{AUC} graph.}
   \label{fig:roc}
 \end{figure}
 
-Finally, we tested the effect of the inclusion of weather data on our model. 
-
 \subsection{Exogenous data: weather}
 
-We then joined the MIDAS dataset with our current dataset. This join resulted in a $90\%$ reduction in the number of rows available, 
+Finally, we tested the effect of the inclusion of weather data on our model. We joined the MIDAS dataset with our current dataset. This join resulted in an approximate $35\%$ reduction in the number of rows available. We then modified our pipeline to transform the weather features appropriately and re-tested our tuned random forest model. We found a modest improvement in performance; the metrics are presented in Table~\ref{table:results_weather}.
 
+\begin{table}[htb]
+\centering
+\caption{A statistical analysis of the tuned random forest with weather data}
+\label{table:results_weather}
+\begin{tabular}{|p{5cm}|c|c|c|c|}
+\hline
+\textbf{Model}                  & \multicolumn{1}{l|}{\textbf{Acc}} & \multicolumn{1}{l|}{\textbf{Prec}} & \multicolumn{1}{l|}{\textbf{Rec}} & \multicolumn{1}{l|}{\textbf{$F_1$}} \\ \hline
+RandomForestClassifier & 0.76                     & 0.74                     & 0.77                     & 0.77                      \\ \hline
+\end{tabular}
+\end{table}
+
+\clearpage
 \section{Evaluation}
 
 In this section, we evaluate the strengths and weakness of our solutions, reflecting upon the original research question: \textit{Can medium-term train delays be predicted?}.
@@ -405,15 +415,21 @@ While \verb|scikit-learn| is designed to be easy to use, we found that we pushed
 
 Our approach to hyperparameter optimisation proved sound. We did not anticipate great improvement, as random forests are typically resistant to fine-tuning, and were only able to identify $5$ parameters to optimise, but achieved a roughly $4\%$ improvement nevertheless. We did not test particularly large values for \verb|n_estimators| - the best optimal value was the maximum, $200$ - so further increasing this would likely improve performance further. As the number of estimators increases, however, the training time of the model increases, and as we were running so many cross-validation iterations, a cap was necessary. 
 
+\subsection{Exogenous data: weather}
+
+The inclusion of weather data did not improve performance as much as we anticipated. Oneto \textit{et al.} found a $10\%$ increase in performance when including similiar weather data \cite{oneto_et_al_2016}. It is likely that the conversion from MIDAS to DataPoint, which proved unnecessary, resulted in errors in the weather type, which we expected to be the most important variable: the majority of values were "Light Rain", which, while typical of the UK, are likely incorrect.
+
+\clearpage
 \section{Conclusion}
 
 In this project we have demonstrated how a novel, high-quality train delay dataset may be constructed from a variety of complex publicly available sources. To the best of our knowledge, this is the first time these sources have been utilised in this fashion.  
 
-Using this dataset, we have produced a binary classification model as a s solution to the problem of medium-term train delay prediction. To achieve this, $8$ classifiers were tested and their performance evaluated. The most performant model, a random forest, was subject to further testing in which we systematically modified hyperparameters to improve performance. Our final classification model achieved an accuracy of $76\%$ and an $ROC_{AUC}$ of $0.89$. 
+Using this dataset, we have produced a binary classification model as a s solution to the problem of medium-term train delay prediction. To achieve this, $8$ classifiers were tested and their performance evaluated. The most performant model, a random forest, was subject to further testing in which we systematically modified hyperparameters to improve performance. Our final classification model achieved an accuracy of $76\%$ and an $ROC_{AUC}$ of $0.77$. 
 
 A suitable direction for future work would be the inclusion of more exogenous data, such as infrastructure, and a more complex model to better capture the secondary delays caused by interactions between trains. A multi-layer perceptron obtained comparable results to our final random forest model, so it is possible that alternative architectures such as Deep Neural Networks (DNN) would have yielded superior results. It would also be easy to extend the work in this project to regression, to predict not only whether a train will be delayed but by how much.
 
 We discussed earlier that the main rationale behind this project is the potential benefits it could yield for passengers. To make this project directly useful for consumers, a system could be developed that subscribes to real-time schedule and weather data to predict live whether a given train will be delayed.
+
 \clearpage
 \bibliography{projectpaper}
 
