@@ -25,28 +25,28 @@
 
 \subsection{Context / Background}
 
-Trains are a popular form of public transport. The perceived likelihood and severity of train delays important both for customers' satisfaction and to various business stakeholders, and, and so a system predicting train delays in the medium-term would improve both customer satisfaction and operating profits. There are currently no solutions to this problem in the literature, nor in practice, although extensive research has been carried out into real-time delay prediction.
+Trains are a popular form of public transport. The perceived likelihood and severity of train delays is important both for customers' satisfaction and to various business stakeholders, and so a system predicting train delays in the medium-term would improve both customer satisfaction and operating profits. There are currently no solutions to this problem in the literature, nor in practice, although extensive research has been carried out into real-time delay prediction.
 
 \subsection{Aims}
 
-The aims of this project are twofold. The primary aim is to identify a suitable binary classification model for predicting medium-term train delays. The secondary, supporting aim is to develop a new train delay dataset to train this model on.
+The aim of this project is to predict medium-term train delays. We define \textit{medium-term} as meaning a train which has not yet departed its origin and a \textit{delay} as a positive deviation between the scheduled time of arrival of a train at a specified destination and the actual time of arrival at that destination. To faciliate this aim, we build a dataset.
 
-\subsection{Method}
+\subsection{Methodology}
 
-Using historical schedule data, movement data, location data, and weather data from a variety of sources, a high-quality dataset is constructed for use in machine learning. A variety of classification models are trained and tested, and the best-performing is optimised. The effect of including exogenous weather data is investigated.
+Using historical schedule data, movement data, location data, and weather data from a variety of sources, a dataset is constructed for use in machine learning. A variety of classification models are trained and tested, and the best-performing is optimised.  A variety of classification models are trained and tested, and the best-performing is optimised. The effect of including exogenous weather data is investigated.
 
 \subsection{Results}
 
-An entirely new high-quality dataset has been constructed, comprising $5.2$ million rows and $23$ columns. Of the classification models tested, a random forest achieved the greatest $F_1$-measure of $0.76$. Evaluation using repeated stratified $10-$fold cross validation resulted in a $ROC_{AUC}$ of $0.77$. 
+An entirely new high-quality dataset has been constructed, comprising $5.2$ million rows and $47$ columns. Of the classification models tested, a random forest achieved the greatest $F_1$-measure of $0.76$. Evaluation using repeated stratified $10-$fold cross validation resulted in a $ROC_{AUC}$ of $0.77$. The inclusion of exogenous weather data improved model performance slightly. 
 
 \subsection{Conclusions}
 
-This project explores a relatively unstudied area in train delay prediction. The dataset developed is novel and high-quality, and may prove of use to other researchers. The developed random forest performed well, and together they form a solid foundation for future work in this area.
+This project explores a relatively unstudied area in train delay prediction. The dataset developed is novel and high-quality, and may prove of use to other researchers. The solution developed, a random forest, predicts medium-term train delays with respectable accuracy. Together they form a solid foundation for future work in this area.
 
 \end{abstract}
 
 \begin{keywords}
-Machine learning, train delay, delay prediction, extract-transform-load, ETL, classification, regression
+Machine learning, train delay, delay prediction, extract-transform-load, etl, classification
 \end{keywords}
 
 \clearpage
@@ -264,7 +264,7 @@ As mentioned previously, there is a need to map from the MIDAS format to DataPoi
 
 \subsubsection{Transforming movement}
 
-Each day of train movements is a file roughly 1.5GB in size. This file also contains a variety of other messages: forecasts, schedules, station messages, alarms, warnings, and so on. We converted each train movement into a simple record comprising the type, train, location, and time the movement took place. DARWIN does not include the date at which the movement took place, so this was inferred from other metadata. We also dropped duplicate messages.
+Each day of train movements is a file roughly \verb|1.5GB| in size. This file also contains a variety of other messages: forecasts, schedules, station messages, alarms, warnings, and so on. We converted each train movement into a simple record comprising the type, train, location, and time the movement took place. DARWIN does not include the date at which the movement took place, so this was inferred from other metadata. We also dropped duplicate messages.
 
 \subsubsection{Transforming location}
 
@@ -300,7 +300,65 @@ OS        & Windows 10                  \\ \hline
 
 \subsection{ETL}
 
-The output of our ETL pipeline is a single CSV, \verb|1.1 GB| in size, containing approximately $5.2$ million rows and $47$ columns, over a period of one year (\verb|2018-04-01| to \verb|2019-04-031). Approximately $20,000$ trains run a day in the UK, and we were successful in capturing approximately $76\%$. Before testing our models, we preprocessed our dataset. We encoded datetime data cyclically, whereby each datetime is split into its constituent parts and each part is converted into two values, one for \verb|sin| and one for \verb|cos|, such that each is encoded as a point on unit circle. For compatibility between different models, we one-hot encoded categorical variables and scaled numeric variables to Gaussian. We later relax this requirement. We also resampled the dataset. Approximately $10\%$ of rows are positive (i.e. delayed). This causes poor performance: a model can learn to always predict negative (i.e. not delayed) to trivially achieve approximately $90$\% accuracy. To remedy this we investigated different ways to balance the dataset, and chose to oversample the minority class (i.e. delayed) using SMOTE \cite{chawla_et_al_2002} and randomly undersample the majority class (i.e. not delayed) to achieve a 50:50 ratio. The final form of our dataset is a $(1178694, 283)$ sparse matrix.
+The output of our ETL pipeline is a single CSV, \verb|1.1 GB| in size, containing approximately $5.2$ million rows and $47$ columns, over a period of one year (\verb|2018-04-01| to \verb|2019-04-031|). Approximately $20,000$ trains run a day in the UK, and we were successful in capturing approximately $76\%$. The numeric, categorical, and datetime fields prior to transformation and resampling are presented in Tables~\ref{table:etl_numeric},~\ref{table:etl_categorical}, and~\ref{table:etl_datetime}, respectively. We can observe, for instance, that the busiest TIPLOC is \verb|LIVST| (Liverpool Street); that the mean speed of trains in the UK is $89.5$ mph; and that the single busiest time (for departures) was \verb|2019-03-15 07:30:00|.
+
+Before testing our models, we preprocessed our dataset. We encoded datetime data cyclically, whereby each datetime is split into its constituent parts and each part is converted into two values, one for \verb|sin| and one for \verb|cos|, such that each is encoded as a point on unit circle. For compatibility between different models, we one-hot encoded categorical variables and scaled numeric variables to Gaussian; we later relax this requirement. We also resampled the dataset. Approximately $10\%$ of rows are positive (i.e. delayed). This causes poor performance: a model can learn to always predict negative (i.e. not delayed) to trivially achieve approximately $90$\% accuracy. To remedy this we investigated different ways to balance the dataset, and chose to oversample the minority class (i.e. delayed) using SMOTE \cite{chawla_et_al_2002} and randomly undersample the majority class (i.e. not delayed) to achieve a 50:50 ratio. The final form of our dataset is a $(1178694, 283)$ sparse matrix. 
+
+\begin{table}[]
+\centering
+\caption{Numeric fields in the dataset}
+\label{table:etl_numeric}
+\begin{tabular}{|l|l|r|r|r|r|r|}
+\hline
+                       & dtype  & \multicolumn{1}{l|}{no. col} & \multicolumn{1}{l|}{mean} & \multicolumn{1}{l|}{std} & \multicolumn{1}{l|}{min} & \multicolumn{1}{l|}{max} \\ \hline
+speed                  & int    &                                  & 8.951162e+01              & 1.442622e+01             & 45                       & 140                      \\ \hline
+length                 & int    &                                  & 1.830134e+01              & 1.266664e+01             & 2                        & 150                      \\ \hline
+duration               & float  &                                  & 6.482278e+01              & 5.540015e+01             & 1                        & 803                      \\ \hline
+delay                  & float  &                                  & 1.464341e+01              & 1.420186e+02             & -412.5                   & 2492.5                   \\ \hline
+freight                & binary &                                  & 1.016241e-04              & 1.008037e-02             & 0                        & 1                        \\ \hline
+delayed                & binary &                                  & 1.132171e-01              & 3.168581e-01             & 0                        & 1                        \\ \hline
+bank\_holiday\_running & binary &                                  & 9.999364e-01              & 7.973899e-03             & 0                        & 1                        \\ \hline
+mon - sun              & binary & 7                                &                           &                          &                          &                          \\ \hline
+characteristic         & binary & 12                               &                           &                          &                          &                          \\ \hline
+catering               & binary & 6                                &                           &                          &                          &                          \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[]
+\centering
+\caption{Categorical fields in the dataset}
+\label{table:etl_categorical}
+\begin{tabular}{|l|r|r|r|}
+\hline
+                          & \multicolumn{1}{l|}{unique} & \multicolumn{1}{l|}{top} & \multicolumn{1}{l|}{freq} \\ \hline
+status                    & 2                           & P                        & 5156231                   \\ \hline
+category                  & 10                          & OO                       & 3530949                   \\ \hline
+power\_type               & 5                           & EMU                      & 2786544                   \\ \hline
+timing\_load              & 38                          & S                        & 898631                    \\ \hline
+seating                   & 2                           & S                        & 3565386                   \\ \hline
+reservations              & 3                           & S                        & 984770                    \\ \hline
+origin                    & 683                         & LIVST                    & 180355                    \\ \hline
+destination               & 654                         & LIVST                    & 181829                    \\ \hline
+ATOC\_code                & 33                          & NT                       & 784180                    \\ \hline
+origin\_stanox\_area      & 80                          & 88                       & 372775                    \\ \hline
+destination\_stanox\_area & 80                          & 88                       & 372528                    \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[]
+\centering
+\caption{Datetime fields in the dataset}
+\label{table:etl_datetime}
+\begin{tabular}{|l|r|r|r|r|r|}
+\hline
+    & \multicolumn{1}{l|}{unique} & \multicolumn{1}{l|}{top} & \multicolumn{1}{l|}{freq} & \multicolumn{1}{l|}{first} & \multicolumn{1}{l|}{last} \\ \hline
+std & 432969                      & 2018-04-30 07:00:30      & 52                        & 2018-04-01 00:08:30        & 2019-03-31 23:59:30       \\ \hline
+sta & 436717                      & 2019-03-18 16:44:30      & 34                        & 2018-04-01 00:12:30        & 2019-04-01 09:03:30       \\ \hline
+atd & 436262                      & 2019-03-15 07:30:00      & 45                        & 2018-04-01 00:06:00        & 2019-04-01 11:42:00       \\ \hline
+ata & 437485                      & 2019-03-30 10:36:00      & 38                        & 2018-04-01 00:11:00        & 2019-04-01 12:00:00       \\ \hline
+\end{tabular}
+\end{table}
+
 
 \subsection{Binary classification}
 
@@ -367,10 +425,11 @@ RandomForestClassifier & 0.76                     & 0.76                      & 
 \end{tabular}
 \end{table}
 
-Finally, we evaluated the model using repeated stratified $10$-fold cross validation, which is “generally a better scheme, both in terms of bias and variance, when compared to regular cross-validation” \cite{kohavi_1995}, and selects folds so that each contains roughly the same class distribution in the original dataset (in this case, the re-sampled dataset). The results are plotted in Figure~\ref{fig:roc} as a $ROC_{AUC}$ curve. $ROC$ curves visualise the trade-off between the true positive rate (TPR) and false positive rate (FPR) for a predictive model using different probability thresholds. A larger area under the curve ($AUC$) is better. We obtained a mean $ROC_{AUC}$ of $0.77 \pm 0.00$. This is because our dataset was perfectly balanced, and sufficiently large that there was essentially no difference between the folds.  
+Finally, we evaluated the model using repeated stratified $10$-fold cross validation, which selects folds so that each contains roughly the same class distribution in the original dataset (in this case, the re-sampled dataset). The results are plotted in Figure~\ref{fig:roc} as a $ROC_{AUC}$ curve. $ROC$ curves visualise the trade-off between the true positive rate (TPR) and false positive rate (FPR) for a predictive model using different probability thresholds. A larger area under the curve ($AUC$) is better. We obtained a mean $ROC_{AUC}$ of $0.77 \pm 0.00$. This is because our dataset was perfectly balanced, and sufficiently large that there was essentially no difference between the folds.  
 
-\begin{figure}[h]
-  \includegraphics[width=\linewidth]{images/roc_auc_10.png}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.85\linewidth,height=0.5\textheight,keepaspectratio]{images/roc_auc_10.png}
   \caption{A ROC\textsubscript{AUC} graph.}
   \label{fig:roc}
 \end{figure}
@@ -390,7 +449,6 @@ RandomForestClassifier & 0.76                     & 0.74                     & 0
 \end{tabular}
 \end{table}
 
-\clearpage
 \section{Evaluation}
 
 In this section, we evaluate the strengths and weakness of our solutions, reflecting upon the original research question: \textit{Can medium-term train delays be predicted?}.
@@ -413,20 +471,23 @@ While \verb|scikit-learn| is designed to be easy to use, we found that we pushed
 
 \subsection{Hyperparameter optimisation}
 
-Our approach to hyperparameter optimisation proved sound. We did not anticipate great improvement, as random forests are typically resistant to fine-tuning, and were only able to identify $5$ parameters to optimise, but achieved a roughly $4\%$ improvement nevertheless. We did not test particularly large values for \verb|n_estimators| - the best optimal value was the maximum, $200$ - so further increasing this would likely improve performance further. As the number of estimators increases, however, the training time of the model increases, and as we were running so many cross-validation iterations, a cap was necessary. 
+Our approach to hyperparameter optimisation proved sound. We did not anticipate great improvement, as random forests are typically resistant to fine-tuning, and there were only able to identify $5$ parameters to optimise, but we achieved a roughly $4\%$ improvement nevertheless. We did not test particularly large values for \verb|n_estimators| - the optimal value was the maximum, $200$ - so further increasing this would likely improve performance further. As the number of estimators increases, however, the training time of the model increases, and as we were running so many cross-validation iterations, a cap was necessary. 
 
 \subsection{Exogenous data: weather}
 
 The inclusion of weather data did not improve performance as much as we anticipated. Oneto \textit{et al.} found a $10\%$ increase in performance when including similiar weather data \cite{oneto_et_al_2016}. It is likely that the conversion from MIDAS to DataPoint, which proved unnecessary, resulted in errors in the weather type, which we expected to be the most important variable: the majority of values were "Light Rain", which, while typical of the UK, are likely incorrect.
 
-\clearpage
 \section{Conclusion}
 
 In this project we have demonstrated how a novel, high-quality train delay dataset may be constructed from a variety of complex publicly available sources. To the best of our knowledge, this is the first time these sources have been utilised in this fashion.  
 
-Using this dataset, we have produced a binary classification model as a s solution to the problem of medium-term train delay prediction. To achieve this, $8$ classifiers were tested and their performance evaluated. The most performant model, a random forest, was subject to further testing in which we systematically modified hyperparameters to improve performance. Our final classification model achieved an accuracy of $76\%$ and an $ROC_{AUC}$ of $0.77$. 
+Using this dataset, we have produced a binary classification model as a solution to the problem of medium-term train delay prediction. To achieve this, $8$ classifiers were tested and their performance evaluated. The most performant model, a random forest, was subject to further testing in which we systematically modified hyperparameters to improve performance. Our final classification model achieved an accuracy of $76\%$ and an $ROC_{AUC}$ of $0.77$. We conclude that it is \textit{possible} to predict medium-term train delays, but with limited accuracy, and some difficulty. For a system to be truly useful, passengers would expect close to perfect accuracy.
 
-A suitable direction for future work would be the inclusion of more exogenous data, such as infrastructure, and a more complex model to better capture the secondary delays caused by interactions between trains. A multi-layer perceptron obtained comparable results to our final random forest model, so it is possible that alternative architectures such as Deep Neural Networks (DNN) would have yielded superior results. It would also be easy to extend the work in this project to regression, to predict not only whether a train will be delayed but by how much.
+\subsection{Future work}
+
+Suitable directions for future work would be the inclusion of more exogenous data, such as infrastructure, to better predict primary delays; a more complex model, to better capture the secondary delays caused by interactions between trains; extending the model to the problem of regression, predict not only whether a train will be delayed, but by how much; the investigation of different models; and the development of an application for consumer use. We expand on these last two.
+
+We investigated a range of off-the-shelf models, albeit with substantial tuning in the case of our final model, a random forest. Random forests typically perform well with little tuning, but can be outperformed with highly customised architectures such as those possible in neural networks. A multi-layer perceptron obtained comparable results to our final random forest model, so it is possible that alternative architectures such as Deep Neural Networks would have yielded superior results.
 
 We discussed earlier that the main rationale behind this project is the potential benefits it could yield for passengers. To make this project directly useful for consumers, a system could be developed that subscribes to real-time schedule and weather data to predict live whether a given train will be delayed.
 

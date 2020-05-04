@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.12)  21 APR 2020 13:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.12)  4 MAY 2020 10:22
 entering extended mode
 **./projectpaper.tex
 (projectpaper.tex
@@ -286,16 +286,8 @@ LaTeX Warning: Citation 'milinkovic_et_al_2013' on page 2 undefined on input li
 ne 69.
 
 
-LaTeX Warning: Reference `table:primary_delay' on page 2 undefined on input lin
-e 69.
-
-
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 71.
-
-
-LaTeX Warning: Reference `fig:delay_propagation' on page 2 undefined on input l
-ine 85.
 
 [2
 
@@ -480,15 +472,6 @@ LaTeX Warning: Citation 'wang_zhang_2019' on page 6 undefined on input line 164
 LaTeX Warning: Citation 'ponniah_2010' on page 6 undefined on input line 164.
 
 [6]
-
-LaTeX Warning: Reference `section:introduction' on page 7 undefined on input li
-ne 166.
-
-
-LaTeX Warning: Reference `subsection:background' on page 7 undefined on input l
-ine 166.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 175--175
 []\OT1/ptm/m/n/12 Twice a
  []
@@ -523,84 +506,67 @@ LaTeX Warning: Citation 'wang_work_2015' on page 11 undefined on input line 280
 [11]
 
 LaTeX Warning: Citation 'chawla_et_al_2002' on page 12 undefined on input line 
-303.
+305.
 
 
-Overfull \hbox (2315.86082pt too wide) in paragraph at lines 303--304
-\OT1/cmr/m/n/12 5\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 2$ \OT1/ptm/m/n/12 mil-lion 
-rows and $\OT1/cmr/m/n/12 47$ \OT1/ptm/m/n/12 columns, over a pe-riod of one ye
-ar ([][]\OT1/pcr/m/n/12 2018-04-01 []\OT1/ptm/m/n/12 to [][]\OT1/pcr/m/n/12 201
-9-04-031). Approximately $20,000$ trains run a day in the UK, and we were succe
-ssful in capturing approximately $76\%$. Before testing our models, we preproce
-ssed our dataset. We encoded datetime data cyclically, whereby each datetime is
- split into its constituent parts and each part is converted into two values, o
-ne for \verb[]\OT1/ptm/m/n/12 sin|
- []
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 307.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 327.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 348.
 
 [12
 
-]
-Underfull \hbox (badness 1127) in paragraph at lines 352--352
+] [13]
+Underfull \hbox (badness 1127) in paragraph at lines 410--410
 []\OT1/ptm/m/n/12 The min-i-mum num-ber of sam-ples re-
  []
 
-[13]
 
-LaTeX Warning: Citation 'kohavi_1995' on page 14 undefined on input line 370.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-LaTeX Warning: Reference `fig:roc' on page 14 undefined on input line 370.
-
-<images/roc_auc_10.png, id=59, 462.528pt x 346.896pt>
+[14]
+<images/roc_auc_10.png, id=62, 462.528pt x 346.896pt>
 File: images/roc_auc_10.png Graphic file (type png)
 <use images/roc_auc_10.png>
-Package pdftex.def Info: images/roc_auc_10.png  used on input line 373.
-(pdftex.def)             Requested size: 461.13188pt x 345.86826pt.
-
-LaTeX Warning: Reference `table:results_weather' on page 14 undefined on input 
-line 380.
-
-[14 <./images/roc_auc_10.png>] [15] [16
-
-]
+Package pdftex.def Info: images/roc_auc_10.png  used on input line 432.
+(pdftex.def)             Requested size: 391.98615pt x 293.98961pt.
+ [15 <./images/roc_auc_10.png>] [16]
 
 LaTeX Warning: Citation 'oneto_et_al_2016' on page 17 undefined on input line 4
-20.
+78.
 
-[17] [18
-
-] (projectpaper.bbl) (projectpaper.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+[17] [18] (projectpaper.bbl) (projectpaper.aux) ) 
 Here is how much of TeX's memory you used:
- 2885 strings out of 481565
- 47608 string characters out of 2914159
- 288396 words of memory out of 3000000
- 18100 multiletter control sequences out of 15000+200000
+ 2888 strings out of 481565
+ 47713 string characters out of 2914159
+ 295467 words of memory out of 3000000
+ 18103 multiletter control sequences out of 15000+200000
  553416 words of font info for 60 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  50i,17n,49p,1391b,367s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc
-}<C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmmi10.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmmi12.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/domwh/AppData/Local/Programs/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/domwh/AppData/Loca
-l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/domwh/
-AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/U
-sers/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
-y10.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/couri
-er/ucrr8a.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw
-/times/utmb8a.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
-/urw/times/utmbi8a.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/
-type1/urw/times/utmr8a.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fo
-nts/type1/urw/times/utmri8a.pfb>
-Output written on projectpaper.pdf (18 pages, 415830 bytes).
+{C:/Users/domwh/AppData/Local/
+Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Users/domwh/AppData/Local/P
+rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/domwh/Ap
+pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/U
+sers/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmm
+i8.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmr10.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmr12.pfb><C:/Users/domwh/AppData/Local/Programs/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/domwh/AppData/Local/Program
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/domwh/AppData/
+Local/Programs/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/domwh/Ap
+pData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Users/domw
+h/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Users
+/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/U
+sers/domwh/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+
+Output written on projectpaper.pdf (18 pages, 417989 bytes).
 PDF statistics:
  116 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
