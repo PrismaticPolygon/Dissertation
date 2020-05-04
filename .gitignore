@@ -1,9 +1,10 @@
 .idea
 archive
 venv
-*.csv
 __pycache__
 ~$*.docx
 *.pickle
 ~*.tmp
 data/dscm_w.csv
+models/features
+latex/review/*.csv
